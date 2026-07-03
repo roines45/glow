@@ -71,6 +71,7 @@
     <Reference Include="System">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8.1\System.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
@@ -129,6 +130,12 @@
     <Compile Include="glow_tools\GlowDNSTestTool.Designer.cs">
       <DependentUpon>GlowDNSTestTool.cs</DependentUpon>
     </Compile>
+    <Compile Include="glow_tools\GlowHSAuditorTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="glow_tools\GlowHSAuditorTool.Designer.cs">
+      <DependentUpon>GlowHSAuditorTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="glow_tools\GlowMonitorTestTool.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,12 +147,6 @@
     </Compile>
     <Compile Include="glow_tools\GlowNetworkFixTool.Designer.cs">
       <DependentUpon>GlowNetworkFixTool.cs</DependentUpon>
-    </Compile>
-    <Compile Include="glow_tools\GlowOverlayTool.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="glow_tools\GlowOverlayTool.Designer.cs">
-      <DependentUpon>GlowOverlayTool.cs</DependentUpon>
     </Compile>
     <Compile Include="glow_tools\GlowSFCandDISMAutoTool.cs">
       <SubType>Form</SubType>
@@ -237,7 +238,6 @@
     <None Include="glow_images\glow_ui\theme_light\tm_startup_light.png" />
     <None Include="glow_images\glow_ui\theme_light\tm_settings_light.png" />
     <None Include="glow_images\glow_ui\theme_light\tm_language_light.png" />
-    <None Include="glow_images\glow_ui\theme_light\tm_hidden_light.png" />
     <None Include="glow_images\glow_ui\theme_light\tm_about_light.png" />
     <None Include="glow_images\glow_ui\theme_light\lm_usb_light.png" />
     <None Include="glow_images\glow_ui\theme_light\lm_sound_light.png" />
@@ -272,7 +272,6 @@
     <None Include="glow_images\glow_ui\theme_dark\tm_startup_dark.png" />
     <None Include="glow_images\glow_ui\theme_dark\tm_settings_dark.png" />
     <None Include="glow_images\glow_ui\theme_dark\tm_language_dark.png" />
-    <None Include="glow_images\glow_ui\theme_dark\tm_hidden_dark.png" />
     <None Include="glow_images\glow_ui\theme_dark\tm_about_dark.png" />
     <None Include="glow_images\glow_ui\theme_dark\lm_usb_dark.png" />
     <None Include="glow_images\glow_ui\theme_dark\lm_sound_dark.png" />
@@ -323,8 +322,6 @@
     <None Include="glow_images\glow_ui\theme_light\ct_spf_add_light.png" />
     <None Include="glow_images\glow_ui\theme_dark\ct_spf_close_dark.png" />
     <None Include="glow_images\glow_ui\theme_dark\ct_spf_add_dark.png" />
-    <None Include="glow_images\glow_ui\theme_light\cx_overlay_light.png" />
-    <None Include="glow_images\glow_ui\theme_dark\cx_overlay_dark.png" />
     <None Include="glow_images\glow_ui\theme_light\ct_link_mc_light.png" />
     <None Include="glow_images\glow_ui\theme_dark\ct_link_mc_dark.png" />
     <None Include="glow_images\glow_ui\theme_light\ct_image_preview_light.png" />

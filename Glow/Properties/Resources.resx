@@ -217,12 +217,6 @@
   <data name="cx_network_fix_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\glow_images\glow_ui\theme_light\cx_network_fix_light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cx_overlay_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\glow_images\glow_ui\theme_dark\cx_overlay_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cx_overlay_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\glow_images\glow_ui\theme_light\cx_overlay_light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="cx_sfc_and_dism_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\glow_images\glow_ui\theme_dark\cx_sfc_and_dism_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -364,12 +358,6 @@
   <data name="tm_donate_mc_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\glow_images\glow_ui\theme_light\tm_donate_mc_light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tm_hidden_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\glow_images\glow_ui\theme_dark\tm_hidden_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tm_hidden_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\glow_images\glow_ui\theme_light\tm_hidden_light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="tm_language_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\glow_images\glow_ui\theme_dark\tm_language_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -504,5 +492,35 @@
   </data>
   <data name="ts_about" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\glow_images\ts_about\ts_about.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tm_stealth_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_dark\tm_stealth_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tm_stealth_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_light\tm_stealth_light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ct_check_mark_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_dark\ct_check_mark_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tm_hsa_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_dark\tm_hsa_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ct_check_mark_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_light\ct_check_mark_light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tm_hsa_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_light\tm_hsa_light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ct_fail_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_dark\ct_fail_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ct_success_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_dark\ct_success_dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ct_fail_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_light\ct_fail_light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ct_success_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\glow_images\glow_ui\theme_light\ct_success_light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

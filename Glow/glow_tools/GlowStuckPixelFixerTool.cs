@@ -23,36 +23,30 @@ namespace Glow.glow_tools{
             this.KeyPreview = true;
             this.KeyDown += (s, e) => { if (e.KeyCode == Keys.Escape) this.Close(); };
         }
-        // LOAD
+        // PRE-LOAD
         // ======================================================================================================
-        private void GlowStuckPixelFixerTool_Load(object sender, EventArgs e){
-            float scaleFactor = this.DeviceDpi / 96f;
-            AddNewTestBox((Screen.PrimaryScreen.Bounds.Width - (int)(225 * scaleFactor)) / 2, (Screen.PrimaryScreen.Bounds.Height - (int)(200 * scaleFactor)) / 2);
-            ChangeDynamicUI();
-        }
-        // CHANGE DYNAMIC UI
-        // ======================================================================================================
-        public void ChangeDynamicUI(){
+        public void GTool_StuckPixel_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
-                //
+                // TEXT
+                // ----------------------
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 Text = string.Format(software_lang.TSReadLangs("MonitorStuckPixelFixerTool", "ht_stuck_pixel_fixer_tool"), Application.ProductName);
                 testFieldCountMaxText = software_lang.TSReadLangs("MonitorStuckPixelFixerTool", "mspf_max_field_warning");
                 // THEME
-                MainToolTip.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "HeaderFEColor");
-                MainToolTip.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "HeaderBGColor");
+                MainToolTip.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                MainToolTip.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
                 //
                 foreach (Control ctrl in this.Controls){
                     if (ctrl is TSStuckPixelTest testBox){
-                        testBox.headerPanel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                        testBox.timeLabel.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
+                        testBox.headerPanel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                        testBox.timeLabel.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
                         foreach (Control child in testBox.headerPanel.Controls){
                             if (child is Button btn){
-                                btn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                                btn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                                btn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                                btn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
+                                btn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                                btn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                                btn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                                btn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                             }
                         }
                         TSImageRenderer(testBox.colorButton, GlowMain.theme == 0 ? Properties.Resources.ct_spf_color_light : Properties.Resources.ct_spf_color_dark, 12, ContentAlignment.MiddleCenter);
@@ -66,7 +60,20 @@ namespace Glow.glow_tools{
                         MainToolTip.SetToolTip(testBox.closeButton, software_lang.TSReadLangs("MonitorStuckPixelFixerTool", "mspf_close_generate"));
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_StuckPixel_Preloader()"); }
+            }
+        }
+        // LOAD
+        // ======================================================================================================
+        private void GlowStuckPixelFixerTool_Load(object sender, EventArgs e){
+            try{
+                float scaleFactor = this.DeviceDpi / 96f;
+                AddNewTestBox((Screen.PrimaryScreen.Bounds.Width - (int)(225 * scaleFactor)) / 2, (Screen.PrimaryScreen.Bounds.Height - (int)(200 * scaleFactor)) / 2);
+                GTool_StuckPixel_Preloader();
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowStuckPixelFixerTool_Load()"); }
+            }
         }
         // ADD NEW TEST BOX
         // ======================================================================================================
@@ -99,9 +106,9 @@ namespace Glow.glow_tools{
         public readonly Button closeButton;
         public readonly Button addButton;
         //
-        private Stopwatch stopwatch;
+        private readonly Stopwatch stopwatch;
         private readonly GlowStuckPixelFixerTool parentForm;
-        private Random random;
+        private readonly Random random;
         //
         private bool dragging = false;
         private Point dragStart;
@@ -140,14 +147,14 @@ namespace Glow.glow_tools{
             headerPanel = new Panel{
                 Dock = DockStyle.Top,
                 Height = (int)(25 * scaleFactor),
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor"),
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor"),
                 Cursor = Cursors.SizeAll
             };
             // TIMER LABEL
             // ----------------------------
             timeLabel = new Label{
                 Text = "00:00:00",
-                ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft"),
+                ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1"),
                 Font = new Font("Segoe UI", 9.25f, FontStyle.Bold),
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleLeft,
@@ -157,7 +164,7 @@ namespace Glow.glow_tools{
             // COLOR BUTTON
             // ----------------------------
             colorButton = new Button{
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor"),
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor"),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand,
                 Dock = DockStyle.Right,
@@ -191,7 +198,7 @@ namespace Glow.glow_tools{
             // TOGGLE BUTTON
             // ----------------------------
             swapperButton = new Button{
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor"),
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor"),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand,
                 Dock = DockStyle.Right,
@@ -207,7 +214,7 @@ namespace Glow.glow_tools{
             // ADD
             // ----------------------------
             addButton = new Button{
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor"),
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor"),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand,
                 Dock = DockStyle.Right,
@@ -225,7 +232,7 @@ namespace Glow.glow_tools{
             // CLOSE
             // ----------------------------
             closeButton = new Button{
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor"),
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor"),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand,
                 Dock = DockStyle.Right,

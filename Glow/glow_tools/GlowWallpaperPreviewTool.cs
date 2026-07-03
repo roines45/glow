@@ -12,7 +12,7 @@ namespace Glow.glow_tools{
         public GlowWallpaperPreviewTool(){
             InitializeComponent();
             //
-            WP_Preview_theme_settings();
+            GTool_WP_Preloader();
             //
             ImageDGV.ColumnHeadersVisible = false;
             ImageDGV.Columns.Add("WallpaperPref", "Pref");
@@ -24,10 +24,55 @@ namespace Glow.glow_tools{
                 columnPadding.DefaultCellStyle.Padding = new Padding(scaledPadding, 0, 0, 0);
             }
         }
+        // THEME SETTINGS
+        // ======================================================================================================
+        public void GTool_WP_Preloader(){
+            try{
+                TSThemeModeHelper.InitializeThemeForForm(this);
+                //
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                //
+                ImageDGV.EnableHeadersVisualStyles = false;
+                ImageDGV.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                ImageDGV.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
+                ImageDGV.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                ImageDGV.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                ImageDGV.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                ImageDGV.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                ImageDGV.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                ImageDGV.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                ImageDGV.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                ImageDGV.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                ImageDGV.ReadOnly = true;
+                //
+                foreach (Control ui_buttons in BackPanel.Controls){
+                    if (ui_buttons is Button open_btn){
+                        open_btn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                        open_btn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        open_btn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        open_btn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        open_btn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
+                    }
+                }
+                //
+                TSImageRenderer(BtnWallpaperLocationBtn, GlowMain.theme == 1 ? Properties.Resources.ct_link_mc_light : Properties.Resources.ct_link_mc_dark, 18, ContentAlignment.MiddleRight);
+                // TEXT
+                // ----------------------
+                TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
+                Text = string.Format(software_lang.TSReadLangs("WallpaperPreviewTool", "wpt_title"), Application.ProductName);
+                BtnWallpaperLocationBtn.Text = " " + software_lang.TSReadLangs("WallpaperPreviewTool", "wpt_btn");
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_WP_Preloader()"); }
+            }
+        }
         // LOAD
         // ======================================================================================================
         private void GlowWallpaperPreviewTool_Load(object sender, EventArgs e){
-            Task.Run(AsyncLoadWallpaper);
+            try{
+                Task.Run(AsyncLoadWallpaper);
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowWallpaperPreviewTool_Load()"); }
+            }
         }
         private void AsyncLoadWallpaper(){
             try{
@@ -47,7 +92,9 @@ namespace Glow.glow_tools{
                 }else{
                     img.Dispose();
                 }
-            }catch{ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "AsyncLoadWallpaper()"); }
+            }
         }
         private void GetWallpaperInfo(string path){
             if (!File.Exists(path)) return;
@@ -57,7 +104,9 @@ namespace Glow.glow_tools{
                 using (var img = Image.FromStream(fs, false, false)){
                     res = $"{img.Width}x{img.Height}";
                 }
-            }catch { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GetWallpaperInfo()"); }
+            }
             if (ImageDGV.IsDisposed) return;
             Action addRows = () => AddRowsToDGV(new FileInfo(path), res);
             if (ImageDGV.InvokeRequired)
@@ -75,43 +124,6 @@ namespace Glow.glow_tools{
             ImageDGV.Rows.Add(software_lang.TSReadLangs("WallpaperPreviewTool", "wpt_creation_date"), fi.CreationTime.ToString());
             ImageDGV.Rows.Add(software_lang.TSReadLangs("WallpaperPreviewTool", "wpt_change_date"), fi.LastWriteTime.ToString());
         }
-        // THEME SETTINGS
-        // ======================================================================================================
-        public void WP_Preview_theme_settings(){
-            try{
-                TSThemeModeHelper.InitializeThemeForForm(this);
-                //
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                //
-                ImageDGV.EnableHeadersVisualStyles = false;
-                ImageDGV.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                ImageDGV.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridColor");
-                ImageDGV.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                ImageDGV.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridFEColor");
-                ImageDGV.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridAlternatingColor");
-                ImageDGV.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                ImageDGV.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                ImageDGV.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
-                ImageDGV.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                ImageDGV.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridFEColor");
-                ImageDGV.ReadOnly = true;
-                //
-                foreach (Control ui_buttons in BackPanel.Controls){
-                    if (ui_buttons is Button open_btn){
-                        open_btn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                        open_btn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        open_btn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        open_btn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        open_btn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
-                    }
-                }
-                //
-                TSImageRenderer(BtnWallpaperLocationBtn, GlowMain.theme == 1 ? Properties.Resources.ct_link_mc_light : Properties.Resources.ct_link_mc_dark, 18, ContentAlignment.MiddleRight);
-                TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
-                Text = string.Format(software_lang.TSReadLangs("WallpaperPreviewTool", "wpt_title"), Application.ProductName);
-                BtnWallpaperLocationBtn.Text = " " + software_lang.TSReadLangs("WallpaperPreviewTool", "wpt_btn");
-            }catch (Exception){ }
-        }
         // OPEN WALLPAPER TO EXPLORER
         // ======================================================================================================
         private void BtnWallpaperLocationBtn_Click(object sender, EventArgs e){
@@ -119,7 +131,8 @@ namespace Glow.glow_tools{
                 string wallpaper_start_path = string.Format("/select, \"{0}\"", GlowMain.wp_rotate.Trim().Replace("/", @"\"));
                 ProcessStartInfo psi = new ProcessStartInfo("explorer.exe", wallpaper_start_path);
                 Process.Start(psi);
-            }catch (Exception){
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "BtnWallpaperLocationBtn_Click()"); }
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 TS_MessageBoxEngine.TS_MessageBox(this, 3, software_lang.TSReadLangs("Os_Content", "os_c_wallpaper_open_error"));
             }

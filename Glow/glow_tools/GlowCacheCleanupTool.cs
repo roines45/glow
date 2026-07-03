@@ -32,38 +32,39 @@ namespace Glow.glow_tools{
         private string CCleanup_cctTitle;
         private volatile bool CCleanup_aRefresh = true, CCleanup_aRefreshRepeat = false;
         private readonly SemaphoreSlim _sizeCheckLock = new SemaphoreSlim(1, 1);
-        // DYNAMIC THEME VOID
+        // PRE-LOAD
         // ======================================================================================================
-        public void Cct_theme_settings(){
+        public void GTool_CacheCleanup_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
                 //
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
-                BG_Panel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
+                BG_Panel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
                 //
-                CCTTable.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                CCTTable.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridColor");
-                CCTTable.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                CCTTable.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridFEColor");
-                CCTTable.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridAlternatingColor");
-                CCTTable.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                CCTTable.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                CCTTable.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
-                CCTTable.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                CCTTable.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
+                CCTTable.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                CCTTable.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
+                CCTTable.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                CCTTable.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                CCTTable.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                CCTTable.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                CCTTable.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                CCTTable.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                CCTTable.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                CCTTable.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
-                CCT_SelectLabel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                CCT_SelectLabel.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
+                CCT_SelectLabel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                CCT_SelectLabel.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
                 //
-                CCT_StartBtn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                CCT_StartBtn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                CCT_StartBtn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                CCT_StartBtn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                CCT_StartBtn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                CCT_StartBtn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                CCT_StartBtn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                CCT_StartBtn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 CCT_StartBtn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
                 //
                 TSImageRenderer(CCT_StartBtn, GlowMain.theme == 1 ? Properties.Resources.ct_clean_light : Properties.Resources.ct_clean_dark, 22, ContentAlignment.MiddleRight);
-                //
+                // TEXT
+                // ----------------------
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 Text = string.Format(software_lang.TSReadLangs("CacheCleanupTool", "cct_title"), Application.ProductName);
                 //
@@ -72,40 +73,44 @@ namespace Glow.glow_tools{
                 CCTTable.Columns[2].HeaderText = software_lang.TSReadLangs("CacheCleanupTool", "cct_h_info_size");
                 //
                 CCT_StartBtn.Text = " " + software_lang.TSReadLangs("CacheCleanupTool", "cct_clean");
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_CacheCleanup_Preloader()"); }
+            }
         }
         // CCT LOAD
         // ======================================================================================================
         private async void GlowCacheCleanupTool_Load(object sender, EventArgs e){
-            TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
-            // GET THEME
-            Cct_theme_settings();
-            List<string> cct_folder_name = new List<string>(){
-                software_lang.TSReadLangs("CacheCleanupTool", "cct_p_system_temp"),
-                software_lang.TSReadLangs("CacheCleanupTool", "cct_p_temp_user"),
-                software_lang.TSReadLangs("CacheCleanupTool", "cct_p_windows_temp"),
-                software_lang.TSReadLangs("CacheCleanupTool", "cct_p_windows_icon_temp"),
-                software_lang.TSReadLangs("CacheCleanupTool", "cct_p_windows_update_temp")
-            };
-            for (int i = 0; i <= cct_path_list.Count - 1; i++){
-                CCTTable.Rows.Add(cct_folder_name[i], cct_path_list[i], software_lang.TSReadLangs("CacheCleanupTool", "cct_refreshing_title"));
+            try{
+                TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
+                // GET THEME
+                GTool_CacheCleanup_Preloader();
+                List<string> cct_folder_name = new List<string>(){
+                    software_lang.TSReadLangs("CacheCleanupTool", "cct_p_system_temp"),
+                    software_lang.TSReadLangs("CacheCleanupTool", "cct_p_temp_user"),
+                    software_lang.TSReadLangs("CacheCleanupTool", "cct_p_windows_temp"),
+                    software_lang.TSReadLangs("CacheCleanupTool", "cct_p_windows_icon_temp"),
+                    software_lang.TSReadLangs("CacheCleanupTool", "cct_p_windows_update_temp")
+                };
+                for (int i = 0; i <= cct_path_list.Count - 1; i++){
+                    CCTTable.Rows.Add(cct_folder_name[i], cct_path_list[i], software_lang.TSReadLangs("CacheCleanupTool", "cct_refreshing_title"));
+                }
+                CCTTable.Columns[0].Width = (int)(175 * this.DeviceDpi / 96f);
+                CCTTable.Columns[2].Width = (int)(125 * this.DeviceDpi / 96f);
+                foreach (DataGridViewColumn CCT_Column in CCTTable.Columns){
+                    CCT_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+                foreach (DataGridViewColumn columnPadding in CCTTable.Columns){
+                    int scaledPadding = (int)(3 * this.DeviceDpi / 96f);
+                    columnPadding.DefaultCellStyle.Padding = new Padding(scaledPadding, 0, 0, 0);
+                }
+                CCTTable.ClearSelection();
+                CCleanup_cctTitle = string.Format(software_lang.TSReadLangs("CacheCleanupTool", "cct_title"), Application.ProductName);
+                // START FOLDER SIZE CHECK ALGORITHM & START AUTO FOLDER SIZE ALGORITHM
+                await CheckFolderSizesAsync();
+                _ = AutoFolderSizeRefreshAsync();
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowCacheCleanupTool_Load()"); }
             }
-            CCTTable.Columns[0].Width = (int)(175 * this.DeviceDpi / 96f);
-            CCTTable.Columns[2].Width = (int)(125 * this.DeviceDpi / 96f);
-            foreach (DataGridViewColumn CCT_Column in CCTTable.Columns)
-            {
-                CCT_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-            foreach (DataGridViewColumn columnPadding in CCTTable.Columns)
-            {
-                int scaledPadding = (int)(3 * this.DeviceDpi / 96f);
-                columnPadding.DefaultCellStyle.Padding = new Padding(scaledPadding, 0, 0, 0);
-            }
-            CCTTable.ClearSelection();
-            CCleanup_cctTitle = string.Format(software_lang.TSReadLangs("CacheCleanupTool", "cct_title"), Application.ProductName);
-            // START FOLDER SIZE CHECK ALGORITHM & START AUTO FOLDER SIZE ALGORITHM
-            await CheckFolderSizesAsync();
-            _ = AutoFolderSizeRefreshAsync();
         }
         // CHECK FOLDER SIZE ALGORITHM
         // ======================================================================================================
@@ -150,7 +155,9 @@ namespace Glow.glow_tools{
                         CCTTable.Rows[index].Cells[2].Value = TS_FormatSize(size);
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Check_folder_sizes()"); }
+            }
             finally { CCleanup_pathSizes.Clear(); }
         }
         // SELECT LABEL WRITE PATH
@@ -167,7 +174,9 @@ namespace Glow.glow_tools{
                         CCT_SelectLabel.Text = pathText;
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "CCTTable_CellClick()"); }
+            }
         }
         // START CLEAN BTN
         // ======================================================================================================
@@ -182,7 +191,9 @@ namespace Glow.glow_tools{
                 }else{
                     TS_MessageBoxEngine.TS_MessageBox(this, 2, software_lang.TSReadLangs("CacheCleanupTool", "cct_check_select_clean_patch_info"));
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "CCT_StartBtn_Click()"); }
+            }
         }
         // CLEANUP ENGINE
         // ======================================================================================================
@@ -219,7 +230,9 @@ namespace Glow.glow_tools{
                         TS_MessageBoxEngine.TS_MessageBox(this, 1, string.Format(software_lang.TSReadLangs("CacheCleanupTool", "cct_delete_success_notification"), target_path));
                     }));
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Cleanup_engine()"); }
+            }
         }
         // SECURE EXPLORER RESET
         // ======================================================================================================
@@ -239,12 +252,16 @@ namespace Glow.glow_tools{
                     }catch{ }
                 });
                 await Task.Delay(2000);
-            }catch { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "RestartExplorerForCacheCleanupAsync()"); }
+            }
             _ = Task.Run(async () => {
                 try{
                     await Task.Delay(2500);
                     try { Process.Start(new ProcessStartInfo(winExplorerPath) { UseShellExecute = true }); } catch { }
-                }catch { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "RestartExplorerForCacheCleanupAsync() - Timer Reset"); }
+                }
             });
         }
         // AUTO REFRESH FOLDER SIZE FUNCTION
@@ -269,7 +286,9 @@ namespace Glow.glow_tools{
                         await Task.Delay(1000);
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "AutoFolderSizeRefreshAsync()"); }
+            }
         }
         private async Task CheckFolderSizesAsync(){
             if (!await _sizeCheckLock.WaitAsync(0)) return;

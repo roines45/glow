@@ -22,34 +22,35 @@ namespace Glow.glow_tools{
                 columnPadding.DefaultCellStyle.Padding = new Padding(scaledPadding, 0, 0, 0);
             }
         }
-        // DYNAMIC THEME VOID
+        // PRE-LOAD
         // ======================================================================================================
-        public void Swpt_theme_settings(){
+        public void GTool_SWP_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
                 //
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                Panel_BG.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Panel_BG.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
                 //
-                SWP_DGV.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                SWP_DGV.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridColor");
-                SWP_DGV.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                SWP_DGV.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridFEColor");
-                SWP_DGV.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridAlternatingColor");
-                SWP_DGV.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                SWP_DGV.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                SWP_DGV.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
-                SWP_DGV.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                SWP_DGV.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
+                SWP_DGV.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                SWP_DGV.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
+                SWP_DGV.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                SWP_DGV.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                SWP_DGV.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                SWP_DGV.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                SWP_DGV.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                SWP_DGV.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                SWP_DGV.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                SWP_DGV.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
-                SWPT_ExportBtn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                SWPT_ExportBtn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                SWPT_ExportBtn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                SWPT_ExportBtn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                SWPT_ExportBtn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                SWPT_ExportBtn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                SWPT_ExportBtn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                SWPT_ExportBtn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 SWPT_ExportBtn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
                 //
                 TSImageRenderer(SWPT_ExportBtn, GlowMain.theme == 1 ? Properties.Resources.ct_export_light : Properties.Resources.ct_export_dark, 18, ContentAlignment.MiddleRight);
-                //
+                // TEXT
+                // ----------------------
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 Text = string.Format(software_lang.TSReadLangs("ShowWiFiPasswordTool", "swpt_title"), Application.ProductName);
                 //
@@ -59,13 +60,15 @@ namespace Glow.glow_tools{
                 }
                 //
                 SWPT_ExportBtn.Text = " " + software_lang.TSReadLangs("ShowWiFiPasswordTool", "swpt_export_btn");
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_SWP_Preloader()"); }
+            }
         }
         // LOAD SWPT
         // ======================================================================================================
         private async void GlowShowWiFiPasswordTool_Load(object sender, EventArgs e){
-            Swpt_theme_settings();
             try{
+                GTool_SWP_Preloader();
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 Text = string.Format(software_lang.TSReadLangs("ShowWiFiPasswordTool", "swpt_title"), Application.ProductName) + " - " + software_lang.TSReadLangs("ShowWiFiPasswordTool", "swpt_load");
                 await Task.Run(() => {
@@ -87,7 +90,9 @@ namespace Glow.glow_tools{
                         SWP_DGV.ClearSelection();
                     }));
                 });
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowShowWiFiPasswordTool_Load()"); }
+            }
         }
         // GET WI-FI PASSWORD
         // ======================================================================================================
@@ -102,7 +107,8 @@ namespace Glow.glow_tools{
                 startIndex += passwordKey.Length;
                 int endIndex = wifiDetails.IndexOf("\n", startIndex);
                 return wifiDetails.Substring(startIndex, endIndex - startIndex).Trim();
-            }catch{
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GetWiFiPassword()"); }
                 return software_lang.TSReadLangs("ShowWiFiPasswordTool", "swpt_profile_no_read");
             }
         }
@@ -158,7 +164,9 @@ namespace Glow.glow_tools{
                 Clipboard.SetText(password);
                 TS_MessageBoxEngine.TS_MessageBox(this, 1, string.Format(software_lang.TSReadLangs("ShowWiFiPasswordTool", "swpt_copy_txt"), profileName));
                 SWP_DGV.ClearSelection();
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SWP_DGV_CellDoubleClick()"); }
+            }
         }
         // EXPORT WI-FI'S PASSWORD
         // ======================================================================================================
@@ -194,7 +202,9 @@ namespace Glow.glow_tools{
                             Process.Start(saveDlg.FileName);
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SWPT_ExportBtn_Click()"); }
+            }
         }
     }
 }

@@ -41,40 +41,41 @@ namespace Glow.glow_tools{
             Bench_TLP.AllowUserToResizeColumns = false;
             typeof(DataGridView).InvokeMember("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty, null, Bench_TLP, new object[] { true });
         }
-        // LOAD
+        // PRE-LOAD
         // ======================================================================================================
-        public void Bench_ram_settings(){
+        public void GTool_BenchRAM_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
                 //
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
                 //
-                Bench_MStart.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_MStart.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                Bench_MStart.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_MStart.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                Bench_MStart.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_MStart.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_MStart.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_MStart.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 Bench_MStart.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
-                Bench_MStop.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_MStop.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                Bench_MStop.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_MStop.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                Bench_MStop.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_MStop.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_MStop.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_MStop.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 Bench_MStop.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
                 //
-                Bench_TLP.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                Bench_TLP.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridColor");
-                Bench_TLP.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                Bench_TLP.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridFEColor");
-                Bench_TLP.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridAlternatingColor");
-                Bench_TLP.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                Bench_TLP.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                Bench_TLP.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
-                Bench_TLP.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                Bench_TLP.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridFEColor");
+                Bench_TLP.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Bench_TLP.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
+                Bench_TLP.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Bench_TLP.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_TLP.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_TLP.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_TLP.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_TLP.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_TLP.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Bench_TLP.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
                 Bench_TLP.ReadOnly = true;
                 //
                 TSImageRenderer(Bench_MStart, GlowMain.theme == 1 ? Properties.Resources.ct_test_start_light : Properties.Resources.ct_test_start_dark, 18, ContentAlignment.MiddleRight);
                 TSImageRenderer(Bench_MStop, GlowMain.theme == 1 ? Properties.Resources.ct_test_stop_light : Properties.Resources.ct_test_stop_dark, 18, ContentAlignment.MiddleRight);
-                //
+                // TEXT
+                // ----------------------
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 Text = string.Format(software_lang.TSReadLangs("BenchRAM", "br_title"), Application.ProductName);
                 //
@@ -85,7 +86,9 @@ namespace Glow.glow_tools{
                 //
                 Bench_MStart.Text = " " + software_lang.TSReadLangs("BenchRAM", "br_start");
                 Bench_MStop.Text = " " + software_lang.TSReadLangs("BenchRAM", "br_stop");
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_BenchRAM_Preloader()"); }
+            }
         }
         private void Bench_TLP_SelectionChanged(object sender, EventArgs e){
             Bench_TLP.ClearSelection();
@@ -93,12 +96,16 @@ namespace Glow.glow_tools{
         // MAIN LOAD
         // ======================================================================================================
         private void GlowBenchMemoryTool_Load(object sender, EventArgs e){
-            TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
-            Bench_TLP.Rows[3].Cells[1].Value = software_lang.TSReadLangs("BenchRAM", "br_await_start");
-            //
-            Bench_ram_settings();
-            //
-            Task.Run(() => Dynamic_ram_status());
+            try{
+                TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
+                Bench_TLP.Rows[3].Cells[1].Value = software_lang.TSReadLangs("BenchRAM", "br_await_start");
+                //
+                GTool_BenchRAM_Preloader();
+                //
+                Task.Run(() => Dynamic_ram_status());
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Bench_ram_settings()"); }
+            }
         }
         // DYNAMIC RAM STATUS
         // ======================================================================================================
@@ -133,7 +140,9 @@ namespace Glow.glow_tools{
                     await Task.Delay(1000 - DateTime.Now.Millisecond);
 
                 }while (RAMBench_dynamicMemoryUsage);
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Dynamic_ram_status()"); }
+            }
         }
         // TIMER
         // ======================================================================================================
@@ -176,8 +185,12 @@ namespace Glow.glow_tools{
                     }else{
                         Text = string.Format(titleFormatEnd, Application.ProductName);
                     }
-                }catch (Exception) { }
-            }catch (Exception) { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "BenchTimer() - Text Render"); }
+                }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "BenchTimer()"); }
+            }
         }
         // START ENGINE
         // ======================================================================================================
@@ -205,14 +218,18 @@ namespace Glow.glow_tools{
                     _ = Task.Run(async () => await BenchTimer());
                     await Task.Run(() => RAMBenchmarkEngine(RAMBench_cancellationTokenSource.Token));
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Bench_MStart_Click()"); }
+            }
         }
         // STOP ENGINE
         // ======================================================================================================
         private void Bench_MStop_Click(object sender, EventArgs e){
             try{
                 RAMBenchStop();
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Bench_MStop_Click()"); }
+            }
         }
         private void RAMBenchStop(){
             RAMBench_cancellationTokenSource?.Cancel();

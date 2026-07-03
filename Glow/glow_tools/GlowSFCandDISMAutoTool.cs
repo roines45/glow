@@ -20,42 +20,27 @@ namespace Glow.glow_tools{
         private string titleMessage;
         private string processStatusMessage;
         public GlowSFCandDISMAutoTool() { InitializeComponent(); }
-        // LOAD
-        // ======================================================================================================
-        private void GlowSFCandDISMAutoTool_Load(object sender, EventArgs e){
-            SADTLoadEngine();
-            sadtStopwatch = new Stopwatch();
-            sadtUiTimer = new Timer{
-                Interval = 500
-            };
-            sadtUiTimer.Tick += (s, ev) => {
-                if (!sadtStopwatch.IsRunning) return;
-                var eTime = sadtStopwatch.Elapsed;
-                this.Text = titleMessage + $" - {eTime:hh\\:mm\\:ss}";
-                int msToNextSecond = 1000 - eTime.Milliseconds;
-                sadtUiTimer.Interval = Math.Max(50, msToNextSecond);
-            };
-        }
         // DYNAMIC THEME VOID
         // ======================================================================================================
-        public void SADTLoadEngine(){
+        public void GTool_SADT_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
                 //
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                Back_Panel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                SADT_L1.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                SADT_L2.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
-                SADT_L3.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
-                SADT_L4.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                SADT_StartBtn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                SADT_StartBtn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                SADT_StartBtn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                SADT_StartBtn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Back_Panel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                SADT_L1.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                SADT_L2.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                SADT_L3.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                SADT_L4.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                SADT_StartBtn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                SADT_StartBtn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                SADT_StartBtn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                SADT_StartBtn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 SADT_StartBtn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
                 //
                 TSImageRenderer(SADT_StartBtn, GlowMain.theme == 1 ? Properties.Resources.ct_fix_light : Properties.Resources.ct_fix_dark, 18, ContentAlignment.MiddleRight);
-                // SET UI TEXT
+                // TEXT
+                // ----------------------
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 TSSettingsModule software_read_settings = new TSSettingsModule(ts_sf);
                 //
@@ -71,8 +56,29 @@ namespace Glow.glow_tools{
                 string lastFixDate = software_read_settings.TSReadSettings(ts_settings_container, "SADTime");
                 SADT_L4.Text = !string.IsNullOrWhiteSpace(lastFixDate) ? lastFixDate : software_lang.TSReadLangs("DISMandSFCTool", "sadt_not_start");
                 SADT_StartBtn.Text = " " + software_lang.TSReadLangs("DISMandSFCTool", "sadt_start_engine");
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_SADT_Preloader()"); }
             }
-            catch (Exception) { }
+        }
+        // LOAD
+        // ======================================================================================================
+        private void GlowSFCandDISMAutoTool_Load(object sender, EventArgs e){
+            try{
+                GTool_SADT_Preloader();
+                sadtStopwatch = new Stopwatch();
+                sadtUiTimer = new Timer{
+                    Interval = 500
+                };
+                sadtUiTimer.Tick += (s, ev) => {
+                    if (!sadtStopwatch.IsRunning) return;
+                    var eTime = sadtStopwatch.Elapsed;
+                    this.Text = titleMessage + $" - {eTime:hh\\:mm\\:ss}";
+                    int msToNextSecond = 1000 - eTime.Milliseconds;
+                    sadtUiTimer.Interval = Math.Max(50, msToNextSecond);
+                };
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowSFCandDISMAutoTool_Load()"); }
+            }
         }
         // SFC AND DISM AUTO TOOL START ENGINE BTN
         // ======================================================================================================
@@ -83,7 +89,9 @@ namespace Glow.glow_tools{
                 if (sadt_start_check == DialogResult.Yes){
                     Task sadt_engine_bg = Task.Run(SadtEngine);
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SADT_StartBtn_Click()"); }
+            }
         }
         // SFC AND DISM AUTO TOOL ENGINE
         // ======================================================================================================
@@ -129,57 +137,53 @@ namespace Glow.glow_tools{
                         //
                         processRepair.Start();
                         StringBuilder fullStdOut = new StringBuilder();
-                        //
-                        using (var reader = new StreamReader(processRepair.StandardOutput.BaseStream, encoding)){
-                            string buffer = string.Empty;
-                            while (!processRepair.HasExited){
-                                int c = reader.Read();
-                                if (c == -1) break;
-                                char ch = (char)c;
-                                buffer += ch;
-                                fullStdOut.Append(ch);
-                                if (buffer.Length > 3000) buffer = buffer.Substring(buffer.Length - 3000);
-                                //
-                                string cleanLine = Regex.Replace(buffer, @"[^0-9%\.\s]", "");
-                                cleanLine = Regex.Replace(cleanLine, @"\s+", " ").Trim();
-                                var match = Regex.Match(cleanLine, @"(\d{1,3}(?:\.\d{1,2})?)%");
-                                //
-                                if (match.Success){
-                                    UpdateSafeText(SADT_L2, string.Format(process_message, cmdCurrentMod, "\n\n", "\n", match.Groups[1].Value + "%"));
-                                    buffer = string.Empty;
+                        try{
+                            using (var reader = new StreamReader(processRepair.StandardOutput.BaseStream, encoding)){
+                                string buffer = string.Empty;
+                                while (!processRepair.HasExited){
+                                    int c = reader.Read();
+                                    if (c == -1) break;
+                                    char ch = (char)c;
+                                    buffer += ch;
+                                    fullStdOut.Append(ch);
+                                    if (buffer.Length > 3000) buffer = buffer.Substring(buffer.Length - 3000);
+                                    //
+                                    string cleanLine = Regex.Replace(buffer, @"[^0-9%\.\s]", "");
+                                    cleanLine = Regex.Replace(cleanLine, @"\s+", " ").Trim();
+                                    var match = Regex.Match(cleanLine, @"(\d{1,3}(?:\.\d{1,2})?)%");
+                                    //
+                                    if (match.Success){
+                                        UpdateSafeText(SADT_L2, string.Format(process_message, cmdCurrentMod, "\n\n", "\n", match.Groups[1].Value + "%"));
+                                        buffer = string.Empty;
+                                    }
                                 }
                             }
+                        }catch (Exception readEx){
+                            if (!processRepair.HasExited) processRepair.Kill();
+                            throw new Exception($"Process read failed: {cmdCurrentMod}", readEx);
                         }
                         //
                         processRepair.WaitForExit();
                         string combinedOutput = (fullStdOut.ToString() + "\n" + processRepair.StandardError.ReadToEnd()).Trim();
-                        // --- REPORTING AND ERROR HANDLING LOGIC ---
-                        // DISM CONTROL
+                        if (processRepair.ExitCode != 0){
+                            processStatus = false;
+                            processStatusMessage = $"[Exit Code: {processRepair.ExitCode}]\n\n{combinedOutput}";
+                            break;
+                        }
+                        // DISM
                         if (cmdCurrentMod.StartsWith("DISM", StringComparison.OrdinalIgnoreCase)){
-                            if (combinedOutput.Contains("Error:") || processRepair.ExitCode != 0){
-                                processStatus = false;
-                                processStatusMessage = combinedOutput;
-                                break;
-                            }
                             if (cmdCurrentMod.Contains("/CheckHealth") || cmdCurrentMod.Contains("/ScanHealth")){
-                                if (combinedOutput.Contains("repairable")){
+                                if (Regex.IsMatch(combinedOutput, @"repairable", RegexOptions.IgnoreCase)){
                                     isComponentStoreCorrupt = true;
                                 }
                             }else if (cmdCurrentMod.Contains("/RestoreHealth")){
-                                if (isComponentStoreCorrupt && (combinedOutput.Contains("successfully") || processRepair.ExitCode == 0)){
+                                if (isComponentStoreCorrupt){
                                     repairedCommands.Add(cmdCurrentMod);
                                 }
                             }
-                        }
-                        // SFC CONTROL
+                        } // SFC
                         else if (cmdCurrentMod.StartsWith("sfc", StringComparison.OrdinalIgnoreCase)){
-                            bool sfcFailed = Regex.IsMatch(combinedOutput, @"unable to fix|could not perform|verification failed", RegexOptions.IgnoreCase);
-                            if (sfcFailed || processRepair.ExitCode != 0){
-                                processStatus = false;
-                                processStatusMessage = combinedOutput;
-                                break;
-                            }
-                            if (combinedOutput.Contains("successfully repaired")){
+                            if (Regex.IsMatch(combinedOutput, @"successfully repaired", RegexOptions.IgnoreCase)){
                                 repairedCommands.Add(cmdCurrentMod);
                             }
                         }
@@ -189,13 +193,13 @@ namespace Glow.glow_tools{
                 //
                 string current_time = DateTime.Now.ToString("dd.MM.yyyy - HH:mm:ss");
                 UpdateSafeText(SADT_L4, current_time);
-                try { new TSSettingsModule(ts_sf).TSWriteSettings(ts_settings_container, "SADTime", current_time); } catch { }
+                try { new TSSettingsModule(ts_sf).TSWriteSettings(ts_settings_container, "SADTime", current_time); }
+                catch (Exception settingEx) { if (GlowMain.debug_status) { TSErrorLog.LogException(settingEx, "SadtEngine() Settings Save"); } }
             }catch (Exception ex){
                 processStatus = false;
                 processStatusMessage = ex.Message.Trim();
-            }
-            finally
-            {
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SadtEngine()"); }
+            }finally{
                 BeginInvoke(new Action(() => { sadtUiTimer.Stop(); sadtStopwatch.Stop(); }));
                 GlowMain.SFCandDISMprocessStatus = false;
                 //

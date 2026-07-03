@@ -34,29 +34,36 @@ namespace Glow.glow_tools{
         // ======================================================================================================
         private System.Windows.Forms.Timer dynamic_range_resizeTimer;
         private int lastW = -1, lastH = -1;
-        //
-        public void Monitor_test_engine_theme_settings(){
+        // PRE-LOAD
+        // ======================================================================================================
+        public void GTool_MonitorTest_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
                 //
-                InfoLabel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                InfoLabel.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
-                //
+                InfoLabel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                InfoLabel.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                // TEXT
+                // ----------------------
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 if (GlowMain.monitor_engine_mode == 0){
                     Text = string.Format(software_lang.TSReadLangs("MonitorTestTool", "mtt_title"), Application.ProductName, software_lang.TSReadLangs("HeaderTools", "ht_monitor_test_dead_pixel"));
                 }else if (GlowMain.monitor_engine_mode == 1){
-                    BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
+                    BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
                     Text = string.Format(software_lang.TSReadLangs("MonitorTestTool", "mtt_title"), Application.ProductName, software_lang.TSReadLangs("HeaderTools", "ht_monitor_test_dynamic_range"));
                 }
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_MonitorTest_Preloader()"); }
+            }
         }
         // LOAD
         // ======================================================================================================
-        private void GlowMonitorTestTool_Load(object sender, EventArgs e)
-        {
-            Monitor_test_engine_theme_settings();
-            Monitor_test_loader(GlowMain.monitor_engine_mode);
+        private void GlowMonitorTestTool_Load(object sender, EventArgs e){
+            try{
+                GTool_MonitorTest_Preloader();
+                Monitor_test_loader(GlowMain.monitor_engine_mode);
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowMonitorTestTool_Load()"); }
+            }
         }
         // MONITOR TEST LOADER
         // ======================================================================================================
@@ -118,8 +125,7 @@ namespace Glow.glow_tools{
                                         dead_pixel_index_changed = false;
                                     }
                                 }
-                                while (dead_pixel_pause_toggle)
-   {
+                                while (dead_pixel_pause_toggle){
                                     Thread.Sleep(100);
                                 }
                                 if (!dead_pixel_test_status)
@@ -133,7 +139,9 @@ namespace Glow.glow_tools{
                             Thread.Sleep(100);
                         }
                     }
-                }catch (Exception) { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Monitor_test_dead_pixel()"); }
+                }
             }){ IsBackground = true };
             dead_pixel_colorChangingThread.Start();
             MouseDown -= MouseDown_Handler;
@@ -153,7 +161,9 @@ namespace Glow.glow_tools{
                             UpdateBackgroundColor();
                         }));
                     }
-                }catch (Exception) { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "MouseDown_Handler()"); }
+                }
             }
         }
         private void KeyDown_Handler(object sender, KeyEventArgs e){
@@ -173,7 +183,9 @@ namespace Glow.glow_tools{
                             UpdateBackgroundColor();
                         }));
                     }
-                }catch (Exception) { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "KeyDown_Handler()"); }
+                }
             }
         }
         private void UpdateBackgroundColor(){
@@ -183,7 +195,9 @@ namespace Glow.glow_tools{
                 }else{
                     BackColor = dead_pixel_colors[dead_pixel_index];
                 }
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "UpdateBackgroundColor()"); }
+            }
         }
         // DYNAMIC RANGE TEST
         // ======================================================================================================
@@ -214,7 +228,9 @@ namespace Glow.glow_tools{
                     };
                 }
                 Monitor_dynamic_range_box_resize();
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Monitor_dynamic_range_test()"); }
+            }
         }
         private void Monitor_dynamic_range_box_resize(){
             try{
@@ -241,7 +257,9 @@ namespace Glow.glow_tools{
                 }
 
                 this.ResumeLayout(false);
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Monitor_dynamic_range_box_resize()"); }
+            }
         }
         private Color ShadeGenerator(Color mainColor, double shadeRatio){
             double gamma = 2.2;
@@ -267,7 +285,9 @@ namespace Glow.glow_tools{
                     }else{
                         Monitor_dynamic_range_box_resize();
                     }
-                }catch (Exception) { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowMonitorTestEngine_Resize()"); }
+                }
             }
         }
         // FULLSCREEN TO NORMAL

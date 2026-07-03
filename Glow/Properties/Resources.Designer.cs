@@ -83,6 +83,26 @@ namespace Glow.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap ct_check_mark_dark {
+            get {
+                object obj = ResourceManager.GetObject("ct_check_mark_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap ct_check_mark_light {
+            get {
+                object obj = ResourceManager.GetObject("ct_check_mark_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap ct_clean_dark {
             get {
                 object obj = ResourceManager.GetObject("ct_clean_dark", resourceCulture);
@@ -176,6 +196,26 @@ namespace Glow.Properties {
         internal static System.Drawing.Bitmap ct_export_light {
             get {
                 object obj = ResourceManager.GetObject("ct_export_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap ct_fail_dark {
+            get {
+                object obj = ResourceManager.GetObject("ct_fail_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap ct_fail_light {
+            get {
+                object obj = ResourceManager.GetObject("ct_fail_light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -423,6 +463,26 @@ namespace Glow.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap ct_success_dark {
+            get {
+                object obj = ResourceManager.GetObject("ct_success_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap ct_success_light {
+            get {
+                object obj = ResourceManager.GetObject("ct_success_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap ct_test_start_dark {
             get {
                 object obj = ResourceManager.GetObject("ct_test_start_dark", resourceCulture);
@@ -636,26 +696,6 @@ namespace Glow.Properties {
         internal static System.Drawing.Bitmap cx_network_fix_light {
             get {
                 object obj = ResourceManager.GetObject("cx_network_fix_light", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
-        /// </summary>
-        internal static System.Drawing.Bitmap cx_overlay_dark {
-            get {
-                object obj = ResourceManager.GetObject("cx_overlay_dark", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
-        /// </summary>
-        internal static System.Drawing.Bitmap cx_overlay_light {
-            get {
-                object obj = ResourceManager.GetObject("cx_overlay_light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1193,9 +1233,9 @@ namespace Glow.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
-        internal static System.Drawing.Bitmap tm_hidden_dark {
+        internal static System.Drawing.Bitmap tm_hsa_dark {
             get {
-                object obj = ResourceManager.GetObject("tm_hidden_dark", resourceCulture);
+                object obj = ResourceManager.GetObject("tm_hsa_dark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1203,9 +1243,9 @@ namespace Glow.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
-        internal static System.Drawing.Bitmap tm_hidden_light {
+        internal static System.Drawing.Bitmap tm_hsa_light {
             get {
-                object obj = ResourceManager.GetObject("tm_hidden_light", resourceCulture);
+                object obj = ResourceManager.GetObject("tm_hsa_light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1266,6 +1306,26 @@ namespace Glow.Properties {
         internal static System.Drawing.Bitmap tm_startup_light {
             get {
                 object obj = ResourceManager.GetObject("tm_startup_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap tm_stealth_dark {
+            get {
+                object obj = ResourceManager.GetObject("tm_stealth_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap tm_stealth_light {
+            get {
+                object obj = ResourceManager.GetObject("tm_stealth_light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

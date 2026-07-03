@@ -18,111 +18,79 @@ namespace Glow.glow_tools{
         private double[] CPUBench_collector;
         private int CPUBench_singleThreadScore = 0, CPUBench_multiThreadScore = 0;
         public GlowBenchCPUTool() { InitializeComponent(); }
-        // LOAD
+        // PRE-LOAD
         // ======================================================================================================
-        private void GlowBenchCPUTool_Load(object sender, EventArgs e){
-            Cpu_bench_add_mode();
-            Bench_cpu_theme_settings();
-            // TEXT CPU NAME
-            Task.Run(() => GetCPUInfo());
-        }
-        // GET CPU INFO
-        // ======================================================================================================
-        private void GetCPUInfo(){
-            try{
-                var software_lang = new TSGetLangs(GlowMain.lang_path);
-                if (IsDisposed || !IsHandleCreated)
-                    return;
-                BeginInvoke(new Action(() => {
-                    Bench_CPUName.Text = software_lang.TSReadLangs("Cpu_Content", "cpu_c_loading");
-                    Bench_CPUCores.Text = software_lang.TSReadLangs("Cpu_Content", "cpu_c_loading");
-                }));
-                using (var searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT Name, NumberOfCores, ThreadCount FROM Win32_Processor")){
-                    foreach (ManagementObject queryObj in searcher.Get().Cast<ManagementObject>()){
-                        string cpuName = Convert.ToString(queryObj["Name"]).Trim();
-                        string cpuCores = string.Format(software_lang.TSReadLangs("BenchCPU", "bc_core_thread"), queryObj["NumberOfCores"], queryObj["ThreadCount"]);
-                        if (IsDisposed || !IsHandleCreated)
-                            return;
-                        BeginInvoke(new Action(() => {
-                            Bench_CPUName.Text = cpuName;
-                            Bench_CPUCores.Text = cpuCores;
-                        }));
-                    }
-                }
-            }catch (Exception){ }
-        }
-        // THEME SETTINGS
-        // ======================================================================================================
-        public void Bench_cpu_theme_settings(){
+        public void GTool_BenchCPU_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
                 //
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                Bench_BG_Panel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_BG_Panel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
                 //
-                Bench_TLP_T_P1.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                Bench_TLP_T_P2.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                Bench_TLP_T_P3.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                Bench_TLP_R_P1.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                Bench_TLP_R_P2.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
+                Bench_TLP_T_P1.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_TLP_T_P2.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_TLP_T_P3.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_TLP_R_P1.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_TLP_R_P2.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
-                Bench_CPUName.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
-                Bench_CPUCores.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                Bench_CPUName.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_CPUCores.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 //
-                Bench_Label_RSingle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
-                Bench_Label_RSingleResult.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_Label_RMulti.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
-                Bench_Label_RMultiResult.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                Bench_Label_RSingle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_Label_RSingleResult.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_Label_RMulti.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_Label_RMultiResult.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 //
-                Bench_ModeSelector.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
-                Bench_ModeSelector_List.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                Bench_ModeSelector_List.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                Bench_ModeSelector_List.HoverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                Bench_ModeSelector_List.ButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
-                Bench_ModeSelector_List.ArrowColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                Bench_ModeSelector_List.HoverButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
+                Bench_ModeSelector.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_ModeSelector_List.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Bench_ModeSelector_List.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_ModeSelector_List.HoverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Bench_ModeSelector_List.ButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_ModeSelector_List.ArrowColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_ModeSelector_List.HoverButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 Bench_ModeSelector_List.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
                 Bench_ModeSelector_List.FocusedBorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
-                Bench_ModeSelector_List.DisabledBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                Bench_ModeSelector_List.DisabledForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                Bench_ModeSelector_List.DisabledButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
-                Bench_ModeSelector_List.HoverForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                Bench_ModeSelector_List.SelectedBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_ModeSelector_List.SelectedForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
+                Bench_ModeSelector_List.DisabledBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Bench_ModeSelector_List.DisabledForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_ModeSelector_List.DisabledButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_ModeSelector_List.HoverForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_ModeSelector_List.SelectedBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_ModeSelector_List.SelectedForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
-                Bench_TimeSelector.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
-                Bench_TimeSelector_List.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                Bench_TimeSelector_List.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                Bench_TimeSelector_List.HoverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                Bench_TimeSelector_List.ButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
-                Bench_TimeSelector_List.ArrowColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                Bench_TimeSelector_List.HoverButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
+                Bench_TimeSelector.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_TimeSelector_List.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Bench_TimeSelector_List.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_TimeSelector_List.HoverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Bench_TimeSelector_List.ButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_TimeSelector_List.ArrowColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_TimeSelector_List.HoverButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 Bench_TimeSelector_List.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
                 Bench_TimeSelector_List.FocusedBorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
-                Bench_TimeSelector_List.DisabledBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                Bench_TimeSelector_List.DisabledForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                Bench_TimeSelector_List.DisabledButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
-                Bench_TimeSelector_List.HoverForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                Bench_TimeSelector_List.SelectedBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_TimeSelector_List.SelectedForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
+                Bench_TimeSelector_List.DisabledBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                Bench_TimeSelector_List.DisabledForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_TimeSelector_List.DisabledButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_TimeSelector_List.HoverForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                Bench_TimeSelector_List.SelectedBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_TimeSelector_List.SelectedForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
-                Bench_TimeCustom.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TextBoxBGColor");
-                Bench_TimeCustom.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TextBoxFEColor");
+                Bench_TimeCustom.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_TimeCustom.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
                 //
-                Bench_Start.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_Start.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                Bench_Start.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_Start.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                Bench_Start.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_Start.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_Start.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_Start.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 Bench_Start.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
-                Bench_Stop.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_Stop.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                Bench_Stop.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                Bench_Stop.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                Bench_Stop.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_Stop.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Bench_Stop.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                Bench_Stop.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 Bench_Stop.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
                 //
                 TSImageRenderer(Bench_Start, GlowMain.theme == 1 ? Properties.Resources.ct_test_start_light : Properties.Resources.ct_test_start_dark, 18, ContentAlignment.MiddleRight);
                 TSImageRenderer(Bench_Stop, GlowMain.theme == 1 ? Properties.Resources.ct_test_stop_light : Properties.Resources.ct_test_stop_dark, 18, ContentAlignment.MiddleRight);
-                //
+                // TEXT
+                // ----------------------
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 Text = string.Format(software_lang.TSReadLangs("BenchCPU", "bc_title"), Application.ProductName);
                 //
@@ -148,7 +116,48 @@ namespace Glow.glow_tools{
                 //
                 Bench_Start.Text = " " + software_lang.TSReadLangs("BenchCPU", "bc_start_engine");
                 Bench_Stop.Text = " " + software_lang.TSReadLangs("BenchCPU", "bc_stop_engine");
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_BenchCPU_Preloader()"); }
+            }
+        }
+        // LOAD
+        // ======================================================================================================
+        private void GlowBenchCPUTool_Load(object sender, EventArgs e){
+            try{
+                Cpu_bench_add_mode();
+                GTool_BenchCPU_Preloader();
+                // TEXT CPU NAME
+                Task.Run(() => GetCPUInfo());
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowBenchCPUTool_Load()"); }
+            }
+        }
+        // GET CPU INFO
+        // ======================================================================================================
+        private void GetCPUInfo(){
+            try{
+                var software_lang = new TSGetLangs(GlowMain.lang_path);
+                if (IsDisposed || !IsHandleCreated)
+                    return;
+                BeginInvoke(new Action(() => {
+                    Bench_CPUName.Text = software_lang.TSReadLangs("Cpu_Content", "cpu_c_loading");
+                    Bench_CPUCores.Text = software_lang.TSReadLangs("Cpu_Content", "cpu_c_loading");
+                }));
+                using (var searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT Name, NumberOfCores, ThreadCount FROM Win32_Processor")){
+                    foreach (ManagementObject queryObj in searcher.Get().Cast<ManagementObject>()){
+                        string cpuName = Convert.ToString(queryObj["Name"]).Trim();
+                        string cpuCores = string.Format(software_lang.TSReadLangs("BenchCPU", "bc_core_thread"), queryObj["NumberOfCores"], queryObj["ThreadCount"]);
+                        if (IsDisposed || !IsHandleCreated)
+                            return;
+                        BeginInvoke(new Action(() => {
+                            Bench_CPUName.Text = cpuName;
+                            Bench_CPUCores.Text = cpuCores;
+                        }));
+                    }
+                }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GetCPUInfo()"); }
+            }
         }
         private void Cpu_bench_add_mode(){
             try{
@@ -169,7 +178,9 @@ namespace Glow.glow_tools{
                 Bench_TimeSelector_List.Items.Add(software_lang.TSReadLangs("BenchCPU", "bc_time_5"));
                 Bench_TimeSelector_List.Items.Add(software_lang.TSReadLangs("BenchCPU", "bc_time_6"));
                 Bench_TimeSelector_List.SelectedIndex = 0;
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Cpu_bench_add_mode()"); }
+            }
         }
         // CUSTOM TIME MODE
         // ======================================================================================================
@@ -213,7 +224,9 @@ namespace Glow.glow_tools{
                         }
                     }
                 }
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Bench_Start_Click()"); }
+            }
         }
         // TIMER
         // ======================================================================================================
@@ -236,14 +249,18 @@ namespace Glow.glow_tools{
                     }));
                     await Task.Delay(1000);
                 }
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "BenchTimerAsync() - Timer"); }
+            }
             try{
                 if (IsDisposed || !IsHandleCreated)
                     return;
                 BeginInvoke(new Action(() => {
                     Text = string.Format(software_lang.TSReadLangs("BenchCPU", "bc_title"), Application.ProductName);
                 }));
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "BenchTimerAsync()"); }
+            }
         }
         // CPU BENCHMARK ENGINE
         // ======================================================================================================
@@ -315,8 +332,7 @@ namespace Glow.glow_tools{
                     CPUBench_taskList[i] = Task.Run(() => {
                         // ENGINE MODE
                         Random random = new Random(unchecked(Environment.TickCount * 31 + coreIndex));
-                        while (CPUBench_isRunning && DateTime.Now < endTime)
-                        {
+                        while (CPUBench_isRunning && DateTime.Now < endTime){
                             double number = random.NextDouble();
                             double result = Math.Sqrt(number);
                             CPUBench_collector[coreIndex] += result;
@@ -326,7 +342,9 @@ namespace Glow.glow_tools{
                 //
                 try{
                     await Task.WhenAll(CPUBench_taskList);
-                }catch (Exception) { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "CPUBench - Task.WhenAll"); }
+                }
                 //
                 CPUBench_stopWatch.Stop();
                 CPUBench_isRunning = false;
@@ -334,10 +352,14 @@ namespace Glow.glow_tools{
                 //
                 try{
                     await updateScoreTask;
-                }catch (Exception) { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "CPUBench - updateScoreTask"); }
+                }
                 try{
                     await timerTask;
-                }catch (Exception) { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "CPUBench - timerTask"); }
+                }
                 //
                 if (!IsDisposed && IsHandleCreated){
                     BeginInvoke(new Action(() => {
@@ -414,7 +436,9 @@ namespace Glow.glow_tools{
                     if (CPUBench_taskList != null){
                         await Task.WhenAll(CPUBench_taskList);
                     }
-                }catch (Exception) { }
+                }catch (Exception ex){
+                    if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Bench_stop_engine()"); }
+                }
                 //
                 CPUBench_stopWatch?.Stop();
                 //

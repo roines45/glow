@@ -1,7 +1,7 @@
 ﻿// ======================================================================================================
 // Türkaysoft - C# Custom Graphics UI Library
-// Library Version: v26.7
-// Compilation Date: 14.06.2026
+// Library Version: v26.8
+// Compilation Date: 02.07.2026
 // © Eray Türkay
 // ======================================================================================================
 
@@ -72,14 +72,6 @@ namespace Glow
             Size = new Size(150, 40);
             BackColor = Color.DodgerBlue;
             ForeColor = Color.White;
-            Resize += Button_Resize;
-        }
-        private void Button_Resize(object sender, EventArgs e)
-        {
-            float scale = DeviceDpi / 96f;
-            int maxRadius = (int)(Height / scale);
-            if (BorderRadius > maxRadius)
-                BorderRadius = maxRadius;
         }
         private float ScaleFactor => DeviceDpi / 96f;
         private GraphicsPath GetFigurePath(Rectangle rect, float radius)
@@ -103,7 +95,10 @@ namespace Glow
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             int scaledBorderSize = (int)(borderSize * ScaleFactor);
-            int scaledBorderRadius = (int)(borderRadius * ScaleFactor);
+            float scale = DeviceDpi / 96f;
+            int maxRadius = (int)(Height / scale);
+            int safeRadius = Math.Min(borderRadius, maxRadius);
+            int scaledBorderRadius = (int)(safeRadius * ScaleFactor);
             Rectangle rectSurface = ClientRectangle;
             RectangleF rectBorder = new RectangleF(scaledBorderSize / 2f, scaledBorderSize / 2f, rectSurface.Width - scaledBorderSize, rectSurface.Height - scaledBorderSize);
             int smoothSize = scaledBorderSize > 0 ? scaledBorderSize : 2;
@@ -391,7 +386,7 @@ namespace Glow
         protected override void OnLostFocus(EventArgs e) { base.OnLostFocus(e); Invalidate(); }
         protected override void OnEnabledChanged(EventArgs e) { base.OnEnabledChanged(e); Invalidate(); }
         protected override void OnRightToLeftChanged(EventArgs e) { base.OnRightToLeftChanged(e); Invalidate(); }
-        protected override void OnPaintBackground(PaintEventArgs e) { }
+        protected override void OnPaintBackground(PaintEventArgs e) { base.OnPaintBackground(e); }
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x000F)
@@ -804,19 +799,51 @@ namespace Glow
             float dpiScale = (float)DeviceDpi / 96f;
             this.ItemHeight = (int)((this.Font.Height + 5) * dpiScale);
         }
-        protected override void OnHandleCreated(EventArgs e) { base.OnHandleCreated(e); UpdateItemHeight(); }
-        protected override void OnFontChanged(EventArgs e) { base.OnFontChanged(e); UpdateItemHeight(); }
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            UpdateItemHeight();
+        }
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            UpdateItemHeight();
+            UpdateHorizontalExtent();
+        }
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
             if (e.Index < 0 || e.Index >= Items.Count) return;
+            e.DrawBackground();
             bool selected = (e.State & DrawItemState.Selected) != 0;
             Color backColor = selected ? SelectedBackColor : this.BackColor;
             Color foreColor = selected ? SelectedForeColor : this.ForeColor;
             using (SolidBrush brush = new SolidBrush(backColor))
+            {
                 e.Graphics.FillRectangle(brush, e.Bounds);
+            }
             Rectangle textBounds = new Rectangle(e.Bounds.X + 3, e.Bounds.Y, e.Bounds.Width - 3, e.Bounds.Height);
             TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.NoPrefix;
             TextRenderer.DrawText(e.Graphics, this.Items[e.Index].ToString(), this.Font, textBounds, foreColor, flags);
+            if ((e.State & DrawItemState.Focus) != 0)
+            {
+                e.DrawFocusRectangle();
+            }
+        }
+        public void UpdateHorizontalExtent()
+        {
+            int maxExtent = 0;
+            foreach (var item in this.Items)
+            {
+                if (item != null)
+                {
+                    Size textSize = TextRenderer.MeasureText(item.ToString(), this.Font);
+                    if (textSize.Width > maxExtent)
+                    {
+                        maxExtent = textSize.Width;
+                    }
+                }
+            }
+            this.HorizontalExtent = maxExtent + 10;
         }
     }
     #endregion
@@ -861,11 +888,11 @@ namespace Glow
         }
         private void RecreatePaths()
         {
+            if (this.Width <= 0 || this.Height <= 0) return;
             pathSurface?.Dispose();
             pathBorder?.Dispose();
             pathSurface = null;
             pathBorder = null;
-            if (this.Width <= 0 || this.Height <= 0) return;
             float scale = this.DeviceDpi / 96f;
             float scaledBorderSize = borderSize * scale;
             float scaledRadius = borderRadius * scale;
@@ -1126,10 +1153,10 @@ namespace Glow
             float thumbR = ThumbRadius * dpiScale;
             float bThick = ThumbBorderThickness * dpiScale;
             float margin = thumbR + (bThick / 2f) + 2f;
-
             if (Vertical)
             {
                 float usableHeight = Height - (2 * margin);
+                if (usableHeight <= 0) return;
                 float pos = location.Y - margin;
                 float ratio = 1f - (pos / usableHeight);
                 Value = Minimum + (int)Math.Round(Math.Max(0, Math.Min(1, ratio)) * (Maximum - Minimum));
@@ -1137,6 +1164,7 @@ namespace Glow
             else
             {
                 float usableWidth = Width - (2 * margin);
+                if (usableWidth <= 0) return;
                 float pos = location.X - margin;
                 float ratio = pos / usableWidth;
                 Value = Minimum + (int)Math.Round(Math.Max(0, Math.Min(1, ratio)) * (Maximum - Minimum));

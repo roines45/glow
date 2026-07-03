@@ -102,12 +102,72 @@ namespace Glow.glow_tools{
             }
             return false;
         }
+        // PRE-LOAD
+        // ======================================================================================================
+        public void GTool_BTFinder_Preloader(){
+            try{
+                TSThemeModeHelper.InitializeThemeForForm(this);
+                //
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                //
+                BTSelector.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                BTSelector.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                BTSelector.HoverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                BTSelector.ButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                BTSelector.ArrowColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                BTSelector.HoverButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                BTSelector.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
+                BTSelector.FocusedBorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
+                BTSelector.DisabledBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                BTSelector.DisabledForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                BTSelector.DisabledButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                BTSelector.HoverForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                BTSelector.SelectedBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                BTSelector.SelectedForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                //
+                foreach (Control ui_buttons in BackPanel.Controls){
+                    if (ui_buttons is Button bt_finder_btn){
+                        bt_finder_btn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                        bt_finder_btn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        bt_finder_btn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        bt_finder_btn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        bt_finder_btn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
+                    }
+                }
+                //
+                foreach (Control ui_panels in BackPanel.Controls){
+                    if (ui_panels is Panel bt_finder_panel){
+                        bt_finder_panel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                    }
+                }
+                //
+                Label[] left_labels = { BT_Adapter, BT_Version, BT_LMPVersion, BT_DriverVersion, BT_DriverDate, BT_Publisher, BT_HardwareID };
+                Label[] right_labels = { BT_Adapter_V, BT_Version_V, BT_LMPVersion_V, BT_DriverVersion_V, BT_DriverDate_V, BT_Publisher_V, BT_HardwareID_V };
+                left_labels.ToList().ForEach(l => l.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1"));
+                right_labels.ToList().ForEach(l => l.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor"));
+                //
+                TSImageRenderer(BTCopyInfoBtn, GlowMain.theme == 1 ? Properties.Resources.ct_copy_mc_light : Properties.Resources.ct_copy_mc_dark, 18, ContentAlignment.MiddleRight);
+                // TEXT
+                // ----------------------
+                TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
+                BT_Adapter.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_adapter");
+                BT_Version.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_bt_version");
+                BT_LMPVersion.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_lmp_version");
+                BT_DriverVersion.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_driver_version");
+                BT_DriverDate.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_driver_date");
+                BT_Publisher.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_publisher");
+                BT_HardwareID.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_hwid");
+                BTCopyInfoBtn.Text = " " + software_lang.TSReadLangs("BluetoothFinderTool", "bft_copy_info_btn");
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_BTFinder_Preloader()"); }
+            }
+        }
         // LOAD
         // ======================================================================================================
         private void GlowBluetoothFinderTool_Load(object sender, EventArgs e){
             TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
             try{
-                BTFinder_Preloader();
+                GTool_BTFinder_Preloader();
                 //
                 TSAdvancedBluetoothAdapterInfo.TextUnknownAdapter = software_lang.TSReadLangs("BluetoothFinderTool", "bft_unknown_adapter");
                 TSAdvancedBluetoothAdapterInfo.TextSuspiciousTag = software_lang.TSReadLangs("BluetoothFinderTool", "bft_suspicious_tag");
@@ -124,68 +184,10 @@ namespace Glow.glow_tools{
                 //
                 BT_Adapter.Focus();
                 LoadBluetoothAdapters();
-            }catch (Exception){
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowBluetoothFinderTool_Load()"); }
                 TS_MessageBoxEngine.TS_MessageBox(this, 3, software_lang.TSReadLangs("BluetoothFinderTool", "bft_loader_failed"));
             }
-        }
-        // DYNAMIC THEME VOID
-        // ======================================================================================================
-        public void BTFinder_Preloader(){
-            try{
-                TSThemeModeHelper.InitializeThemeForForm(this);
-                //
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
-                //
-                BTSelector.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
-                BTSelector.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                BTSelector.HoverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
-                BTSelector.ButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor2");
-                BTSelector.ArrowColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                BTSelector.HoverButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor2");
-                BTSelector.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
-                BTSelector.FocusedBorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
-                BTSelector.DisabledBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
-                BTSelector.DisabledForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                BTSelector.DisabledButtonColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor2");
-                BTSelector.HoverForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxFEColor");
-                BTSelector.SelectedBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                BTSelector.SelectedForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
-                //
-                foreach (Control ui_buttons in BackPanel.Controls){
-                    if (ui_buttons is Button bt_finder_btn){
-                        bt_finder_btn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                        bt_finder_btn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        bt_finder_btn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        bt_finder_btn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        bt_finder_btn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
-                    }
-                }
-                //
-                foreach (Control ui_panels in BackPanel.Controls){
-                    if (ui_panels is Panel bt_finder_panel){
-                        bt_finder_panel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                    }
-                }
-                //
-                Label[] left_labels = { BT_Adapter, BT_Version, BT_LMPVersion, BT_DriverVersion, BT_DriverDate, BT_Publisher, BT_HardwareID };
-                Label[] right_labels = { BT_Adapter_V, BT_Version_V, BT_LMPVersion_V, BT_DriverVersion_V, BT_DriverDate_V, BT_Publisher_V, BT_HardwareID_V };
-                left_labels.ToList().ForEach(l => l.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft"));
-                right_labels.ToList().ForEach(l => l.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor"));
-                //
-                TSImageRenderer(BTCopyInfoBtn, GlowMain.theme == 1 ? Properties.Resources.ct_copy_mc_light : Properties.Resources.ct_copy_mc_dark, 18, ContentAlignment.MiddleRight);
-                //
-                // ======================================================================================================
-                // TEXTS
-                TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
-                BT_Adapter.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_adapter");
-                BT_Version.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_bt_version");
-                BT_LMPVersion.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_lmp_version");
-                BT_DriverVersion.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_driver_version");
-                BT_DriverDate.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_driver_date");
-                BT_Publisher.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_publisher");
-                BT_HardwareID.Text = software_lang.TSReadLangs("BluetoothFinderTool", "bft_hwid");
-                BTCopyInfoBtn.Text = " " + software_lang.TSReadLangs("BluetoothFinderTool", "bft_copy_info_btn");
-            }catch (Exception){ }
         }
         // BT ADAPTER CHANGER
         // ======================================================================================================
@@ -206,7 +208,9 @@ namespace Glow.glow_tools{
                 }
                 BT_Publisher_V.Text = SafeTextFallBack(publisher, unknown_msg);
                 BT_HardwareID_V.Text = SafeTextFallBack(selectedAdapter.HardwareId, unknown_msg);
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "BTSelector_SelectedIndexChanged()"); }
+            }
         }
         // BT LOADER DYNAMIC SCRIPT
         // ======================================================================================================
@@ -231,7 +235,6 @@ namespace Glow.glow_tools{
 
                 $ids = @($radios | ForEach-Object { $_.InstanceId }) | Where-Object { $_ }
 
-                # Toplu property çek (en büyük hız kazanımı burada)
                 $keys = @(
                   'DEVPKEY_Device_Manufacturer',
                   'DEVPKEY_Bluetooth_RadioLmpVersion',
@@ -246,7 +249,6 @@ namespace Glow.glow_tools{
                         ForEach-Object { $map[($_.InstanceId + '|' + $_.KeyName)] = $_.Data }
                 }
 
-                # result += yerine List kullan
                 $result = New-Object 'System.Collections.Generic.List[object]'
 
                 foreach ($device in $radios) {
@@ -267,11 +269,9 @@ namespace Glow.glow_tools{
                         $formattedDate = ''
                     }
 
-                    # HardwareIds normalize
                     if ($null -eq $hwids) { $hwids = @() }
                     elseif ($hwids -isnot [System.Array]) { $hwids = @($hwids) }
 
-                    # VendorId çıkar
                     $vendorId = ''
                     foreach ($h in $hwids) {
                         if ($h -match 'VID_([0-9A-Fa-f]{4})') { $vendorId = $matches[1].ToUpper(); break }

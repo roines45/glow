@@ -37,7 +37,7 @@ namespace Glow{
         // ======================================================================================================
         protected override void OnHandleCreated(EventArgs e){
             base.OnHandleCreated(e);
-            if (Program.windows_mode == 1){
+            if (Program.Windows_mode == 1){
                 int preference = (int)DWM_WINDOW_CORNER_PREFERENCE.Round;
                 DwmSetWindowAttribute(this.Handle, DWMWA_WINDOW_CORNER_PREFERENCE, ref preference, sizeof(int));
             }
@@ -51,10 +51,12 @@ namespace Glow{
                 LabelVersion.Text = TS_VersionEngine.TS_SoftwareVersion(1);
                 LabelCopyright.Text = TS_SoftwareCopyrightDate.ts_scd_preloader;
                 // GET PRELOAD SETTINGS
-                About_preloader();
+                About_Preloader();
                 //
                 await Task.Run(() => LoadLanguageConverterName());
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status){ TSErrorLog.LogException(ex, "GlowAbout_Load()"); }
+            }
         }
         private void LoadLanguageConverterName(){
             foreach (var available_lang_file in AvailableLanguages){
@@ -69,7 +71,7 @@ namespace Glow{
         }
         // DYNAMIC THEME VOID
         // ======================================================================================================
-        public void About_preloader(){
+        public void About_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
                 //
@@ -83,10 +85,10 @@ namespace Glow{
                 //
                 foreach (Control ui_buttons in PanelTxt.Controls){
                     if (ui_buttons is Button about_button){
-                        about_button.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                        about_button.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        about_button.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        about_button.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                        about_button.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                        about_button.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        about_button.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        about_button.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                         about_button.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
                     }
                 }
@@ -95,16 +97,16 @@ namespace Glow{
                 TSImageRenderer(About_GitHubBtn, GlowMain.theme == 1 ? Properties.Resources.ct_github_light : Properties.Resources.ct_github_dark, 18, ContentAlignment.MiddleRight);
                 TSImageRenderer(About_DonateBtn, GlowMain.theme == 1 ? Properties.Resources.tm_donate_mc_light : Properties.Resources.tm_donate_mc_dark, 18, ContentAlignment.MiddleRight);
                 //
-                AboutTable.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                AboutTable.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridColor");
-                AboutTable.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                AboutTable.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridFEColor");
-                AboutTable.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridAlternatingColor");
-                AboutTable.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                AboutTable.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                AboutTable.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
-                AboutTable.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                AboutTable.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
+                AboutTable.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                AboutTable.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
+                AboutTable.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                AboutTable.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                AboutTable.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                AboutTable.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                AboutTable.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                AboutTable.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                AboutTable.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                AboutTable.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
                 CloseAboutBtn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_CloseBG");
                 CloseAboutBtn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_CloseBG");
@@ -120,7 +122,9 @@ namespace Glow{
                 //
                 AboutTable.Columns[0].HeaderText = software_lang.TSReadLangs("SoftwareAbout", "sa_lang_name");
                 AboutTable.Columns[1].HeaderText = software_lang.TSReadLangs("SoftwareAbout", "sa_lang_translator");
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status){ TSErrorLog.LogException(ex, "About_Preloader()"); }
+            }
         }
         // DGV CLEAR SELECTION
         // ======================================================================================================
@@ -130,21 +134,27 @@ namespace Glow{
         private void About_WebsiteBtn_Click(object sender, EventArgs e){
             try{
                 Process.Start(new ProcessStartInfo(TS_LinkSystem.website_link){ UseShellExecute = true });
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status){ TSErrorLog.LogException(ex, "About_WebsiteBtn_Click()"); }
+            }
         }
         // GITHUB LINK
         // ======================================================================================================
         private void About_GitHubBtn_Click(object sender, EventArgs e){
             try{
                 Process.Start(new ProcessStartInfo(TS_LinkSystem.github_link){ UseShellExecute = true });
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status){ TSErrorLog.LogException(ex, "About_GitHubBtn_Click()"); }
+            }
         }
         // DONATE LINK
         // ======================================================================================================
         private void About_DonateBtn_Click(object sender, EventArgs e){
             try{
-                Process.Start(new ProcessStartInfo(TS_LinkSystem.ts_donate){ UseShellExecute = true });
-            }catch (Exception){ }
+                Process.Start(new ProcessStartInfo(TS_LinkSystem.ts_donate) { UseShellExecute = true });
+            }catch (Exception ex){
+                if (GlowMain.debug_status){ TSErrorLog.LogException(ex, "About_DonateBtn_Click()"); }
+            }
         }
         // FORM DRAGGING SYSTEM
         // ======================================================================================================

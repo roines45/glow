@@ -19,6 +19,48 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Glow{
+    // TS UI THREAD HELPER
+    // ======================================================================================================
+    public static class TS_UIThreadHelper{
+        private static void InvokeIfRequired(Control control, Action action){
+            if (control == null || control.IsDisposed) return;
+            if (control.InvokeRequired){
+                control.BeginInvoke((MethodInvoker)(() => { if (!control.IsDisposed) action(); }));
+            }else { action(); }
+        }
+        //
+        public static void ExecuteSafe(this Control control, Action action){
+            InvokeIfRequired(control, action);
+        }
+        public static void SetTextSafe(this Control control, string text){
+            InvokeIfRequired(control, () => control.Text = text);
+        }
+        public static void SetEnabledSafe(this Control control, bool enabled){
+            InvokeIfRequired(control, () => control.Enabled = enabled);
+        }
+        public static void SetVisibleSafe(this Control control, bool visible){
+            InvokeIfRequired(control, () => control.Visible = visible);
+        }
+        public static void AddItemSafe(this ComboBox comboBox, object item){
+            InvokeIfRequired(comboBox, () => comboBox.Items.Add(item));
+        }
+        //
+        public static void SetEnabledSafe(this ToolStripItem item, bool enabled){
+            if (item == null) return;
+            if (item.Owner != null) InvokeIfRequired(item.Owner, () => item.Enabled = enabled);
+            else item.Enabled = enabled;
+        }
+        public static void SetVisibleSafe(this ToolStripItem item, bool visible){
+            if (item == null) return;
+            if (item.Owner != null) InvokeIfRequired(item.Owner, () => item.Visible = visible);
+            else item.Visible = visible;
+        }
+        public static void SetTextSafe(this ToolStripItem item, string text){
+            if (item == null) return;
+            if (item.Owner != null) InvokeIfRequired(item.Owner, () => item.Text = text);
+            else item.Text = text;
+        }
+    }
     internal class TSModules{
         // STARTUP LOCATION
         // ======================================================================================================
@@ -81,16 +123,31 @@ namespace Glow{
         // ======================================================================================================
         public static class TS_MessageBoxEngine{
             private static readonly Dictionary<int, KeyValuePair<MessageBoxButtons, MessageBoxIcon>> TSMessageBoxConfig = new Dictionary<int, KeyValuePair<MessageBoxButtons, MessageBoxIcon>>(){
-                { 1, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OK, MessageBoxIcon.Information) },           // Ok and Info
-                { 2, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OK, MessageBoxIcon.Warning) },               // Ok and Warning
-                { 3, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OK, MessageBoxIcon.Error) },                 // Ok and Error
-                { 4, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNo, MessageBoxIcon.Question) },           // Yes/No and Quest
-                { 5, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNo, MessageBoxIcon.Information) },        // Yes/No and Info
-                { 6, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNo, MessageBoxIcon.Warning) },            // Yes/No and Warning
-                { 7, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNo, MessageBoxIcon.Error) },              // Yes/No and Error
-                { 8, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) },        // Retry/Cancel and Error
-                { 9, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) },     // Yes/No/Cancel and Quest
-                { 10, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) }  // Yes/No/Cancel and Info
+                { 1, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OK, MessageBoxIcon.Information) },               // Ok and Info
+                { 2, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OK, MessageBoxIcon.Warning) },                   // Ok and Warning
+                { 3, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OK, MessageBoxIcon.Error) },                     // Ok and Error
+                { 4, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNo, MessageBoxIcon.Question) },               // Yes/No and Quest
+                { 5, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNo, MessageBoxIcon.Information) },            // Yes/No and Info
+                { 6, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNo, MessageBoxIcon.Warning) },                // Yes/No and Warning
+                { 7, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNo, MessageBoxIcon.Error) },                  // Yes/No and Error
+                { 8, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) },            // Retry/Cancel and Error
+                { 9, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) },         // Yes/No/Cancel and Quest
+                { 10, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) },     // Yes/No/Cancel and Info
+                { 11, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning) },         // Yes/No/Cancel and Warning
+                // OK / Cancel combinations
+                { 12, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OKCancel, MessageBoxIcon.Question) },           // OK/Cancel and Question
+                { 13, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OKCancel, MessageBoxIcon.Information) },        // OK/Cancel and Info
+                { 14, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) },            // OK/Cancel and Warning
+                { 15, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.OKCancel, MessageBoxIcon.Error) },              // OK/Cancel and Error
+                // Retry / Cancel additional variants
+                { 16, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.RetryCancel, MessageBoxIcon.Information) },     // Retry/Cancel and Info
+                { 17, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning) },         // Retry/Cancel and Warning
+                { 18, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.RetryCancel, MessageBoxIcon.Question) },        // Retry/Cancel and Question
+                // Abort / Retry / Ignore combinations
+                { 19, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Question) },   // Abort/Retry/Ignore and Question
+                { 20, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Information) },// Abort/Retry/Ignore and Info
+                { 21, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning) },    // Abort/Retry/Ignore and Warning
+                { 22, new KeyValuePair<MessageBoxButtons, MessageBoxIcon>(MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) }       // Abort/Retry/Ignore and Error
             };
             public static DialogResult TS_MessageBox(Form m_form, int m_mode, string m_message, string m_title = ""){
                 if (m_form != null && m_form.InvokeRequired){
@@ -117,7 +174,7 @@ namespace Glow{
                 m_form.Activate();
             }
         }
-        // TS LOGGER - IMPROVED VERSION - V2
+        // TS LOGGER - V2.1
         // ======================================================================================================
         public static class TSLogger{
             private static readonly object _lock = new object();
@@ -128,17 +185,30 @@ namespace Glow{
             private static StreamWriter _writer;
             private static bool _isClosed = false;
             private static bool _isUnlocked = false;
-            public static string LogDirectory => _logDir;
-            public static bool IsClosed => _isClosed;
+            public static string LogDirectory{
+                get{
+                    lock (_lock)
+                        return _logDir;
+                }
+            }
+            public static bool IsClosed{
+                get{
+                    lock (_lock)
+                        return _isClosed;
+                }
+            }
             public static string CurrentLogFile{
-                get { lock (_lock) { return _currentLogFile; } }
+                get{
+                    lock (_lock)
+                        return _currentLogFile;
+                }
             }
             static TSLogger(){
                 _logDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "g_logs");
                 try{
                     AppDomain.CurrentDomain.ProcessExit += (_, __) => CloseWriter_NoThrow();
                     AppDomain.CurrentDomain.DomainUnload += (_, __) => CloseWriter_NoThrow();
-                }catch{ }
+                }catch { }
             }
             public static void Enable(bool fileEnabled, bool consoleEnabled){
                 lock (_lock){
@@ -161,7 +231,9 @@ namespace Glow{
                     CloseWriter_NoThrow();
                     _isUnlocked = true;
                     if (_consoleEnabled){
-                        Console.WriteLine($"[DEBUG] TSLogger: File unlocked - {_currentLogFile}");
+                        string msg = $"[DEBUG] TSLogger: File unlocked - {_currentLogFile}";
+                        Console.WriteLine(msg);
+                        Debug.WriteLine(msg);
                     }
                 }
             }
@@ -183,7 +255,12 @@ namespace Glow{
                 }
             }
             public static void Log(Exception ex){
-                if (ex == null || _isClosed)
+                if (ex == null)
+                    return;
+                bool isClosed;
+                lock (_lock)
+                    isClosed = _isClosed;
+                if (isClosed)
                     return;
                 Log(ex.ToString());
             }
@@ -194,7 +271,7 @@ namespace Glow{
                         Directory.CreateDirectory(_logDir);
                     }
                     string stamp = DateTime.Now.ToString("yyyyMMdd_HHmmss_fff");
-                    string baseName = $"Glow_{Dns.GetHostName()}_{stamp}";
+                    string baseName = $"{Application.ProductName}_{Dns.GetHostName()}_{stamp}";
                     string path;
                     for (int i = 0; i < 1000; i++){
                         string suffix = (i == 0) ? "" : "_" + i.ToString();
@@ -219,14 +296,18 @@ namespace Glow{
                     _currentLogFile = null;
                     _fileEnabled = false;
                     if (_consoleEnabled){
-                        Console.WriteLine("[DEBUG] " + DateTime.Now.ToString("dd.MM.yyyy - HH:mm:ss") + " - TSLogger: Failed to create log file (attempted 1000 names). File logging disabled.");
+                        string errorMsg = "[DEBUG] " + DateTime.Now.ToString("dd.MM.yyyy - HH:mm:ss") + " - TSLogger: Failed to create log file (attempted 1000 names). File logging disabled.";
+                        Console.WriteLine(errorMsg);
+                        Debug.WriteLine(errorMsg);
                     }
                 }catch{
                     _writer = null;
                     _currentLogFile = null;
                     _fileEnabled = false;
                     if (_consoleEnabled){
-                        Console.WriteLine("[DEBUG] " + DateTime.Now.ToString("dd.MM.yyyy - HH:mm:ss") + " - TSLogger: Exception during log initialization. File logging disabled.");
+                        string exMsg = "[DEBUG] " + DateTime.Now.ToString("dd.MM.yyyy - HH:mm:ss") + " - TSLogger: Exception during log initialization. File logging disabled.";
+                        Console.WriteLine(exMsg);
+                        Debug.WriteLine(exMsg);
                     }
                 }
             }
@@ -241,10 +322,12 @@ namespace Glow{
                                 AutoFlush = true
                             };
                             return;
-                        }catch{ }
+                        }catch { }
                     }else{
                         if (_consoleEnabled){
-                            Console.WriteLine($"[DEBUG] TSLogger: Log file was deleted, creating new one.");
+                            string deleteMsg = $"[DEBUG] TSLogger: Log file was deleted, creating new one.";
+                            Console.WriteLine(deleteMsg);
+                            Debug.WriteLine(deleteMsg);
                         }
                     }
                 }
@@ -256,8 +339,8 @@ namespace Glow{
                         _writer.Flush();
                         _writer.Dispose();
                     }
-                }catch (ObjectDisposedException){ }
-                catch{ }
+                }catch (ObjectDisposedException) { }
+                catch { }
                 _writer = null;
             }
             private static void Write_NoLock(string text){
@@ -270,14 +353,18 @@ namespace Glow{
                 string prefix = $"{DateTime.Now:dd.MM.yyyy - HH:mm:ss} - ";
                 if (_consoleEnabled){
                     for (int i = 0; i < lines.Length; i++){
-                        Console.WriteLine("[DEBUG] " + prefix + lines[i]);
+                        string formattedLine = "[DEBUG] " + prefix + lines[i];
+                        Console.WriteLine(formattedLine);
+                        Debug.WriteLine(formattedLine);
                     }
                 }
                 if (_fileEnabled){
                     EnsureWriterOpen();
                     if (_writer == null){
                         if (_consoleEnabled){
-                            Console.WriteLine("[DEBUG] TSLogger: Failed to open writer.");
+                            string writerFail = "[DEBUG] TSLogger: Failed to open writer.";
+                            Console.WriteLine(writerFail);
+                            Debug.WriteLine(writerFail);
                         }
                         return;
                     }
@@ -324,12 +411,18 @@ namespace Glow{
                 return Array.Empty<string>();
             }
         }
-        
-        // TS ERROR LOGGER - IMPROVED VERSION - V2
+        // TS ERROR LOGGER - v2.1
         // ======================================================================================================
         public static class TSErrorLog{
+            private static readonly object _lock = new object();
             public static void LogException(Exception ex, string context = null){
-                if (ex == null || TSLogger.IsClosed)
+                if (ex == null)
+                    return;
+                bool isClosed;
+                lock (_lock){
+                    isClosed = TSLogger.IsClosed;
+                }
+                if (isClosed)
                     return;
                 string formattedLog = FormatException(ex, context);
                 TSLogger.Log(formattedLog);
@@ -391,7 +484,7 @@ namespace Glow{
                             return $"Location   : {file}:{line}\n";
                         }
                     }
-                }catch{ }
+                }catch { }
                 return "";
             }
         }
@@ -793,106 +886,46 @@ namespace Glow{
             // LIGHT THEME COLORS
             // ====================================
             public static readonly Dictionary<string, Color> LightTheme = new Dictionary<string, Color>{
-                // TS TEMPLATE
+                // BG & PANELS
                 { "TSBT_BGColor", Color.FromArgb(236, 242, 248) },
                 { "TSBT_BGColor2", Color.White },
+                // ACCENT COLORS
                 { "TSBT_AccentColor", Color.FromArgb(54, 95, 146) },
-                { "TSBT_LabelColor1", Color.FromArgb(51, 51, 51) },
-                { "TSBT_LabelColor2", Color.FromArgb(100, 100, 100) },
-                { "TSBT_CloseBG", Color.FromArgb(25, 255, 255, 255) },
-                { "TSBT_CloseBGHover", Color.FromArgb(50, 255, 255, 255) },
-                // HEADER MENU COLOR MODE
-                { "HeaderBGColorMain", Color.White },
-                { "HeaderFEColorMain", Color.FromArgb(51, 51, 51) },
-                { "HeaderFEColor", Color.FromArgb(51, 51, 51) },
-                { "HeaderBGColor", Color.FromArgb(236, 242, 248) },
-                // ACTIVE PAGE COLOR
-                { "BtnActiveColor", Color.White },
-                { "BtnDeActiveColor", Color.FromArgb(236, 242, 248) },
-                // UI COLOR
-                { "LeftMenuBGAndBorderColor", Color.FromArgb(236, 242, 248) },
-                { "LeftMenuButtonHoverAndMouseDownColor", Color.White },
-                { "LeftMenuButtonAlphaColor", Color.FromArgb(50, 255, 255, 255) },
-                { "LeftMenuButtonFEColor", Color.FromArgb(51, 51, 51) },
-                { "LeftMenuButtonFEColor2", Color.FromArgb(27, 30, 34) },
-                { "PageContainerBGAndPageContentTotalColors", Color.White },
-                { "ContentPanelBGColor", Color.FromArgb(236, 242, 248) },
-                { "ContentLabelLeft", Color.FromArgb(51, 51, 51) },
-                { "AccentColor", Color.FromArgb(54, 95, 146) },
                 { "AccentColorHover", Color.FromArgb(63, 109, 165) },
-                //
-                { "SelectBoxBGColor", Color.White },
-                { "SelectBoxBGColor2", Color.FromArgb(236, 242, 248) },
-                { "SelectBoxFEColor", Color.FromArgb(51, 51, 51) },
-                { "SelectBoxBorderColor", Color.FromArgb(226, 226, 226) },
-                { "CheckBoxUnCheckBorderColor", Color.FromArgb(98, 98, 98) },
-                //
-                { "TextBoxBGColor", Color.White },
-                { "TextBoxFEColor", Color.FromArgb(51, 51, 51) },
-                { "DataGridBGColor", Color.FromArgb(236, 242, 248) },
-                { "DataGridFEColor", Color.FromArgb(51, 51, 51) },
-                { "DataGridColor", Color.FromArgb(226, 226, 226) },
-                { "DataGridAlternatingColor", Color.White },
-                { "OSDAndServicesPageBG", Color.FromArgb(54, 95, 146) },
-                { "OSDAndServicesPageFE", Color.White },
-                { "DynamicThemeActiveBtnBG", Color.White },
-                // ACCENT COLOR
-                { "AccentBlue", Color.FromArgb(54, 95, 146) },
                 { "AccentPurple", Color.FromArgb(118, 85, 177) },
                 { "AccentRed", Color.FromArgb(207, 24, 0) },
                 { "AccentGreen", Color.FromArgb(28, 122, 25) },
+                // FOREGROUND / TEXT
+                { "TSBT_LabelColor1", Color.FromArgb(51, 51, 51) },
+                { "TSBT_LabelColor2", Color.FromArgb(100, 100, 100) },
+                // BORDERS & GRIDS
+                { "SelectBoxBorderColor", Color.FromArgb(226, 226, 226) },
+                { "CheckBoxUnCheckBorderColor", Color.FromArgb(98, 98, 98) },
+                // TRANSPARENCIES / ALPHAS
+                { "TSBT_CloseBG", Color.FromArgb(25, 255, 255, 255) },
+                { "TSBT_CloseBGHover", Color.FromArgb(50, 255, 255, 255) }
             };
             // DARK THEME COLORS
             // ====================================
             public static readonly Dictionary<string, Color> DarkTheme = new Dictionary<string, Color>{
-                // TS TEMPLATE
+                // BG & PANELS
                 { "TSBT_BGColor", Color.FromArgb(27, 30, 34) },
                 { "TSBT_BGColor2", Color.FromArgb(34, 38, 44) },
+                // ACCENT COLORS
                 { "TSBT_AccentColor", Color.FromArgb(88, 153, 233) },
-                { "TSBT_LabelColor1", Color.WhiteSmoke },
-                { "TSBT_LabelColor2", Color.FromArgb(176, 184, 196) },
-                { "TSBT_CloseBG", Color.FromArgb(75, 34, 38, 44) },
-                { "TSBT_CloseBGHover", Color.FromArgb(75, 27,30, 34) },
-                // HEADER MENU COLOR MODE
-                { "HeaderBGColorMain", Color.FromArgb(34, 38, 44) },
-                { "HeaderFEColorMain", Color.FromArgb(222, 222, 222) },
-                { "HeaderFEColor", Color.WhiteSmoke },
-                { "HeaderBGColor", Color.FromArgb(27, 30, 34) },
-                 // ACTIVE PAGE COLOR
-                { "BtnActiveColor", Color.FromArgb(34, 38, 44) },
-                { "BtnDeActiveColor", Color.FromArgb(27, 30, 34) },
-                // UI COLOR
-                { "LeftMenuBGAndBorderColor", Color.FromArgb(27, 30, 34) },
-                { "LeftMenuButtonHoverAndMouseDownColor", Color.FromArgb(34, 38, 44) },
-                { "LeftMenuButtonAlphaColor", Color.FromArgb(50, 34, 38, 44) },
-                { "LeftMenuButtonFEColor", Color.WhiteSmoke },
-                { "LeftMenuButtonFEColor2", Color.White },
-                { "PageContainerBGAndPageContentTotalColors", Color.FromArgb(34, 38, 44) },
-                { "ContentPanelBGColor", Color.FromArgb(27, 30, 34) },
-                { "ContentLabelLeft", Color.WhiteSmoke },
-                { "AccentColor", Color.FromArgb(88, 153, 233) },
                 { "AccentColorHover", Color.FromArgb(93, 165, 253) },
-                //
-                { "SelectBoxBGColor", Color.FromArgb(34, 38, 44) },
-                { "SelectBoxBGColor2", Color.FromArgb(27, 30, 34) },
-                { "SelectBoxFEColor", Color.WhiteSmoke },
-                { "SelectBoxBorderColor", Color.FromArgb(42, 47, 53) },
-                { "CheckBoxUnCheckBorderColor", Color.FromArgb(170, 170, 170) },
-                //
-                { "TextBoxBGColor", Color.FromArgb(34, 38, 44) },
-                { "TextBoxFEColor", Color.WhiteSmoke },
-                { "DataGridBGColor", Color.FromArgb(27, 30, 34) },
-                { "DataGridFEColor", Color.WhiteSmoke },
-                { "DataGridColor", Color.FromArgb(42, 47, 53) },
-                { "DataGridAlternatingColor", Color.FromArgb(34, 38, 44) },
-                { "OSDAndServicesPageBG", Color.FromArgb(88, 153, 233) },
-                { "OSDAndServicesPageFE", Color.FromArgb(34, 38, 44) },
-                { "DynamicThemeActiveBtnBG", Color.FromArgb(34, 38, 44) },
-                // ACCENT COLOR
-                { "AccentBlue", Color.FromArgb(88, 153, 233) },
                 { "AccentPurple", Color.FromArgb(164, 118, 243) },
                 { "AccentRed", Color.FromArgb(255, 77, 77) },
                 { "AccentGreen", Color.FromArgb(38, 187, 33) },
+                // FOREGROUND / TEXT
+                { "TSBT_LabelColor1", Color.WhiteSmoke },
+                { "TSBT_LabelColor2", Color.FromArgb(176, 184, 196) },
+                // BORDERS & GRIDS
+                { "SelectBoxBorderColor", Color.FromArgb(42, 47, 53) },
+                { "CheckBoxUnCheckBorderColor", Color.FromArgb(170, 170, 170) },
+                // TRANSPARENCIES / ALPHAS
+                { "TSBT_CloseBG", Color.FromArgb(75, 34, 38, 44) },
+                { "TSBT_CloseBGHover", Color.FromArgb(75, 27, 30, 34) }
             };
             // THEME SWITCHER
             // ====================================
@@ -1033,7 +1066,7 @@ namespace Glow{
                 return created;
             }
         }
-        // SET DYNAMIC SIZE ALGORITHM
+        // DYNAMIC PICTUREBOX RENDERER
         // ======================================================================================================
         public static void SetPictureBoxImage(PictureBox pictureBox, Image newImage){
             if (pictureBox == null) return;
@@ -1068,6 +1101,8 @@ namespace Glow{
             }
             return bmp;
         }
+        // DVG ICON RESIZER
+        // ======================================================================================================
         public static Image ResizeDGIcon(Image img, int size, int deviceDpi){
             float scale = deviceDpi / 96f;
             int newSize = (int)(size * scale);
@@ -1099,6 +1134,28 @@ namespace Glow{
                 bytes /= 1024;
             }
             return Math.Round(bytes, 2);
+        }
+        // NORMALIZE PATH
+        // ======================================================================================================
+        public static string TS_NormalizePath(string path){
+            if (string.IsNullOrWhiteSpace(path)) return string.Empty;
+            path = path.Replace('/', '\\').Trim();
+            bool isUnc = path.StartsWith("\\\\");
+            try{
+                path = Path.GetFullPath(path);
+            }catch{
+                var invalidChars = Path.GetInvalidPathChars().Concat(new[] { '*', '?', '"', '<', '>', '|' }).Distinct().ToArray();
+                path = new string(path.Where(c => !invalidChars.Contains(c)).ToArray());
+            }
+            var parts = path.Split(new[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
+            if (isUnc && parts.Length >= 2){
+                return $"\\\\{string.Join("\\", parts)}";
+            }
+            else if (path.StartsWith("\\") && !isUnc){
+                return $"\\{string.Join("\\", parts)}";
+            }else{
+                return string.Join("\\", parts);
+            }
         }
         // DYNAMIC BUTTON WIDTH
         // ======================================================================================================

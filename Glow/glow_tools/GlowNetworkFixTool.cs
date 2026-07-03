@@ -9,45 +9,52 @@ using static Glow.TSModules;
 namespace Glow.glow_tools{
     public partial class GlowNetworkFixTool : Form{
         public GlowNetworkFixTool(){ InitializeComponent(); }
-        // DYNAMIC THEME VOID
+        // PRE-LOAD
         // ======================================================================================================
-        public void Nft_theme_settings(){
+        public void GTool_NetworkFix_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
                 //
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
-                Panel_BG.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
+                Panel_BG.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
                 //
-                NFT_TitleLabel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                NFT_TitleLabel.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
+                NFT_TitleLabel.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                NFT_TitleLabel.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
                 //
-                NFT_ResultList.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "PageContainerBGAndPageContentTotalColors");
-                NFT_ResultList.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
-                NFT_ResultList.SelectedBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                NFT_ResultList.SelectedForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBGColor");
+                NFT_ResultList.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                NFT_ResultList.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                NFT_ResultList.SelectedBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                NFT_ResultList.SelectedForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
-                NFT_StartBtn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                NFT_StartBtn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                NFT_StartBtn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                NFT_StartBtn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                NFT_StartBtn.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                NFT_StartBtn.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                NFT_StartBtn.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                NFT_StartBtn.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                 NFT_StartBtn.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
                 //
                 TSImageRenderer(NFT_StartBtn, GlowMain.theme == 1 ? Properties.Resources.ct_fix_light : Properties.Resources.ct_fix_dark, 18, ContentAlignment.MiddleRight);
-                //
+                // TEXT
+                // ----------------------
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 Text = string.Format(software_lang.TSReadLangs("NetworkFixTool", "nft_title"), Application.ProductName);
                 //
                 NFT_StartBtn.Text = " " + software_lang.TSReadLangs("NetworkFixTool", "nft_process_start_btn");
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_NetworkFix_Preloader()"); }
+            }
         }
-        // LOADA
+        // LOAD
         // ======================================================================================================
         private void GlowNetworkFixTool_Load(object sender, EventArgs e){
-            Nft_theme_settings();
-            //
-            TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
-            NFT_TitleLabel.Text = software_lang.TSReadLangs("NetworkFixTool", "nft_title_label_before_start");
+            try{
+                GTool_NetworkFix_Preloader();
+                //
+                TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
+                NFT_TitleLabel.Text = software_lang.TSReadLangs("NetworkFixTool", "nft_title_label_before_start");
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowNetworkFixTool_Load()"); }
+            }
         }
         // RESULT LIST CLEAR SELECTION
         // ======================================================================================================
@@ -57,33 +64,33 @@ namespace Glow.glow_tools{
         }
         // NETWORK FIX ENGINE STARTER BTN
         // ======================================================================================================
-        private void NFT_StartBtn_Click(object sender, EventArgs e){
+        private async void NFT_StartBtn_Click(object sender, EventArgs e){
             try{
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 DialogResult start_engine_query = TS_MessageBoxEngine.TS_MessageBox(this, 6, string.Format(software_lang.TSReadLangs("NetworkFixTool", "nft_process_start_query"), "\n"));
                 if (start_engine_query == DialogResult.Yes){
-                    Start_network_fix_engine();
+                    await Start_network_fix_engine_async();
                     NFT_TitleLabel.Text = software_lang.TSReadLangs("NetworkFixTool", "nft_title_label_in_process");
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "NFT_StartBtn_Click()"); }
+            }
         }
         // NETWORK FIX ENGINE STARTER
         // ======================================================================================================
-        private async void Start_network_fix_engine(){
+        private async Task Start_network_fix_engine_async(){
             try{
                 NFT_ResultList.Items.Clear();
                 NFT_StartBtn.Enabled = false;
-                // Network Fix Command
                 await Ts_RunNetworkFixCommandAsync("netsh", "winsock reset");
                 await Ts_RunNetworkFixCommandAsync("netsh", "int ip reset");
                 await Ts_RunNetworkFixCommandAsync("ipconfig", "/release");
                 await Ts_RunNetworkFixCommandAsync("ipconfig", "/renew");
                 await Ts_RunNetworkFixCommandAsync("ipconfig", "/flushdns");
-                //
+                if (this.IsDisposed || !this.IsHandleCreated) return;
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 NFT_TitleLabel.Text = software_lang.TSReadLangs("NetworkFixTool", "nft_title_label_after_end");
                 NFT_StartBtn.Enabled = true;
-                // Process After Dialog
                 DialogResult end_engine_query = TS_MessageBoxEngine.TS_MessageBox(this, 6, string.Format(software_lang.TSReadLangs("NetworkFixTool", "nft_process_after_query"), "\n\n", "\n\n", "\n\n"));
                 if (end_engine_query == DialogResult.Yes){
                     try{
@@ -96,18 +103,24 @@ namespace Glow.glow_tools{
                             RedirectStandardError = true
                         };
                         using (Process pc_restart_starter = Process.Start(pc_restart_query)){
-                            pc_restart_starter.WaitForExit();
+                            if (pc_restart_starter != null){
+                                await Task.Run(() => pc_restart_starter.WaitForExit());
+                            }
                         }
                     }catch (Exception){
+                        if (this.IsDisposed || !this.IsHandleCreated) return;
                         TS_MessageBoxEngine.TS_MessageBox(this, 3, string.Format(software_lang.TSReadLangs("NetworkFixTool", "nft_process_after_restart_info"), "\n"));
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Start_network_fix_engine_async()"); }
+            }
         }
         // NETWORK FIX ENGINE
         // ======================================================================================================
         private async Task Ts_RunNetworkFixCommandAsync(string get_command, string get_arguments){
             try{
+                string currentLangPath = GlowMain.lang_path;
                 await Task.Run(() => {
                     ProcessStartInfo start_network_fix_process = new ProcessStartInfo{
                         FileName = "cmd.exe",
@@ -122,12 +135,10 @@ namespace Glow.glow_tools{
                         string get_error = network_fix_runner.StandardError.ReadToEnd();
                         network_fix_runner.WaitForExit();
                         int exitCode = network_fix_runner.ExitCode;
-                        TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
-                        if (IsDisposed || !IsHandleCreated)
-                            return;
-                        BeginInvoke(new Action(() => {
-                            if (IsDisposed || !IsHandleCreated)
-                                return;
+                        TSGetLangs software_lang = new TSGetLangs(currentLangPath);
+                        if (this.IsDisposed) return;
+                        this.BeginInvoke(new Action(() => {
+                            if (this.IsDisposed || !this.IsHandleCreated) return;
                             if (exitCode == 0){
                                 NFT_ResultList.Items.Add(string.Format(software_lang.TSReadLangs("NetworkFixTool", "nft_process_code_transfer"), get_command, get_arguments));
                             }else{
@@ -137,7 +148,9 @@ namespace Glow.glow_tools{
                         }));
                     }
                 });
-            }catch (Exception) { }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Ts_RunNetworkFixCommandAsync()"); }
+            }
         }
     }
 }

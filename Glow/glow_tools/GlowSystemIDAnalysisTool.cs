@@ -48,67 +48,42 @@ namespace Glow.glow_tools{
         // BYPASS TABLE CLICK
         // ======================================================================================================
         private void DGV_MainTable_SelectionChanged(object sender, EventArgs e) => DGV_MainTable.ClearSelection();
-        // LOAD
+        // PRE-LOAD
         // ======================================================================================================
-        private async void GlowSystemIDAnalysisTool_Load(object sender, EventArgs e){
-            SIG_Preloader();
-            Btn_Save.Enabled = false;
-            Btn_Compare.Enabled = false;
-            DGV_MainTable.Rows.Clear();
-            foreach (var key in hwBag.Keys)
-                hwBag[key] = new ConcurrentBag<string>();
-            var tasks = new Task[]{
-                Task.Run(SID_Processor),
-                Task.Run(SID_Motherboard),
-                Task.Run(SID_BIOS),
-                Task.Run(SID_Memory),
-                Task.Run(SID_GPU),
-                Task.Run(SID_Monitor),
-                Task.Run(SID_Storage),
-                Task.Run(SID_Battery)
-            };
-            await Task.WhenAll(tasks);
-            SortGridNatural();
-            DGV_MainTable.ClearSelection();
-            Btn_Save.Enabled = true;
-            Btn_Compare.Enabled = true;
-        }
-        // PRELOAD
-        // ======================================================================================================
-        public void SIG_Preloader(){
+        public void GTool_SystemIA_Preloader(){
             try{
                 TSThemeModeHelper.InitializeThemeForForm(this);
                 //
-                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentPanelBGColor");
+                BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
                 //
-                Label_Info.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "LeftMenuButtonHoverAndMouseDownColor");
-                Label_Info.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "ContentLabelLeft");
+                Label_Info.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                Label_Info.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
                 //
-                DGV_MainTable.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "LeftMenuButtonHoverAndMouseDownColor");
-                DGV_MainTable.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridColor");
-                DGV_MainTable.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridBGColor");
-                DGV_MainTable.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridFEColor");
-                DGV_MainTable.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DataGridAlternatingColor");
-                DGV_MainTable.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                DGV_MainTable.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                DGV_MainTable.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
-                DGV_MainTable.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageBG");
-                DGV_MainTable.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "OSDAndServicesPageFE");
+                DGV_MainTable.BackgroundColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                DGV_MainTable.GridColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "SelectBoxBorderColor");
+                DGV_MainTable.DefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor");
+                DGV_MainTable.DefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_LabelColor1");
+                DGV_MainTable.AlternatingRowsDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                DGV_MainTable.ColumnHeadersDefaultCellStyle.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                DGV_MainTable.ColumnHeadersDefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                DGV_MainTable.ColumnHeadersDefaultCellStyle.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                DGV_MainTable.DefaultCellStyle.SelectionBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                DGV_MainTable.DefaultCellStyle.SelectionForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
                 //
                 foreach (Control ui_buttons in this.Controls){
                     if (ui_buttons is Button ui_button){
-                        ui_button.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "DynamicThemeActiveBtnBG");
-                        ui_button.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        ui_button.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
-                        ui_button.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColor");
+                        ui_button.ForeColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_BGColor2");
+                        ui_button.BackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        ui_button.FlatAppearance.BorderColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
+                        ui_button.FlatAppearance.MouseDownBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "TSBT_AccentColor");
                         ui_button.FlatAppearance.MouseOverBackColor = TS_ThemeEngine.ColorMode(GlowMain.theme, "AccentColorHover");
                     }
                 }
                 //
                 TSImageRenderer(Btn_Save, GlowMain.theme == 1 ? Properties.Resources.ct_export_light : Properties.Resources.ct_export_dark, 18, ContentAlignment.MiddleRight);
                 TSImageRenderer(Btn_Compare, GlowMain.theme == 1 ? Properties.Resources.ct_compare_light : Properties.Resources.ct_compare_dark, 18, ContentAlignment.MiddleRight);
-                // ======================================================================================================
-                // TEXTS
+                // TEXT
+                // ----------------------
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
                 Text = string.Format(software_lang.TSReadLangs("SystemIDTool", "sit_title"), Application.ProductName);
                 Label_Info.Text = software_lang.TSReadLangs("SystemIDTool", "sit_info");
@@ -118,7 +93,38 @@ namespace Glow.glow_tools{
                 //
                 Btn_Save.Text = " " + software_lang.TSReadLangs("SystemIDTool", "sit_save_btn");
                 Btn_Compare.Text = " " + software_lang.TSReadLangs("SystemIDTool", "sit_compare_btn");
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GTool_SystemIA_Preloader()"); }
+            }
+        }
+        // LOAD
+        // ======================================================================================================
+        private async void GlowSystemIDAnalysisTool_Load(object sender, EventArgs e){
+            try{
+                GTool_SystemIA_Preloader();
+                Btn_Save.Enabled = false;
+                Btn_Compare.Enabled = false;
+                DGV_MainTable.Rows.Clear();
+                foreach (var key in hwBag.Keys)
+                    hwBag[key] = new ConcurrentBag<string>();
+                var tasks = new Task[]{
+                    Task.Run(SID_Processor),
+                    Task.Run(SID_Motherboard),
+                    Task.Run(SID_BIOS),
+                    Task.Run(SID_Memory),
+                    Task.Run(SID_GPU),
+                    Task.Run(SID_Monitor),
+                    Task.Run(SID_Storage),
+                    Task.Run(SID_Battery)
+                };
+                await Task.WhenAll(tasks);
+                SortGridNatural();
+                DGV_MainTable.ClearSelection();
+                Btn_Save.Enabled = true;
+                Btn_Compare.Enabled = true;
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "GlowSystemIDAnalysisTool_Load()"); }
+            }
         }
         // HARDWARE ID SAVE BTN
         // ======================================================================================================
@@ -154,7 +160,9 @@ namespace Glow.glow_tools{
                         }
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "Btn_Save_Click()"); }
+            }
         }
         // BUILD HARDWARE SNAPSHOTS
         // ======================================================================================================
@@ -218,7 +226,11 @@ namespace Glow.glow_tools{
                     }
                     TS_MessageBoxEngine.TS_MessageBox(this, 1, CompareSnapshots(validSnapshot));
                 }
-            }catch (Exception){ }
+            }
+            catch (Exception ex)
+            {
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "ChangeDynamicUI()"); }
+            }
         }
         // PARSE HARDWARE SNAPSHOTS
         // ======================================================================================================
@@ -296,6 +308,7 @@ namespace Glow.glow_tools{
                 }
                 return sb_comp.Length == 0 ? software_lang.TSReadLangs("SystemIDTool", "sit_compare_snapshot_success") : sb_comp.ToString().TrimEnd();
             }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "CompareSnapshots()"); }
                 return string.Format(software_lang.TSReadLangs("SystemIDTool", "sit_compare_snapshot_failed"), ex.Message);
             }
         }
@@ -313,18 +326,18 @@ namespace Glow.glow_tools{
         private void SID_Processor(){
             try{
                 TSGetLangs software_lang = new TSGetLangs(GlowMain.lang_path);
-                try{
-                    using (var search_cpu = new ManagementObjectSearcher("root\\CIMV2", "SELECT ProcessorId FROM Win32_Processor")){
-                        foreach (ManagementObject query_cpu in search_cpu.Get().Cast<ManagementObject>()){
-                            string cpu_unique_id = (string)query_cpu["ProcessorId"];
-                            if (!string.IsNullOrEmpty(cpu_unique_id)){
-                                hwBag["CPU"].Add(cpu_unique_id.Trim());
-                                AddRowSafe(software_lang.TSReadLangs("SystemIDTool", "sit_processor"), cpu_unique_id.Trim());
-                            }
+                using (var search_cpu = new ManagementObjectSearcher("root\\CIMV2", "SELECT ProcessorId FROM Win32_Processor")){
+                    foreach (ManagementObject query_cpu in search_cpu.Get().Cast<ManagementObject>()){
+                        string cpu_unique_id = (string)query_cpu["ProcessorId"];
+                        if (!string.IsNullOrEmpty(cpu_unique_id)){
+                            hwBag["CPU"].Add(cpu_unique_id.Trim());
+                            AddRowSafe(software_lang.TSReadLangs("SystemIDTool", "sit_processor"), cpu_unique_id.Trim());
                         }
                     }
-                }catch (Exception){ }
-            }catch (Exception){ }
+                }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SID_Processor()"); }
+            }
         }
         // MOTHERBOARD SERIAL INFO
         // ======================================================================================================
@@ -340,7 +353,9 @@ namespace Glow.glow_tools{
                         }
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SID_Motherboard()"); }
+            }
         }
         // BIOS SERIAL INFO
         // ======================================================================================================
@@ -356,7 +371,9 @@ namespace Glow.glow_tools{
                         }
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SID_BIOS()"); }
+            }
         }
         // MEMORY SERIAL INFO
         // ======================================================================================================
@@ -372,7 +389,9 @@ namespace Glow.glow_tools{
                         }
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SID_Memory()"); }
+            }
         }
         // GPU PNP DEVICE ID INFO
         // ======================================================================================================
@@ -388,7 +407,9 @@ namespace Glow.glow_tools{
                         }
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SID_GPU()"); }
+            }
         }
         // MONITOR SERIAL ID INFO
         // ======================================================================================================
@@ -404,7 +425,9 @@ namespace Glow.glow_tools{
                         }
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SID_Monitor()"); }
+            }
         }
         // STORAGE SERIAL INFO
         // ======================================================================================================
@@ -420,7 +443,9 @@ namespace Glow.glow_tools{
                         }
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SID_Storage()"); }
+            }
         }
         // BATTERY SERIAL INFO
         // ======================================================================================================
@@ -436,7 +461,9 @@ namespace Glow.glow_tools{
                         }
                     }
                 }
-            }catch (Exception){ }
+            }catch (Exception ex){
+                if (GlowMain.debug_status) { TSErrorLog.LogException(ex, "SID_Battery()"); }
+            }
         }
         // NATURAL SORTING
         // ======================================================================================================
