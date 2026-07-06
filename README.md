@@ -28,7 +28,7 @@ You can support this project by making a donation to help ensure its sustainabil
 * **Saving Data:** The ability to save all features offered in the interface as a **Text Document**, **HTML Document** and **Markdown Document**, if desired.
 * **System Identity:** Unique device ID generation for hardware verification (Shortcut: `CTRL + 6`).
 * **Modern UI:** Clean, intuitive interface compatible with Windows 11 design language, featuring Light, Dark, and System themes.
-* **Multilingual:** It supports 15 different languages, primarily English. You can access the supported languages here: [Supported Languages](https://github.com/turkaysoft/glow/discussions/20)
+* **Multilingual:** It supports 16 different languages, primarily English. You can access the supported languages here: [Supported Languages](https://github.com/turkaysoft/glow/discussions/20)
 * **Built-in Update Mechanism:** It features a built-in smart update mechanism developed specifically by **Türkaysoft**.
 
 ---
