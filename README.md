@@ -35,7 +35,7 @@ You can support this project by making a donation to help ensure its sustainabil
 
 ## Interface Preview
 
-<img width="1010" height="633" alt="Glow UI" src="https://github.com/user-attachments/assets/f8b6c57a-0eaf-4247-9f00-2d29b76ef165" />
+<img width="1010" height="633" alt="Glow UI" src="https://github.com/user-attachments/assets/418dfa82-52cf-49c8-aa37-d7d1bdb94808" />
 
 ---
 
