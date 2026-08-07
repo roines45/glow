@@ -25,7 +25,7 @@ namespace Glow.glow_tools{
             DNSTable.Columns.Add("DNSValue", "Value");
             //
             DNSTable.Columns[0].Width = (int)(175 * this.DeviceDpi / 96f);
-            DNSTable.RowTemplate.Height = (int)(26 * this.DeviceDpi / 96f);
+            DNSTable.RowTemplate.Height = (int)(32 * this.DeviceDpi / 96f);
             foreach (DataGridViewColumn col in DNSTable.Columns){
                 col.SortMode = DataGridViewColumnSortMode.NotSortable;
             }

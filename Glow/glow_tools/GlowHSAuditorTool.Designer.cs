@@ -145,6 +145,7 @@
             // 
             this.Label_IOMMU_V.AutoSize = true;
             this.Label_IOMMU_V.BackColor = System.Drawing.Color.Transparent;
+            this.Label_IOMMU_V.Cursor = System.Windows.Forms.Cursors.Default;
             this.Label_IOMMU_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Label_IOMMU_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.Label_IOMMU_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -218,6 +219,7 @@
             // 
             this.Label_HVCI_V.AutoSize = true;
             this.Label_HVCI_V.BackColor = System.Drawing.Color.Transparent;
+            this.Label_HVCI_V.Cursor = System.Windows.Forms.Cursors.Default;
             this.Label_HVCI_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Label_HVCI_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.Label_HVCI_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -291,6 +293,7 @@
             // 
             this.Label_VBS_V.AutoSize = true;
             this.Label_VBS_V.BackColor = System.Drawing.Color.Transparent;
+            this.Label_VBS_V.Cursor = System.Windows.Forms.Cursors.Default;
             this.Label_VBS_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Label_VBS_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.Label_VBS_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -364,6 +367,7 @@
             // 
             this.Label_TPM_V.AutoSize = true;
             this.Label_TPM_V.BackColor = System.Drawing.Color.Transparent;
+            this.Label_TPM_V.Cursor = System.Windows.Forms.Cursors.Default;
             this.Label_TPM_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Label_TPM_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.Label_TPM_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -437,6 +441,7 @@
             // 
             this.Label_UEFISecureBoot_V.AutoSize = true;
             this.Label_UEFISecureBoot_V.BackColor = System.Drawing.Color.Transparent;
+            this.Label_UEFISecureBoot_V.Cursor = System.Windows.Forms.Cursors.Default;
             this.Label_UEFISecureBoot_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Label_UEFISecureBoot_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.Label_UEFISecureBoot_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -536,6 +541,7 @@
             // 
             this.Label_OS_V.AutoSize = true;
             this.Label_OS_V.BackColor = System.Drawing.Color.Transparent;
+            this.Label_OS_V.Cursor = System.Windows.Forms.Cursors.Default;
             this.Label_OS_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Label_OS_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.Label_OS_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;

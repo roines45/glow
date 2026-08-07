@@ -69,7 +69,7 @@
             this.DNSTable.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(87)))), ((int)(((byte)(160)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
@@ -93,7 +93,7 @@
             this.DNSTable.RowHeadersVisible = false;
             this.DNSTable.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DNSTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DNSTable.Size = new System.Drawing.Size(614, 324);
+            this.DNSTable.Size = new System.Drawing.Size(639, 394);
             this.DNSTable.TabIndex = 0;
             this.DNSTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DNSTable_CellDoubleClick);
             // 
@@ -105,17 +105,17 @@
             this.BGPanel.Location = new System.Drawing.Point(10, 10);
             this.BGPanel.Name = "BGPanel";
             this.BGPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.BGPanel.Size = new System.Drawing.Size(614, 389);
+            this.BGPanel.Size = new System.Drawing.Size(639, 459);
             this.BGPanel.TabIndex = 0;
             // 
             // INTERNALPanel
             // 
             this.INTERNALPanel.Controls.Add(this.DNS_PerfectResultLabel);
             this.INTERNALPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.INTERNALPanel.Location = new System.Drawing.Point(0, 324);
+            this.INTERNALPanel.Location = new System.Drawing.Point(0, 394);
             this.INTERNALPanel.Name = "INTERNALPanel";
             this.INTERNALPanel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 10);
-            this.INTERNALPanel.Size = new System.Drawing.Size(614, 55);
+            this.INTERNALPanel.Size = new System.Drawing.Size(639, 55);
             this.INTERNALPanel.TabIndex = 1;
             // 
             // DNS_PerfectResultLabel
@@ -129,7 +129,7 @@
             this.DNS_PerfectResultLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 20);
             this.DNS_PerfectResultLabel.Name = "DNS_PerfectResultLabel";
             this.DNS_PerfectResultLabel.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.DNS_PerfectResultLabel.Size = new System.Drawing.Size(614, 40);
+            this.DNS_PerfectResultLabel.Size = new System.Drawing.Size(639, 40);
             this.DNS_PerfectResultLabel.TabIndex = 0;
             this.DNS_PerfectResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -139,13 +139,15 @@
             this.Btn_FLP.Controls.Add(this.DNS_TestStartBtn);
             this.Btn_FLP.Controls.Add(this.DNS_TestExportBtn);
             this.Btn_FLP.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Btn_FLP.Location = new System.Drawing.Point(10, 399);
+            this.Btn_FLP.Location = new System.Drawing.Point(10, 469);
             this.Btn_FLP.Name = "Btn_FLP";
-            this.Btn_FLP.Size = new System.Drawing.Size(614, 82);
+            this.Btn_FLP.Size = new System.Drawing.Size(639, 82);
             this.Btn_FLP.TabIndex = 1;
             // 
             // DNS_TestStartBtn
             // 
+            this.DNS_TestStartBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DNS_TestStartBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.DNS_TestStartBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.DNS_TestStartBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -161,7 +163,7 @@
             this.DNS_TestStartBtn.Location = new System.Drawing.Point(0, 0);
             this.DNS_TestStartBtn.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.DNS_TestStartBtn.Name = "DNS_TestStartBtn";
-            this.DNS_TestStartBtn.Size = new System.Drawing.Size(614, 36);
+            this.DNS_TestStartBtn.Size = new System.Drawing.Size(639, 36);
             this.DNS_TestStartBtn.TabIndex = 0;
             this.DNS_TestStartBtn.Text = "Başlat";
             this.DNS_TestStartBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -172,6 +174,8 @@
             // 
             // DNS_TestExportBtn
             // 
+            this.DNS_TestExportBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DNS_TestExportBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.DNS_TestExportBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.DNS_TestExportBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -188,7 +192,7 @@
             this.DNS_TestExportBtn.Location = new System.Drawing.Point(0, 46);
             this.DNS_TestExportBtn.Margin = new System.Windows.Forms.Padding(0);
             this.DNS_TestExportBtn.Name = "DNS_TestExportBtn";
-            this.DNS_TestExportBtn.Size = new System.Drawing.Size(614, 36);
+            this.DNS_TestExportBtn.Size = new System.Drawing.Size(639, 36);
             this.DNS_TestExportBtn.TabIndex = 1;
             this.DNS_TestExportBtn.Text = "Dışa Aktar";
             this.DNS_TestExportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -201,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(634, 491);
+            this.ClientSize = new System.Drawing.Size(659, 561);
             this.Controls.Add(this.BGPanel);
             this.Controls.Add(this.Btn_FLP);
             this.DoubleBuffered = true;

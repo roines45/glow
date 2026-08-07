@@ -14,7 +14,7 @@ namespace Glow.glow_tools{
         public GlowCacheCleanupTool(){
             InitializeComponent();
             //
-            CCTTable.RowTemplate.Height = 32;
+            CCTTable.RowTemplate.Height = (int)(32 * this.DeviceDpi / 96f);
             CCTTable.Columns.Add("CleanupName", "Name");
             CCTTable.Columns.Add("CleanupPath", "Path");
             CCTTable.Columns.Add("CleanupSize", "Size");

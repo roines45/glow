@@ -50,7 +50,7 @@
             this.BackPanel.Location = new System.Drawing.Point(0, 0);
             this.BackPanel.Name = "BackPanel";
             this.BackPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.BackPanel.Size = new System.Drawing.Size(489, 466);
+            this.BackPanel.Size = new System.Drawing.Size(489, 496);
             this.BackPanel.TabIndex = 0;
             // 
             // ImageDGV
@@ -60,6 +60,9 @@
             this.ImageDGV.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(237)))));
             this.ImageDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.ImageDGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ImageDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ImageDGV.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.ImageDGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -77,7 +80,7 @@
             this.ImageDGV.Cursor = System.Windows.Forms.Cursors.Default;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(87)))), ((int)(((byte)(160)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
@@ -101,7 +104,7 @@
             this.ImageDGV.RowHeadersVisible = false;
             this.ImageDGV.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ImageDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ImageDGV.Size = new System.Drawing.Size(469, 199);
+            this.ImageDGV.Size = new System.Drawing.Size(469, 229);
             this.ImageDGV.TabIndex = 0;
             this.ImageDGV.SelectionChanged += new System.EventHandler(this.ImageDGV_SelectionChanged);
             // 
@@ -131,7 +134,7 @@
             this.BtnWallpaperLocationBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.BtnWallpaperLocationBtn.ForeColor = System.Drawing.Color.White;
             this.BtnWallpaperLocationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnWallpaperLocationBtn.Location = new System.Drawing.Point(10, 420);
+            this.BtnWallpaperLocationBtn.Location = new System.Drawing.Point(10, 450);
             this.BtnWallpaperLocationBtn.Name = "BtnWallpaperLocationBtn";
             this.BtnWallpaperLocationBtn.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnWallpaperLocationBtn.Size = new System.Drawing.Size(469, 36);
@@ -143,18 +146,18 @@
             this.BtnWallpaperLocationBtn.UseVisualStyleBackColor = false;
             this.BtnWallpaperLocationBtn.Click += new System.EventHandler(this.BtnWallpaperLocationBtn_Click);
             // 
-            // GlowWallpaperPreview
+            // GlowWallpaperPreviewTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(489, 466);
+            this.ClientSize = new System.Drawing.Size(489, 496);
             this.Controls.Add(this.BackPanel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = global::Glow.Properties.Resources.GlowLogo;
             this.MaximizeBox = false;
-            this.Name = "GlowWallpaperPreview";
+            this.Name = "GlowWallpaperPreviewTool";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GlowWallpaperPreview";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GlowWallpaperPreview_FormClosing);

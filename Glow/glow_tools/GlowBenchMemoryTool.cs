@@ -27,7 +27,7 @@ namespace Glow.glow_tools{
             Bench_TLP.Columns.Add("RAMPref", "Pref");
             Bench_TLP.Columns.Add("RAMValue", "Value");
             //
-            Bench_TLP.RowTemplate.Height = (int)(26 * this.DeviceDpi / 96f);
+            Bench_TLP.RowTemplate.Height = (int)(32 * this.DeviceDpi / 96f);
             Bench_TLP.Rows.Add("RAMSpec1", "RAMVal1");
             Bench_TLP.Rows.Add("RAMSpec2", "RAMVal2");
             Bench_TLP.Rows.Add("RAMSpec3", "RAMVal3");

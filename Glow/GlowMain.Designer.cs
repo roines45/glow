@@ -65,6 +65,7 @@
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arabicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chineseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chineseTaiwanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dutchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.frenchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -642,6 +643,8 @@
             this.HeaderText = new System.Windows.Forms.Label();
             this.MainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.HeaderPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.OS_WinMachineID = new System.Windows.Forms.Label();
+            this.OS_WinMachineID_V = new System.Windows.Forms.Label();
             this.OS_ScrollTop = new Glow.TSCustomButton();
             this.OS_RecoveryModeBtn = new Glow.TSCustomButton();
             this.MB_ScrollTop = new Glow.TSCustomButton();
@@ -1258,6 +1261,7 @@
             this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.arabicToolStripMenuItem,
             this.chineseToolStripMenuItem,
+            this.chineseTaiwanToolStripMenuItem,
             this.englishToolStripMenuItem,
             this.dutchToolStripMenuItem,
             this.frenchToolStripMenuItem,
@@ -1280,99 +1284,106 @@
             // 
             this.arabicToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.arabicToolStripMenuItem.Name = "arabicToolStripMenuItem";
-            this.arabicToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.arabicToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.arabicToolStripMenuItem.Text = "Arabic";
             // 
             // chineseToolStripMenuItem
             // 
             this.chineseToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.chineseToolStripMenuItem.Name = "chineseToolStripMenuItem";
-            this.chineseToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.chineseToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.chineseToolStripMenuItem.Text = "Chinese";
+            // 
+            // chineseTaiwanToolStripMenuItem
+            // 
+            this.chineseTaiwanToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.chineseTaiwanToolStripMenuItem.Name = "chineseTaiwanToolStripMenuItem";
+            this.chineseTaiwanToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.chineseTaiwanToolStripMenuItem.Text = "Chinese Taiwan";
             // 
             // englishToolStripMenuItem
             // 
             this.englishToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
             this.englishToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.englishToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.englishToolStripMenuItem.Text = "English";
             // 
             // dutchToolStripMenuItem
             // 
             this.dutchToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.dutchToolStripMenuItem.Name = "dutchToolStripMenuItem";
-            this.dutchToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.dutchToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.dutchToolStripMenuItem.Text = "Dutch";
             // 
             // frenchToolStripMenuItem
             // 
             this.frenchToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.frenchToolStripMenuItem.Name = "frenchToolStripMenuItem";
-            this.frenchToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.frenchToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.frenchToolStripMenuItem.Text = "French";
             // 
             // germanToolStripMenuItem
             // 
             this.germanToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.germanToolStripMenuItem.Name = "germanToolStripMenuItem";
-            this.germanToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.germanToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.germanToolStripMenuItem.Text = "German";
             // 
             // hindiToolStripMenuItem
             // 
             this.hindiToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.hindiToolStripMenuItem.Name = "hindiToolStripMenuItem";
-            this.hindiToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.hindiToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.hindiToolStripMenuItem.Text = "Hindi";
             // 
             // italianToolStripMenuItem
             // 
             this.italianToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.italianToolStripMenuItem.Name = "italianToolStripMenuItem";
-            this.italianToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.italianToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.italianToolStripMenuItem.Text = "Italian";
             // 
             // japaneseToolStripMenuItem
             // 
             this.japaneseToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.japaneseToolStripMenuItem.Name = "japaneseToolStripMenuItem";
-            this.japaneseToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.japaneseToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.japaneseToolStripMenuItem.Text = "Japanese";
             // 
             // koreanToolStripMenuItem
             // 
             this.koreanToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.koreanToolStripMenuItem.Name = "koreanToolStripMenuItem";
-            this.koreanToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.koreanToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.koreanToolStripMenuItem.Text = "Korean";
             // 
             // polishToolStripMenuItem
             // 
             this.polishToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.polishToolStripMenuItem.Name = "polishToolStripMenuItem";
-            this.polishToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.polishToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.polishToolStripMenuItem.Text = "Polish";
             // 
             // portugueseToolStripMenuItem
             // 
             this.portugueseToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.portugueseToolStripMenuItem.Name = "portugueseToolStripMenuItem";
-            this.portugueseToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.portugueseToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.portugueseToolStripMenuItem.Text = "Portuguese";
             // 
             // russianToolStripMenuItem
             // 
             this.russianToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.russianToolStripMenuItem.Name = "russianToolStripMenuItem";
-            this.russianToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.russianToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.russianToolStripMenuItem.Text = "Russian";
             // 
             // spanishToolStripMenuItem
             // 
             this.spanishToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.spanishToolStripMenuItem.Name = "spanishToolStripMenuItem";
-            this.spanishToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.spanishToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.spanishToolStripMenuItem.Text = "Spanish";
             // 
             // turkishToolStripMenuItem
@@ -1380,7 +1391,7 @@
             this.turkishToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.turkishToolStripMenuItem.Name = "turkishToolStripMenuItem";
             this.turkishToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.turkishToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.turkishToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.turkishToolStripMenuItem.Text = "Turkish";
             // 
             // startupToolStripMenuItem
@@ -1738,7 +1749,7 @@
             this.OS_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.OS_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.OS_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.OS_TLP.Size = new System.Drawing.Size(802, 1918);
+            this.OS_TLP.Size = new System.Drawing.Size(802, 1958);
             this.OS_TLP.TabIndex = 2;
             // 
             // os_panel_1
@@ -1963,14 +1974,14 @@
             // 
             this.os_panel_5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.os_panel_5.Controls.Add(this.OS_WinLicenseTime);
+            this.os_panel_5.Controls.Add(this.OS_ActivePowerScreenTimeOutB_V);
             this.os_panel_5.Controls.Add(this.OS_ActivePowerSleepTimeB_V);
             this.os_panel_5.Controls.Add(this.OS_ActivePowerSleepTimeP_V);
+            this.os_panel_5.Controls.Add(this.OS_ActivePowerScreenTimeOutB);
             this.os_panel_5.Controls.Add(this.OS_ActivePowerSleepTimeP);
             this.os_panel_5.Controls.Add(this.OS_ActivePowerSleepTimeB);
-            this.os_panel_5.Controls.Add(this.OS_WinLicenseURL);
             this.os_panel_5.Controls.Add(this.OS_WinLicenseTime_V);
             this.os_panel_5.Controls.Add(this.OS_MSOfficeVersion);
-            this.os_panel_5.Controls.Add(this.OS_WinLicenseURL_V);
             this.os_panel_5.Controls.Add(this.OS_MSOfficeVersion_V);
             this.os_panel_5.Controls.Add(this.OS_WinKey);
             this.os_panel_5.Controls.Add(this.OS_WinActiveChannel_V);
@@ -1989,11 +2000,11 @@
             this.OS_WinLicenseTime.BackColor = System.Drawing.Color.Transparent;
             this.OS_WinLicenseTime.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinLicenseTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinLicenseTime.Location = new System.Drawing.Point(10, 149);
+            this.OS_WinLicenseTime.Location = new System.Drawing.Point(10, 194);
             this.OS_WinLicenseTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinLicenseTime.Name = "OS_WinLicenseTime";
             this.OS_WinLicenseTime.Size = new System.Drawing.Size(164, 20);
-            this.OS_WinLicenseTime.TabIndex = 6;
+            this.OS_WinLicenseTime.TabIndex = 8;
             this.OS_WinLicenseTime.Text = "Windows Lisans Süresi:";
             // 
             // OS_ActivePowerSleepTimeB_V
@@ -2003,11 +2014,11 @@
             this.OS_ActivePowerSleepTimeB_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerSleepTimeB_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_ActivePowerSleepTimeB_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerSleepTimeB_V.Location = new System.Drawing.Point(382, 59);
+            this.OS_ActivePowerSleepTimeB_V.Location = new System.Drawing.Point(382, 104);
             this.OS_ActivePowerSleepTimeB_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerSleepTimeB_V.Name = "OS_ActivePowerSleepTimeB_V";
             this.OS_ActivePowerSleepTimeB_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_ActivePowerSleepTimeB_V.TabIndex = 3;
+            this.OS_ActivePowerSleepTimeB_V.TabIndex = 5;
             this.OS_ActivePowerSleepTimeB_V.Text = "N/A";
             // 
             // OS_ActivePowerSleepTimeP_V
@@ -2017,11 +2028,11 @@
             this.OS_ActivePowerSleepTimeP_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerSleepTimeP_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_ActivePowerSleepTimeP_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerSleepTimeP_V.Location = new System.Drawing.Point(382, 14);
+            this.OS_ActivePowerSleepTimeP_V.Location = new System.Drawing.Point(382, 59);
             this.OS_ActivePowerSleepTimeP_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerSleepTimeP_V.Name = "OS_ActivePowerSleepTimeP_V";
             this.OS_ActivePowerSleepTimeP_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_ActivePowerSleepTimeP_V.TabIndex = 1;
+            this.OS_ActivePowerSleepTimeP_V.TabIndex = 3;
             this.OS_ActivePowerSleepTimeP_V.Text = "N/A";
             // 
             // OS_ActivePowerSleepTimeP
@@ -2030,11 +2041,11 @@
             this.OS_ActivePowerSleepTimeP.BackColor = System.Drawing.Color.Transparent;
             this.OS_ActivePowerSleepTimeP.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerSleepTimeP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerSleepTimeP.Location = new System.Drawing.Point(10, 14);
+            this.OS_ActivePowerSleepTimeP.Location = new System.Drawing.Point(10, 59);
             this.OS_ActivePowerSleepTimeP.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerSleepTimeP.Name = "OS_ActivePowerSleepTimeP";
             this.OS_ActivePowerSleepTimeP.Size = new System.Drawing.Size(210, 20);
-            this.OS_ActivePowerSleepTimeP.TabIndex = 0;
+            this.OS_ActivePowerSleepTimeP.TabIndex = 2;
             this.OS_ActivePowerSleepTimeP.Text = "Uykuya Geçme Zamanı (Priz):";
             // 
             // OS_ActivePowerSleepTimeB
@@ -2043,11 +2054,11 @@
             this.OS_ActivePowerSleepTimeB.BackColor = System.Drawing.Color.Transparent;
             this.OS_ActivePowerSleepTimeB.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerSleepTimeB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerSleepTimeB.Location = new System.Drawing.Point(10, 59);
+            this.OS_ActivePowerSleepTimeB.Location = new System.Drawing.Point(10, 104);
             this.OS_ActivePowerSleepTimeB.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerSleepTimeB.Name = "OS_ActivePowerSleepTimeB";
             this.OS_ActivePowerSleepTimeB.Size = new System.Drawing.Size(201, 20);
-            this.OS_ActivePowerSleepTimeB.TabIndex = 2;
+            this.OS_ActivePowerSleepTimeB.TabIndex = 4;
             this.OS_ActivePowerSleepTimeB.Text = "Uykuya Geçme Zamanı (Pil):";
             // 
             // OS_WinLicenseURL
@@ -2056,11 +2067,11 @@
             this.OS_WinLicenseURL.BackColor = System.Drawing.Color.Transparent;
             this.OS_WinLicenseURL.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinLicenseURL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinLicenseURL.Location = new System.Drawing.Point(10, 284);
+            this.OS_WinLicenseURL.Location = new System.Drawing.Point(10, 14);
             this.OS_WinLicenseURL.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinLicenseURL.Name = "OS_WinLicenseURL";
             this.OS_WinLicenseURL.Size = new System.Drawing.Size(158, 20);
-            this.OS_WinLicenseURL.TabIndex = 12;
+            this.OS_WinLicenseURL.TabIndex = 0;
             this.OS_WinLicenseURL.Text = "Aktivasyon Sunucusu:";
             this.OS_WinLicenseURL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -2071,11 +2082,11 @@
             this.OS_WinLicenseTime_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinLicenseTime_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_WinLicenseTime_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinLicenseTime_V.Location = new System.Drawing.Point(382, 149);
+            this.OS_WinLicenseTime_V.Location = new System.Drawing.Point(382, 194);
             this.OS_WinLicenseTime_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinLicenseTime_V.Name = "OS_WinLicenseTime_V";
             this.OS_WinLicenseTime_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_WinLicenseTime_V.TabIndex = 7;
+            this.OS_WinLicenseTime_V.TabIndex = 9;
             this.OS_WinLicenseTime_V.Text = "N/A";
             // 
             // OS_MSOfficeVersion
@@ -2084,11 +2095,11 @@
             this.OS_MSOfficeVersion.BackColor = System.Drawing.Color.Transparent;
             this.OS_MSOfficeVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_MSOfficeVersion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_MSOfficeVersion.Location = new System.Drawing.Point(10, 104);
+            this.OS_MSOfficeVersion.Location = new System.Drawing.Point(10, 149);
             this.OS_MSOfficeVersion.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_MSOfficeVersion.Name = "OS_MSOfficeVersion";
             this.OS_MSOfficeVersion.Size = new System.Drawing.Size(180, 20);
-            this.OS_MSOfficeVersion.TabIndex = 4;
+            this.OS_MSOfficeVersion.TabIndex = 6;
             this.OS_MSOfficeVersion.Text = "Microsoft Office Sürümü:";
             // 
             // OS_WinLicenseURL_V
@@ -2098,11 +2109,11 @@
             this.OS_WinLicenseURL_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinLicenseURL_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_WinLicenseURL_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinLicenseURL_V.Location = new System.Drawing.Point(382, 284);
+            this.OS_WinLicenseURL_V.Location = new System.Drawing.Point(382, 14);
             this.OS_WinLicenseURL_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinLicenseURL_V.Name = "OS_WinLicenseURL_V";
             this.OS_WinLicenseURL_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_WinLicenseURL_V.TabIndex = 13;
+            this.OS_WinLicenseURL_V.TabIndex = 1;
             this.OS_WinLicenseURL_V.Text = "N/A";
             // 
             // OS_MSOfficeVersion_V
@@ -2112,11 +2123,11 @@
             this.OS_MSOfficeVersion_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_MSOfficeVersion_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_MSOfficeVersion_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_MSOfficeVersion_V.Location = new System.Drawing.Point(382, 104);
+            this.OS_MSOfficeVersion_V.Location = new System.Drawing.Point(382, 149);
             this.OS_MSOfficeVersion_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_MSOfficeVersion_V.Name = "OS_MSOfficeVersion_V";
             this.OS_MSOfficeVersion_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_MSOfficeVersion_V.TabIndex = 5;
+            this.OS_MSOfficeVersion_V.TabIndex = 7;
             this.OS_MSOfficeVersion_V.Text = "N/A";
             // 
             // OS_WinKey
@@ -2125,11 +2136,11 @@
             this.OS_WinKey.BackColor = System.Drawing.Color.Transparent;
             this.OS_WinKey.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinKey.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinKey.Location = new System.Drawing.Point(10, 194);
+            this.OS_WinKey.Location = new System.Drawing.Point(10, 239);
             this.OS_WinKey.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinKey.Name = "OS_WinKey";
             this.OS_WinKey.Size = new System.Drawing.Size(177, 20);
-            this.OS_WinKey.TabIndex = 8;
+            this.OS_WinKey.TabIndex = 10;
             this.OS_WinKey.Text = "Windows Ürün Anahtarı:";
             this.OS_WinKey.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -2140,11 +2151,11 @@
             this.OS_WinActiveChannel_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinActiveChannel_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_WinActiveChannel_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinActiveChannel_V.Location = new System.Drawing.Point(382, 239);
+            this.OS_WinActiveChannel_V.Location = new System.Drawing.Point(382, 284);
             this.OS_WinActiveChannel_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinActiveChannel_V.Name = "OS_WinActiveChannel_V";
             this.OS_WinActiveChannel_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_WinActiveChannel_V.TabIndex = 11;
+            this.OS_WinActiveChannel_V.TabIndex = 13;
             this.OS_WinActiveChannel_V.Text = "N/A";
             // 
             // OS_WinActiveChannel
@@ -2153,11 +2164,11 @@
             this.OS_WinActiveChannel.BackColor = System.Drawing.Color.Transparent;
             this.OS_WinActiveChannel.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinActiveChannel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinActiveChannel.Location = new System.Drawing.Point(10, 239);
+            this.OS_WinActiveChannel.Location = new System.Drawing.Point(10, 284);
             this.OS_WinActiveChannel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinActiveChannel.Name = "OS_WinActiveChannel";
             this.OS_WinActiveChannel.Size = new System.Drawing.Size(213, 20);
-            this.OS_WinActiveChannel.TabIndex = 10;
+            this.OS_WinActiveChannel.TabIndex = 12;
             this.OS_WinActiveChannel.Text = "Windows Etkinleştirme Kanalı:";
             // 
             // OS_WinKey_V
@@ -2167,24 +2178,24 @@
             this.OS_WinKey_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinKey_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_WinKey_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinKey_V.Location = new System.Drawing.Point(382, 194);
+            this.OS_WinKey_V.Location = new System.Drawing.Point(382, 239);
             this.OS_WinKey_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinKey_V.Name = "OS_WinKey_V";
             this.OS_WinKey_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_WinKey_V.TabIndex = 9;
+            this.OS_WinKey_V.TabIndex = 11;
             this.OS_WinKey_V.Text = "N/A";
             // 
             // os_panel_2
             // 
             this.os_panel_2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.os_panel_2.Controls.Add(this.OS_WinMachineID);
+            this.os_panel_2.Controls.Add(this.OS_WinMachineID_V);
             this.os_panel_2.Controls.Add(this.OS_ExperienceVersion);
-            this.os_panel_2.Controls.Add(this.OS_SystemWorkTime_V);
             this.os_panel_2.Controls.Add(this.OS_ExperienceVersion_V);
             this.os_panel_2.Controls.Add(this.OS_TimeZone);
             this.os_panel_2.Controls.Add(this.OS_TimeZone_V);
             this.os_panel_2.Controls.Add(this.OS_DeviceID);
             this.os_panel_2.Controls.Add(this.OS_SystemTime_V);
-            this.os_panel_2.Controls.Add(this.OS_SystemWorkTime);
             this.os_panel_2.Controls.Add(this.OS_DeviceID_V);
             this.os_panel_2.Controls.Add(this.OS_Country);
             this.os_panel_2.Controls.Add(this.OS_SystemTime);
@@ -2204,11 +2215,11 @@
             this.OS_ExperienceVersion.BackColor = System.Drawing.Color.Transparent;
             this.OS_ExperienceVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ExperienceVersion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ExperienceVersion.Location = new System.Drawing.Point(10, 104);
+            this.OS_ExperienceVersion.Location = new System.Drawing.Point(10, 149);
             this.OS_ExperienceVersion.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ExperienceVersion.Name = "OS_ExperienceVersion";
             this.OS_ExperienceVersion.Size = new System.Drawing.Size(117, 20);
-            this.OS_ExperienceVersion.TabIndex = 4;
+            this.OS_ExperienceVersion.TabIndex = 6;
             this.OS_ExperienceVersion.Text = "Özellik Sürümü:";
             // 
             // OS_SystemWorkTime_V
@@ -2218,11 +2229,11 @@
             this.OS_SystemWorkTime_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_SystemWorkTime_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_SystemWorkTime_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_SystemWorkTime_V.Location = new System.Drawing.Point(382, 284);
+            this.OS_SystemWorkTime_V.Location = new System.Drawing.Point(382, 14);
             this.OS_SystemWorkTime_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_SystemWorkTime_V.Name = "OS_SystemWorkTime_V";
             this.OS_SystemWorkTime_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_SystemWorkTime_V.TabIndex = 13;
+            this.OS_SystemWorkTime_V.TabIndex = 1;
             this.OS_SystemWorkTime_V.Text = "N/A";
             // 
             // OS_ExperienceVersion_V
@@ -2232,11 +2243,11 @@
             this.OS_ExperienceVersion_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ExperienceVersion_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_ExperienceVersion_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ExperienceVersion_V.Location = new System.Drawing.Point(382, 104);
+            this.OS_ExperienceVersion_V.Location = new System.Drawing.Point(382, 149);
             this.OS_ExperienceVersion_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ExperienceVersion_V.Name = "OS_ExperienceVersion_V";
             this.OS_ExperienceVersion_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_ExperienceVersion_V.TabIndex = 5;
+            this.OS_ExperienceVersion_V.TabIndex = 7;
             this.OS_ExperienceVersion_V.Text = "N/A";
             // 
             // OS_TimeZone
@@ -2245,11 +2256,11 @@
             this.OS_TimeZone.BackColor = System.Drawing.Color.Transparent;
             this.OS_TimeZone.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_TimeZone.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_TimeZone.Location = new System.Drawing.Point(10, 194);
+            this.OS_TimeZone.Location = new System.Drawing.Point(10, 239);
             this.OS_TimeZone.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_TimeZone.Name = "OS_TimeZone";
             this.OS_TimeZone.Size = new System.Drawing.Size(186, 20);
-            this.OS_TimeZone.TabIndex = 8;
+            this.OS_TimeZone.TabIndex = 10;
             this.OS_TimeZone.Text = "İşletim Sistemi Saat Dilimi:";
             // 
             // OS_TimeZone_V
@@ -2259,11 +2270,11 @@
             this.OS_TimeZone_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_TimeZone_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_TimeZone_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_TimeZone_V.Location = new System.Drawing.Point(382, 194);
+            this.OS_TimeZone_V.Location = new System.Drawing.Point(382, 239);
             this.OS_TimeZone_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_TimeZone_V.Name = "OS_TimeZone_V";
             this.OS_TimeZone_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_TimeZone_V.TabIndex = 9;
+            this.OS_TimeZone_V.TabIndex = 11;
             this.OS_TimeZone_V.Text = "N/A";
             // 
             // OS_DeviceID
@@ -2286,11 +2297,11 @@
             this.OS_SystemTime_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_SystemTime_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_SystemTime_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_SystemTime_V.Location = new System.Drawing.Point(382, 239);
+            this.OS_SystemTime_V.Location = new System.Drawing.Point(382, 284);
             this.OS_SystemTime_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_SystemTime_V.Name = "OS_SystemTime_V";
             this.OS_SystemTime_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_SystemTime_V.TabIndex = 11;
+            this.OS_SystemTime_V.TabIndex = 13;
             this.OS_SystemTime_V.Text = "N/A";
             // 
             // OS_SystemWorkTime
@@ -2299,11 +2310,11 @@
             this.OS_SystemWorkTime.BackColor = System.Drawing.Color.Transparent;
             this.OS_SystemWorkTime.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_SystemWorkTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_SystemWorkTime.Location = new System.Drawing.Point(10, 284);
+            this.OS_SystemWorkTime.Location = new System.Drawing.Point(10, 14);
             this.OS_SystemWorkTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_SystemWorkTime.Name = "OS_SystemWorkTime";
             this.OS_SystemWorkTime.Size = new System.Drawing.Size(168, 20);
-            this.OS_SystemWorkTime.TabIndex = 12;
+            this.OS_SystemWorkTime.TabIndex = 0;
             this.OS_SystemWorkTime.Text = "Sistem Çalışma Zamanı:";
             // 
             // OS_DeviceID_V
@@ -2326,11 +2337,11 @@
             this.OS_Country.BackColor = System.Drawing.Color.Transparent;
             this.OS_Country.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_Country.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_Country.Location = new System.Drawing.Point(10, 149);
+            this.OS_Country.Location = new System.Drawing.Point(10, 194);
             this.OS_Country.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_Country.Name = "OS_Country";
             this.OS_Country.Size = new System.Drawing.Size(121, 20);
-            this.OS_Country.TabIndex = 6;
+            this.OS_Country.TabIndex = 8;
             this.OS_Country.Text = "Ayarlı Ülke / Dil:";
             // 
             // OS_SystemTime
@@ -2339,11 +2350,11 @@
             this.OS_SystemTime.BackColor = System.Drawing.Color.Transparent;
             this.OS_SystemTime.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_SystemTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_SystemTime.Location = new System.Drawing.Point(10, 239);
+            this.OS_SystemTime.Location = new System.Drawing.Point(10, 284);
             this.OS_SystemTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_SystemTime.Name = "OS_SystemTime";
             this.OS_SystemTime.Size = new System.Drawing.Size(99, 20);
-            this.OS_SystemTime.TabIndex = 10;
+            this.OS_SystemTime.TabIndex = 12;
             this.OS_SystemTime.Text = "Sistem Tarihi:";
             // 
             // OS_Country_V
@@ -2353,11 +2364,11 @@
             this.OS_Country_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_Country_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_Country_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_Country_V.Location = new System.Drawing.Point(382, 149);
+            this.OS_Country_V.Location = new System.Drawing.Point(382, 194);
             this.OS_Country_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_Country_V.Name = "OS_Country_V";
             this.OS_Country_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_Country_V.TabIndex = 7;
+            this.OS_Country_V.TabIndex = 9;
             this.OS_Country_V.Text = "N/A";
             // 
             // OS_Serial
@@ -2391,14 +2402,14 @@
             // 
             this.os_panel_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.os_panel_4.Controls.Add(this.OS_WinDefCoreIsolation);
-            this.os_panel_4.Controls.Add(this.OS_ActivePowerScreenTimeOutB_V);
             this.os_panel_4.Controls.Add(this.OS_WinDefCoreIsolation_V);
-            this.os_panel_4.Controls.Add(this.OS_ActivePowerScreenTimeOutB);
             this.os_panel_4.Controls.Add(this.OS_FirewallProgram);
             this.os_panel_4.Controls.Add(this.OS_FirewallProgram_V);
             this.os_panel_4.Controls.Add(this.OS_AntiSpywareProgram);
+            this.os_panel_4.Controls.Add(this.OS_AVProgram);
             this.os_panel_4.Controls.Add(this.OS_ActivePowerScreenTimeOutP_V);
             this.os_panel_4.Controls.Add(this.OS_AntiSpywareProgram_V);
+            this.os_panel_4.Controls.Add(this.OS_AVProgram_V);
             this.os_panel_4.Controls.Add(this.OS_ActivePower);
             this.os_panel_4.Controls.Add(this.OS_ActivePowerScreenTimeOutP);
             this.os_panel_4.Controls.Add(this.OS_ActivePower_V);
@@ -2417,11 +2428,11 @@
             this.OS_WinDefCoreIsolation.BackColor = System.Drawing.Color.Transparent;
             this.OS_WinDefCoreIsolation.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinDefCoreIsolation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinDefCoreIsolation.Location = new System.Drawing.Point(10, 104);
+            this.OS_WinDefCoreIsolation.Location = new System.Drawing.Point(10, 149);
             this.OS_WinDefCoreIsolation.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinDefCoreIsolation.Name = "OS_WinDefCoreIsolation";
             this.OS_WinDefCoreIsolation.Size = new System.Drawing.Size(261, 20);
-            this.OS_WinDefCoreIsolation.TabIndex = 4;
+            this.OS_WinDefCoreIsolation.TabIndex = 6;
             this.OS_WinDefCoreIsolation.Text = "Windows Defender Çekirdek Yalıtımı:";
             // 
             // OS_ActivePowerScreenTimeOutB_V
@@ -2431,11 +2442,11 @@
             this.OS_ActivePowerScreenTimeOutB_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerScreenTimeOutB_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_ActivePowerScreenTimeOutB_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerScreenTimeOutB_V.Location = new System.Drawing.Point(382, 284);
+            this.OS_ActivePowerScreenTimeOutB_V.Location = new System.Drawing.Point(382, 14);
             this.OS_ActivePowerScreenTimeOutB_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerScreenTimeOutB_V.Name = "OS_ActivePowerScreenTimeOutB_V";
             this.OS_ActivePowerScreenTimeOutB_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_ActivePowerScreenTimeOutB_V.TabIndex = 13;
+            this.OS_ActivePowerScreenTimeOutB_V.TabIndex = 1;
             this.OS_ActivePowerScreenTimeOutB_V.Text = "N/A";
             // 
             // OS_WinDefCoreIsolation_V
@@ -2445,11 +2456,11 @@
             this.OS_WinDefCoreIsolation_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinDefCoreIsolation_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_WinDefCoreIsolation_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinDefCoreIsolation_V.Location = new System.Drawing.Point(382, 104);
+            this.OS_WinDefCoreIsolation_V.Location = new System.Drawing.Point(382, 149);
             this.OS_WinDefCoreIsolation_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinDefCoreIsolation_V.Name = "OS_WinDefCoreIsolation_V";
             this.OS_WinDefCoreIsolation_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_WinDefCoreIsolation_V.TabIndex = 5;
+            this.OS_WinDefCoreIsolation_V.TabIndex = 7;
             this.OS_WinDefCoreIsolation_V.Text = "N/A";
             // 
             // OS_ActivePowerScreenTimeOutB
@@ -2458,11 +2469,11 @@
             this.OS_ActivePowerScreenTimeOutB.BackColor = System.Drawing.Color.Transparent;
             this.OS_ActivePowerScreenTimeOutB.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerScreenTimeOutB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerScreenTimeOutB.Location = new System.Drawing.Point(10, 284);
+            this.OS_ActivePowerScreenTimeOutB.Location = new System.Drawing.Point(10, 14);
             this.OS_ActivePowerScreenTimeOutB.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerScreenTimeOutB.Name = "OS_ActivePowerScreenTimeOutB";
             this.OS_ActivePowerScreenTimeOutB.Size = new System.Drawing.Size(196, 20);
-            this.OS_ActivePowerScreenTimeOutB.TabIndex = 12;
+            this.OS_ActivePowerScreenTimeOutB.TabIndex = 0;
             this.OS_ActivePowerScreenTimeOutB.Text = "Ekran Kapanma Süresi (Pil):";
             // 
             // OS_FirewallProgram
@@ -2471,11 +2482,11 @@
             this.OS_FirewallProgram.BackColor = System.Drawing.Color.Transparent;
             this.OS_FirewallProgram.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_FirewallProgram.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_FirewallProgram.Location = new System.Drawing.Point(10, 14);
+            this.OS_FirewallProgram.Location = new System.Drawing.Point(10, 59);
             this.OS_FirewallProgram.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_FirewallProgram.Name = "OS_FirewallProgram";
             this.OS_FirewallProgram.Size = new System.Drawing.Size(251, 20);
-            this.OS_FirewallProgram.TabIndex = 0;
+            this.OS_FirewallProgram.TabIndex = 2;
             this.OS_FirewallProgram.Text = "Yüklü Güvenlik Duvarı Programları:";
             // 
             // OS_FirewallProgram_V
@@ -2485,11 +2496,11 @@
             this.OS_FirewallProgram_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_FirewallProgram_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_FirewallProgram_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_FirewallProgram_V.Location = new System.Drawing.Point(382, 14);
+            this.OS_FirewallProgram_V.Location = new System.Drawing.Point(382, 59);
             this.OS_FirewallProgram_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_FirewallProgram_V.Name = "OS_FirewallProgram_V";
             this.OS_FirewallProgram_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_FirewallProgram_V.TabIndex = 1;
+            this.OS_FirewallProgram_V.TabIndex = 3;
             this.OS_FirewallProgram_V.Text = "N/A";
             // 
             // OS_AntiSpywareProgram
@@ -2498,11 +2509,11 @@
             this.OS_AntiSpywareProgram.BackColor = System.Drawing.Color.Transparent;
             this.OS_AntiSpywareProgram.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_AntiSpywareProgram.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_AntiSpywareProgram.Location = new System.Drawing.Point(10, 59);
+            this.OS_AntiSpywareProgram.Location = new System.Drawing.Point(10, 104);
             this.OS_AntiSpywareProgram.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_AntiSpywareProgram.Name = "OS_AntiSpywareProgram";
             this.OS_AntiSpywareProgram.Size = new System.Drawing.Size(267, 20);
-            this.OS_AntiSpywareProgram.TabIndex = 2;
+            this.OS_AntiSpywareProgram.TabIndex = 4;
             this.OS_AntiSpywareProgram.Text = "Yüklü Anti Casus Yazılımı Programları:";
             // 
             // OS_ActivePowerScreenTimeOutP_V
@@ -2512,11 +2523,11 @@
             this.OS_ActivePowerScreenTimeOutP_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerScreenTimeOutP_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_ActivePowerScreenTimeOutP_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerScreenTimeOutP_V.Location = new System.Drawing.Point(382, 239);
+            this.OS_ActivePowerScreenTimeOutP_V.Location = new System.Drawing.Point(382, 284);
             this.OS_ActivePowerScreenTimeOutP_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerScreenTimeOutP_V.Name = "OS_ActivePowerScreenTimeOutP_V";
             this.OS_ActivePowerScreenTimeOutP_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_ActivePowerScreenTimeOutP_V.TabIndex = 11;
+            this.OS_ActivePowerScreenTimeOutP_V.TabIndex = 13;
             this.OS_ActivePowerScreenTimeOutP_V.Text = "N/A";
             // 
             // OS_AntiSpywareProgram_V
@@ -2526,11 +2537,11 @@
             this.OS_AntiSpywareProgram_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_AntiSpywareProgram_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_AntiSpywareProgram_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_AntiSpywareProgram_V.Location = new System.Drawing.Point(382, 59);
+            this.OS_AntiSpywareProgram_V.Location = new System.Drawing.Point(382, 104);
             this.OS_AntiSpywareProgram_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_AntiSpywareProgram_V.Name = "OS_AntiSpywareProgram_V";
             this.OS_AntiSpywareProgram_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_AntiSpywareProgram_V.TabIndex = 3;
+            this.OS_AntiSpywareProgram_V.TabIndex = 5;
             this.OS_AntiSpywareProgram_V.Text = "N/A";
             // 
             // OS_ActivePower
@@ -2539,11 +2550,11 @@
             this.OS_ActivePower.BackColor = System.Drawing.Color.Transparent;
             this.OS_ActivePower.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePower.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePower.Location = new System.Drawing.Point(10, 149);
+            this.OS_ActivePower.Location = new System.Drawing.Point(10, 194);
             this.OS_ActivePower.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePower.Name = "OS_ActivePower";
             this.OS_ActivePower.Size = new System.Drawing.Size(113, 20);
-            this.OS_ActivePower.TabIndex = 6;
+            this.OS_ActivePower.TabIndex = 8;
             this.OS_ActivePower.Text = "Aktif Güç Planı:";
             // 
             // OS_ActivePowerScreenTimeOutP
@@ -2552,11 +2563,11 @@
             this.OS_ActivePowerScreenTimeOutP.BackColor = System.Drawing.Color.Transparent;
             this.OS_ActivePowerScreenTimeOutP.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerScreenTimeOutP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerScreenTimeOutP.Location = new System.Drawing.Point(10, 239);
+            this.OS_ActivePowerScreenTimeOutP.Location = new System.Drawing.Point(10, 284);
             this.OS_ActivePowerScreenTimeOutP.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerScreenTimeOutP.Name = "OS_ActivePowerScreenTimeOutP";
             this.OS_ActivePowerScreenTimeOutP.Size = new System.Drawing.Size(205, 20);
-            this.OS_ActivePowerScreenTimeOutP.TabIndex = 10;
+            this.OS_ActivePowerScreenTimeOutP.TabIndex = 12;
             this.OS_ActivePowerScreenTimeOutP.Text = "Ekran Kapanma Süresi (Priz):";
             // 
             // OS_ActivePower_V
@@ -2566,11 +2577,11 @@
             this.OS_ActivePower_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePower_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_ActivePower_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePower_V.Location = new System.Drawing.Point(382, 149);
+            this.OS_ActivePower_V.Location = new System.Drawing.Point(382, 194);
             this.OS_ActivePower_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePower_V.Name = "OS_ActivePower_V";
             this.OS_ActivePower_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_ActivePower_V.TabIndex = 7;
+            this.OS_ActivePower_V.TabIndex = 9;
             this.OS_ActivePower_V.Text = "N/A";
             // 
             // OS_ActivePowerGUID
@@ -2579,11 +2590,11 @@
             this.OS_ActivePowerGUID.BackColor = System.Drawing.Color.Transparent;
             this.OS_ActivePowerGUID.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerGUID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerGUID.Location = new System.Drawing.Point(10, 194);
+            this.OS_ActivePowerGUID.Location = new System.Drawing.Point(10, 239);
             this.OS_ActivePowerGUID.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerGUID.Name = "OS_ActivePowerGUID";
             this.OS_ActivePowerGUID.Size = new System.Drawing.Size(153, 20);
-            this.OS_ActivePowerGUID.TabIndex = 8;
+            this.OS_ActivePowerGUID.TabIndex = 10;
             this.OS_ActivePowerGUID.Text = "Aktif Güç Planı GUID:";
             // 
             // OS_ActivePowerGUID_V
@@ -2593,11 +2604,11 @@
             this.OS_ActivePowerGUID_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_ActivePowerGUID_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_ActivePowerGUID_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_ActivePowerGUID_V.Location = new System.Drawing.Point(382, 194);
+            this.OS_ActivePowerGUID_V.Location = new System.Drawing.Point(382, 239);
             this.OS_ActivePowerGUID_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_ActivePowerGUID_V.Name = "OS_ActivePowerGUID_V";
             this.OS_ActivePowerGUID_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_ActivePowerGUID_V.TabIndex = 9;
+            this.OS_ActivePowerGUID_V.TabIndex = 11;
             this.OS_ActivePowerGUID_V.Text = "N/A";
             // 
             // os_panel_3
@@ -2605,14 +2616,14 @@
             this.os_panel_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.os_panel_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.os_panel_3.Controls.Add(this.OS_PrimaryOS_V);
+            this.os_panel_3.Controls.Add(this.OS_SystemWorkTime_V);
             this.os_panel_3.Controls.Add(this.OS_FastBoot_V);
             this.os_panel_3.Controls.Add(this.OS_PrimaryOS);
             this.os_panel_3.Controls.Add(this.OS_FastBoot);
             this.os_panel_3.Controls.Add(this.OS_Install_V);
-            this.os_panel_3.Controls.Add(this.OS_AVProgram);
             this.os_panel_3.Controls.Add(this.OS_SystemLastShutDown_V);
             this.os_panel_3.Controls.Add(this.OS_LastBootTime);
-            this.os_panel_3.Controls.Add(this.OS_AVProgram_V);
+            this.os_panel_3.Controls.Add(this.OS_SystemWorkTime);
             this.os_panel_3.Controls.Add(this.OS_SystemLastShutDown);
             this.os_panel_3.Controls.Add(this.OS_LastBootTime_V);
             this.os_panel_3.Controls.Add(this.OS_PortableOS);
@@ -2632,11 +2643,11 @@
             this.OS_PrimaryOS_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_PrimaryOS_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_PrimaryOS_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_PrimaryOS_V.Location = new System.Drawing.Point(382, 149);
+            this.OS_PrimaryOS_V.Location = new System.Drawing.Point(382, 194);
             this.OS_PrimaryOS_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_PrimaryOS_V.Name = "OS_PrimaryOS_V";
             this.OS_PrimaryOS_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_PrimaryOS_V.TabIndex = 7;
+            this.OS_PrimaryOS_V.TabIndex = 9;
             this.OS_PrimaryOS_V.Text = "N/A";
             // 
             // OS_FastBoot_V
@@ -2646,11 +2657,11 @@
             this.OS_FastBoot_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_FastBoot_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_FastBoot_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_FastBoot_V.Location = new System.Drawing.Point(382, 239);
+            this.OS_FastBoot_V.Location = new System.Drawing.Point(382, 284);
             this.OS_FastBoot_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_FastBoot_V.Name = "OS_FastBoot_V";
             this.OS_FastBoot_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_FastBoot_V.TabIndex = 11;
+            this.OS_FastBoot_V.TabIndex = 13;
             this.OS_FastBoot_V.Text = "N/A";
             // 
             // OS_PrimaryOS
@@ -2659,11 +2670,11 @@
             this.OS_PrimaryOS.BackColor = System.Drawing.Color.Transparent;
             this.OS_PrimaryOS.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_PrimaryOS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_PrimaryOS.Location = new System.Drawing.Point(10, 149);
+            this.OS_PrimaryOS.Location = new System.Drawing.Point(10, 194);
             this.OS_PrimaryOS.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_PrimaryOS.Name = "OS_PrimaryOS";
             this.OS_PrimaryOS.Size = new System.Drawing.Size(160, 20);
-            this.OS_PrimaryOS.TabIndex = 6;
+            this.OS_PrimaryOS.TabIndex = 8;
             this.OS_PrimaryOS.Text = "Birincil İşletim Sistemi:";
             // 
             // OS_FastBoot
@@ -2672,11 +2683,11 @@
             this.OS_FastBoot.BackColor = System.Drawing.Color.Transparent;
             this.OS_FastBoot.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_FastBoot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_FastBoot.Location = new System.Drawing.Point(10, 239);
+            this.OS_FastBoot.Location = new System.Drawing.Point(10, 284);
             this.OS_FastBoot.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_FastBoot.Name = "OS_FastBoot";
             this.OS_FastBoot.Size = new System.Drawing.Size(169, 20);
-            this.OS_FastBoot.TabIndex = 10;
+            this.OS_FastBoot.TabIndex = 12;
             this.OS_FastBoot.Text = "Hızlı Başlatma Durumu:";
             // 
             // OS_Install_V
@@ -2686,11 +2697,11 @@
             this.OS_Install_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_Install_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_Install_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_Install_V.Location = new System.Drawing.Point(382, 104);
+            this.OS_Install_V.Location = new System.Drawing.Point(382, 149);
             this.OS_Install_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_Install_V.Name = "OS_Install_V";
             this.OS_Install_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_Install_V.TabIndex = 5;
+            this.OS_Install_V.TabIndex = 7;
             this.OS_Install_V.Text = "N/A";
             // 
             // OS_AVProgram
@@ -2699,11 +2710,11 @@
             this.OS_AVProgram.BackColor = System.Drawing.Color.Transparent;
             this.OS_AVProgram.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_AVProgram.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_AVProgram.Location = new System.Drawing.Point(10, 284);
+            this.OS_AVProgram.Location = new System.Drawing.Point(10, 14);
             this.OS_AVProgram.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_AVProgram.Name = "OS_AVProgram";
             this.OS_AVProgram.Size = new System.Drawing.Size(192, 20);
-            this.OS_AVProgram.TabIndex = 12;
+            this.OS_AVProgram.TabIndex = 0;
             this.OS_AVProgram.Text = "Yüklü Anti-Virüs Programı:";
             // 
             // OS_SystemLastShutDown_V
@@ -2713,11 +2724,11 @@
             this.OS_SystemLastShutDown_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_SystemLastShutDown_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_SystemLastShutDown_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_SystemLastShutDown_V.Location = new System.Drawing.Point(382, 59);
+            this.OS_SystemLastShutDown_V.Location = new System.Drawing.Point(382, 104);
             this.OS_SystemLastShutDown_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_SystemLastShutDown_V.Name = "OS_SystemLastShutDown_V";
             this.OS_SystemLastShutDown_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_SystemLastShutDown_V.TabIndex = 3;
+            this.OS_SystemLastShutDown_V.TabIndex = 5;
             this.OS_SystemLastShutDown_V.Text = "N/A";
             // 
             // OS_LastBootTime
@@ -2726,11 +2737,11 @@
             this.OS_LastBootTime.BackColor = System.Drawing.Color.Transparent;
             this.OS_LastBootTime.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_LastBootTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_LastBootTime.Location = new System.Drawing.Point(10, 14);
+            this.OS_LastBootTime.Location = new System.Drawing.Point(10, 59);
             this.OS_LastBootTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_LastBootTime.Name = "OS_LastBootTime";
             this.OS_LastBootTime.Size = new System.Drawing.Size(176, 20);
-            this.OS_LastBootTime.TabIndex = 0;
+            this.OS_LastBootTime.TabIndex = 2;
             this.OS_LastBootTime.Text = "Son Önyükleme Zamanı:";
             // 
             // OS_AVProgram_V
@@ -2740,11 +2751,11 @@
             this.OS_AVProgram_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_AVProgram_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_AVProgram_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_AVProgram_V.Location = new System.Drawing.Point(382, 284);
+            this.OS_AVProgram_V.Location = new System.Drawing.Point(382, 14);
             this.OS_AVProgram_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_AVProgram_V.Name = "OS_AVProgram_V";
             this.OS_AVProgram_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_AVProgram_V.TabIndex = 13;
+            this.OS_AVProgram_V.TabIndex = 1;
             this.OS_AVProgram_V.Text = "N/A";
             // 
             // OS_SystemLastShutDown
@@ -2753,11 +2764,11 @@
             this.OS_SystemLastShutDown.BackColor = System.Drawing.Color.Transparent;
             this.OS_SystemLastShutDown.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_SystemLastShutDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_SystemLastShutDown.Location = new System.Drawing.Point(10, 59);
+            this.OS_SystemLastShutDown.Location = new System.Drawing.Point(10, 104);
             this.OS_SystemLastShutDown.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_SystemLastShutDown.Name = "OS_SystemLastShutDown";
             this.OS_SystemLastShutDown.Size = new System.Drawing.Size(206, 20);
-            this.OS_SystemLastShutDown.TabIndex = 2;
+            this.OS_SystemLastShutDown.TabIndex = 4;
             this.OS_SystemLastShutDown.Text = "Sistem Son Kapatma Zamanı:";
             // 
             // OS_LastBootTime_V
@@ -2767,11 +2778,11 @@
             this.OS_LastBootTime_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_LastBootTime_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_LastBootTime_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_LastBootTime_V.Location = new System.Drawing.Point(382, 14);
+            this.OS_LastBootTime_V.Location = new System.Drawing.Point(382, 59);
             this.OS_LastBootTime_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_LastBootTime_V.Name = "OS_LastBootTime_V";
             this.OS_LastBootTime_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_LastBootTime_V.TabIndex = 1;
+            this.OS_LastBootTime_V.TabIndex = 3;
             this.OS_LastBootTime_V.Text = "N/A";
             // 
             // OS_PortableOS
@@ -2780,11 +2791,11 @@
             this.OS_PortableOS.BackColor = System.Drawing.Color.Transparent;
             this.OS_PortableOS.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_PortableOS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_PortableOS.Location = new System.Drawing.Point(10, 194);
+            this.OS_PortableOS.Location = new System.Drawing.Point(10, 239);
             this.OS_PortableOS.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_PortableOS.Name = "OS_PortableOS";
             this.OS_PortableOS.Size = new System.Drawing.Size(182, 20);
-            this.OS_PortableOS.TabIndex = 8;
+            this.OS_PortableOS.TabIndex = 10;
             this.OS_PortableOS.Text = "Taşınabilir İşletim Sistemi:";
             // 
             // OS_PortableOS_V
@@ -2794,11 +2805,11 @@
             this.OS_PortableOS_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_PortableOS_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_PortableOS_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_PortableOS_V.Location = new System.Drawing.Point(382, 194);
+            this.OS_PortableOS_V.Location = new System.Drawing.Point(382, 239);
             this.OS_PortableOS_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_PortableOS_V.Name = "OS_PortableOS_V";
             this.OS_PortableOS_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_PortableOS_V.TabIndex = 9;
+            this.OS_PortableOS_V.TabIndex = 11;
             this.OS_PortableOS_V.Text = "N/A";
             // 
             // OS_Install
@@ -2807,11 +2818,11 @@
             this.OS_Install.BackColor = System.Drawing.Color.Transparent;
             this.OS_Install.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_Install.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_Install.Location = new System.Drawing.Point(10, 104);
+            this.OS_Install.Location = new System.Drawing.Point(10, 149);
             this.OS_Install.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_Install.Name = "OS_Install";
             this.OS_Install.Size = new System.Drawing.Size(161, 20);
-            this.OS_Install.TabIndex = 4;
+            this.OS_Install.TabIndex = 6;
             this.OS_Install.Text = "Sistem Yükleme Tarihi:";
             // 
             // os_panel_6
@@ -2822,8 +2833,10 @@
             this.os_panel_6.Controls.Add(this.os_minidump_panel_1);
             this.os_panel_6.Controls.Add(this.OS_Wallpaper_V);
             this.os_panel_6.Controls.Add(this.OS_WinLicenseVerifiURL);
+            this.os_panel_6.Controls.Add(this.OS_WinLicenseURL);
             this.os_panel_6.Controls.Add(this.os_wallpaper_panel_1);
             this.os_panel_6.Controls.Add(this.OS_BSODDate);
+            this.os_panel_6.Controls.Add(this.OS_WinLicenseURL_V);
             this.os_panel_6.Controls.Add(this.OS_WinLicenseVerifiURL_V);
             this.os_panel_6.Controls.Add(this.OS_NETFrameworkVersion);
             this.os_panel_6.Controls.Add(this.OS_NETFrameworkVersion_V);
@@ -2833,7 +2846,7 @@
             this.os_panel_6.Location = new System.Drawing.Point(5, 1614);
             this.os_panel_6.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.os_panel_6.Name = "os_panel_6";
-            this.os_panel_6.Size = new System.Drawing.Size(794, 300);
+            this.os_panel_6.Size = new System.Drawing.Size(794, 340);
             this.os_panel_6.TabIndex = 5;
             // 
             // os_minidump_panel_1
@@ -2841,10 +2854,10 @@
             this.os_minidump_panel_1.Controls.Add(this.OS_Minidump);
             this.os_minidump_panel_1.Controls.Add(this.OS_MinidumpOpen);
             this.os_minidump_panel_1.Controls.Add(this.OS_BSoDZIP);
-            this.os_minidump_panel_1.Location = new System.Drawing.Point(10, 104);
+            this.os_minidump_panel_1.Location = new System.Drawing.Point(10, 149);
             this.os_minidump_panel_1.Name = "os_minidump_panel_1";
             this.os_minidump_panel_1.Size = new System.Drawing.Size(360, 20);
-            this.os_minidump_panel_1.TabIndex = 4;
+            this.os_minidump_panel_1.TabIndex = 6;
             // 
             // OS_Minidump
             // 
@@ -2901,11 +2914,11 @@
             this.OS_Wallpaper_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_Wallpaper_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_Wallpaper_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_Wallpaper_V.Location = new System.Drawing.Point(382, 194);
+            this.OS_Wallpaper_V.Location = new System.Drawing.Point(382, 239);
             this.OS_Wallpaper_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_Wallpaper_V.Name = "OS_Wallpaper_V";
             this.OS_Wallpaper_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_Wallpaper_V.TabIndex = 9;
+            this.OS_Wallpaper_V.TabIndex = 11;
             this.OS_Wallpaper_V.Text = "N/A";
             // 
             // OS_WinLicenseVerifiURL
@@ -2914,11 +2927,11 @@
             this.OS_WinLicenseVerifiURL.BackColor = System.Drawing.Color.Transparent;
             this.OS_WinLicenseVerifiURL.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinLicenseVerifiURL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinLicenseVerifiURL.Location = new System.Drawing.Point(10, 14);
+            this.OS_WinLicenseVerifiURL.Location = new System.Drawing.Point(10, 59);
             this.OS_WinLicenseVerifiURL.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinLicenseVerifiURL.Name = "OS_WinLicenseVerifiURL";
             this.OS_WinLicenseVerifiURL.Size = new System.Drawing.Size(239, 20);
-            this.OS_WinLicenseVerifiURL.TabIndex = 0;
+            this.OS_WinLicenseVerifiURL.TabIndex = 2;
             this.OS_WinLicenseVerifiURL.Text = "Aktivasyon Doğrulama Sunucusu:";
             // 
             // os_wallpaper_panel_1
@@ -2926,11 +2939,11 @@
             this.os_wallpaper_panel_1.Controls.Add(this.OS_Wallpaper);
             this.os_wallpaper_panel_1.Controls.Add(this.OS_WallpaperPreview);
             this.os_wallpaper_panel_1.Controls.Add(this.OS_WallpaperOpen);
-            this.os_wallpaper_panel_1.Location = new System.Drawing.Point(10, 194);
+            this.os_wallpaper_panel_1.Location = new System.Drawing.Point(10, 239);
             this.os_wallpaper_panel_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.os_wallpaper_panel_1.Name = "os_wallpaper_panel_1";
             this.os_wallpaper_panel_1.Size = new System.Drawing.Size(360, 20);
-            this.os_wallpaper_panel_1.TabIndex = 8;
+            this.os_wallpaper_panel_1.TabIndex = 10;
             // 
             // OS_Wallpaper
             // 
@@ -2984,11 +2997,11 @@
             this.OS_BSODDate.BackColor = System.Drawing.Color.Transparent;
             this.OS_BSODDate.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_BSODDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_BSODDate.Location = new System.Drawing.Point(10, 149);
+            this.OS_BSODDate.Location = new System.Drawing.Point(10, 194);
             this.OS_BSODDate.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_BSODDate.Name = "OS_BSODDate";
             this.OS_BSODDate.Size = new System.Drawing.Size(175, 20);
-            this.OS_BSODDate.TabIndex = 6;
+            this.OS_BSODDate.TabIndex = 8;
             this.OS_BSODDate.Text = "Son Mavi Ekran Zamanı:";
             // 
             // OS_WinLicenseVerifiURL_V
@@ -2998,11 +3011,11 @@
             this.OS_WinLicenseVerifiURL_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_WinLicenseVerifiURL_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_WinLicenseVerifiURL_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_WinLicenseVerifiURL_V.Location = new System.Drawing.Point(382, 14);
+            this.OS_WinLicenseVerifiURL_V.Location = new System.Drawing.Point(382, 59);
             this.OS_WinLicenseVerifiURL_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_WinLicenseVerifiURL_V.Name = "OS_WinLicenseVerifiURL_V";
             this.OS_WinLicenseVerifiURL_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_WinLicenseVerifiURL_V.TabIndex = 1;
+            this.OS_WinLicenseVerifiURL_V.TabIndex = 3;
             this.OS_WinLicenseVerifiURL_V.Text = "N/A";
             // 
             // OS_NETFrameworkVersion
@@ -3011,11 +3024,11 @@
             this.OS_NETFrameworkVersion.BackColor = System.Drawing.Color.Transparent;
             this.OS_NETFrameworkVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_NETFrameworkVersion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_NETFrameworkVersion.Location = new System.Drawing.Point(10, 59);
+            this.OS_NETFrameworkVersion.Location = new System.Drawing.Point(10, 104);
             this.OS_NETFrameworkVersion.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_NETFrameworkVersion.Name = "OS_NETFrameworkVersion";
             this.OS_NETFrameworkVersion.Size = new System.Drawing.Size(184, 20);
-            this.OS_NETFrameworkVersion.TabIndex = 2;
+            this.OS_NETFrameworkVersion.TabIndex = 4;
             this.OS_NETFrameworkVersion.Text = ".NET Framework Sürümü:";
             // 
             // OS_NETFrameworkVersion_V
@@ -3025,11 +3038,11 @@
             this.OS_NETFrameworkVersion_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_NETFrameworkVersion_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_NETFrameworkVersion_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_NETFrameworkVersion_V.Location = new System.Drawing.Point(382, 59);
+            this.OS_NETFrameworkVersion_V.Location = new System.Drawing.Point(382, 104);
             this.OS_NETFrameworkVersion_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_NETFrameworkVersion_V.Name = "OS_NETFrameworkVersion_V";
             this.OS_NETFrameworkVersion_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_NETFrameworkVersion_V.TabIndex = 3;
+            this.OS_NETFrameworkVersion_V.TabIndex = 5;
             this.OS_NETFrameworkVersion_V.Text = "N/A";
             // 
             // OS_Minidump_V
@@ -3039,11 +3052,11 @@
             this.OS_Minidump_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_Minidump_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_Minidump_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_Minidump_V.Location = new System.Drawing.Point(382, 104);
+            this.OS_Minidump_V.Location = new System.Drawing.Point(382, 149);
             this.OS_Minidump_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_Minidump_V.Name = "OS_Minidump_V";
             this.OS_Minidump_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_Minidump_V.TabIndex = 5;
+            this.OS_Minidump_V.TabIndex = 7;
             this.OS_Minidump_V.Text = "N/A";
             // 
             // OS_BSODDate_V
@@ -3053,11 +3066,11 @@
             this.OS_BSODDate_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.OS_BSODDate_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OS_BSODDate_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OS_BSODDate_V.Location = new System.Drawing.Point(382, 149);
+            this.OS_BSODDate_V.Location = new System.Drawing.Point(382, 194);
             this.OS_BSODDate_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.OS_BSODDate_V.Name = "OS_BSODDate_V";
             this.OS_BSODDate_V.Size = new System.Drawing.Size(37, 20);
-            this.OS_BSODDate_V.TabIndex = 7;
+            this.OS_BSODDate_V.TabIndex = 9;
             this.OS_BSODDate_V.Text = "N/A";
             // 
             // MB
@@ -3066,7 +3079,7 @@
             this.MB.Controls.Add(this.MB_TLP);
             this.MB.Location = new System.Drawing.Point(4, 22);
             this.MB.Name = "MB";
-            this.MB.Size = new System.Drawing.Size(818, 561);
+            this.MB.Size = new System.Drawing.Size(819, 561);
             this.MB.TabIndex = 1;
             this.MB.Text = "MB";
             this.MB.UseVisualStyleBackColor = true;
@@ -3088,7 +3101,7 @@
             this.MB_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MB_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MB_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.MB_TLP.Size = new System.Drawing.Size(801, 1267);
+            this.MB_TLP.Size = new System.Drawing.Size(802, 1267);
             this.MB_TLP.TabIndex = 2;
             // 
             // mb_panel_1
@@ -3119,7 +3132,7 @@
             this.mb_panel_1.Location = new System.Drawing.Point(5, 4);
             this.mb_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.mb_panel_1.Name = "mb_panel_1";
-            this.mb_panel_1.Size = new System.Drawing.Size(793, 458);
+            this.mb_panel_1.Size = new System.Drawing.Size(794, 458);
             this.mb_panel_1.TabIndex = 0;
             // 
             // MB_DeviceSerialNumber
@@ -3418,7 +3431,7 @@
             this.mb_panel_3.Location = new System.Drawing.Point(5, 851);
             this.mb_panel_3.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.mb_panel_3.Name = "mb_panel_3";
-            this.mb_panel_3.Size = new System.Drawing.Size(793, 412);
+            this.mb_panel_3.Size = new System.Drawing.Size(794, 412);
             this.mb_panel_3.TabIndex = 0;
             // 
             // MB_TPMPPIAltVersion
@@ -3686,7 +3699,7 @@
             this.mb_panel_2.Location = new System.Drawing.Point(5, 464);
             this.mb_panel_2.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.mb_panel_2.Name = "mb_panel_2";
-            this.mb_panel_2.Size = new System.Drawing.Size(793, 385);
+            this.mb_panel_2.Size = new System.Drawing.Size(794, 385);
             this.mb_panel_2.TabIndex = 1;
             // 
             // MB_LastBIOSTime
@@ -3857,7 +3870,7 @@
             this.CPU.Controls.Add(this.CPU_TLP);
             this.CPU.Location = new System.Drawing.Point(4, 22);
             this.CPU.Name = "CPU";
-            this.CPU.Size = new System.Drawing.Size(818, 561);
+            this.CPU.Size = new System.Drawing.Size(819, 561);
             this.CPU.TabIndex = 2;
             this.CPU.Text = "CPU";
             this.CPU.UseVisualStyleBackColor = true;
@@ -3877,7 +3890,7 @@
             this.CPU_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.CPU_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.CPU_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.CPU_TLP.Size = new System.Drawing.Size(801, 920);
+            this.CPU_TLP.Size = new System.Drawing.Size(802, 920);
             this.CPU_TLP.TabIndex = 0;
             // 
             // cpu_panel_1
@@ -3916,7 +3929,7 @@
             this.cpu_panel_1.Location = new System.Drawing.Point(5, 4);
             this.cpu_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.cpu_panel_1.Name = "cpu_panel_1";
-            this.cpu_panel_1.Size = new System.Drawing.Size(793, 635);
+            this.cpu_panel_1.Size = new System.Drawing.Size(794, 635);
             this.cpu_panel_1.TabIndex = 0;
             // 
             // CPU_ActiveCoreCount
@@ -4302,7 +4315,7 @@
             this.cpu_panel_2.Location = new System.Drawing.Point(5, 641);
             this.cpu_panel_2.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.cpu_panel_2.Name = "cpu_panel_2";
-            this.cpu_panel_2.Size = new System.Drawing.Size(793, 275);
+            this.cpu_panel_2.Size = new System.Drawing.Size(794, 275);
             this.cpu_panel_2.TabIndex = 1;
             // 
             // CPU_AllCPUHead
@@ -4459,7 +4472,7 @@
             this.RAM.Controls.Add(this.RAM_TLP);
             this.RAM.Location = new System.Drawing.Point(4, 22);
             this.RAM.Name = "RAM";
-            this.RAM.Size = new System.Drawing.Size(818, 561);
+            this.RAM.Size = new System.Drawing.Size(819, 561);
             this.RAM.TabIndex = 3;
             this.RAM.Text = "RAM";
             this.RAM.UseVisualStyleBackColor = true;
@@ -4478,7 +4491,7 @@
             this.RAM_TLP.RowCount = 2;
             this.RAM_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.RAM_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.RAM_TLP.Size = new System.Drawing.Size(801, 876);
+            this.RAM_TLP.Size = new System.Drawing.Size(802, 876);
             this.RAM_TLP.TabIndex = 0;
             // 
             // ram_panel_1
@@ -4506,7 +4519,7 @@
             this.ram_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.ram_panel_1.Name = "ram_panel_1";
             this.ram_panel_1.Padding = new System.Windows.Forms.Padding(10);
-            this.ram_panel_1.Size = new System.Drawing.Size(793, 321);
+            this.ram_panel_1.Size = new System.Drawing.Size(794, 321);
             this.ram_panel_1.TabIndex = 0;
             // 
             // RAM_ProgressLabel
@@ -4516,7 +4529,7 @@
             this.RAM_ProgressLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.RAM_ProgressLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.RAM_ProgressLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RAM_ProgressLabel.Location = new System.Drawing.Point(690, 291);
+            this.RAM_ProgressLabel.Location = new System.Drawing.Point(691, 291);
             this.RAM_ProgressLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.RAM_ProgressLabel.Name = "RAM_ProgressLabel";
             this.RAM_ProgressLabel.Size = new System.Drawing.Size(78, 20);
@@ -4746,7 +4759,7 @@
             this.ram_panel_2.Location = new System.Drawing.Point(5, 327);
             this.ram_panel_2.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.ram_panel_2.Name = "ram_panel_2";
-            this.ram_panel_2.Size = new System.Drawing.Size(793, 545);
+            this.ram_panel_2.Size = new System.Drawing.Size(794, 545);
             this.ram_panel_2.TabIndex = 0;
             // 
             // RAM_DataWidth_V
@@ -5065,7 +5078,7 @@
             this.GPU.Controls.Add(this.GPU_TLP);
             this.GPU.Location = new System.Drawing.Point(4, 22);
             this.GPU.Name = "GPU";
-            this.GPU.Size = new System.Drawing.Size(818, 561);
+            this.GPU.Size = new System.Drawing.Size(819, 561);
             this.GPU.TabIndex = 4;
             this.GPU.Text = "GPU";
             this.GPU.UseVisualStyleBackColor = true;
@@ -5085,7 +5098,7 @@
             this.GPU_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.GPU_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.GPU_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.GPU_TLP.Size = new System.Drawing.Size(801, 1365);
+            this.GPU_TLP.Size = new System.Drawing.Size(802, 1365);
             this.GPU_TLP.TabIndex = 0;
             // 
             // gpu_panel_1
@@ -5124,7 +5137,7 @@
             this.gpu_panel_1.Location = new System.Drawing.Point(5, 4);
             this.gpu_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.gpu_panel_1.Name = "gpu_panel_1";
-            this.gpu_panel_1.Size = new System.Drawing.Size(793, 635);
+            this.gpu_panel_1.Size = new System.Drawing.Size(794, 635);
             this.gpu_panel_1.TabIndex = 0;
             // 
             // GPU_DirectXMax
@@ -5532,7 +5545,7 @@
             this.gpu_panel_2.Location = new System.Drawing.Point(5, 641);
             this.gpu_panel_2.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.gpu_panel_2.Name = "gpu_panel_2";
-            this.gpu_panel_2.Size = new System.Drawing.Size(793, 720);
+            this.gpu_panel_2.Size = new System.Drawing.Size(794, 720);
             this.gpu_panel_2.TabIndex = 0;
             // 
             // GPU_MonitorHID
@@ -5959,7 +5972,7 @@
             this.DISK.Controls.Add(this.DISK_TLP);
             this.DISK.Location = new System.Drawing.Point(4, 22);
             this.DISK.Name = "DISK";
-            this.DISK.Size = new System.Drawing.Size(818, 561);
+            this.DISK.Size = new System.Drawing.Size(819, 561);
             this.DISK.TabIndex = 5;
             this.DISK.Text = "DISK";
             this.DISK.UseVisualStyleBackColor = true;
@@ -5980,7 +5993,7 @@
             this.DISK_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.DISK_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.DISK_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.DISK_TLP.Size = new System.Drawing.Size(801, 1312);
+            this.DISK_TLP.Size = new System.Drawing.Size(802, 1312);
             this.DISK_TLP.TabIndex = 0;
             // 
             // disk_panel_3
@@ -6021,7 +6034,7 @@
             this.disk_panel_3.Location = new System.Drawing.Point(5, 628);
             this.disk_panel_3.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.disk_panel_3.Name = "disk_panel_3";
-            this.disk_panel_3.Size = new System.Drawing.Size(793, 680);
+            this.disk_panel_3.Size = new System.Drawing.Size(794, 680);
             this.disk_panel_3.TabIndex = 0;
             // 
             // DISK_BitLockerEncryptMehod_V
@@ -6462,7 +6475,7 @@
             this.disk_panel_2.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.disk_panel_2.Name = "disk_panel_2";
             this.disk_panel_2.Padding = new System.Windows.Forms.Padding(10);
-            this.disk_panel_2.Size = new System.Drawing.Size(793, 500);
+            this.disk_panel_2.Size = new System.Drawing.Size(794, 500);
             this.disk_panel_2.TabIndex = 0;
             // 
             // DISK_UsedSpace_V
@@ -6499,7 +6512,7 @@
             this.DISK_PBar_Label.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.DISK_PBar_Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.DISK_PBar_Label.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.DISK_PBar_Label.Location = new System.Drawing.Point(707, 470);
+            this.DISK_PBar_Label.Location = new System.Drawing.Point(708, 470);
             this.DISK_PBar_Label.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.DISK_PBar_Label.Name = "DISK_PBar_Label";
             this.DISK_PBar_Label.Size = new System.Drawing.Size(78, 20);
@@ -6773,7 +6786,7 @@
             this.disk_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.disk_panel_1.Name = "disk_panel_1";
             this.disk_panel_1.Padding = new System.Windows.Forms.Padding(13, 5, 13, 12);
-            this.disk_panel_1.Size = new System.Drawing.Size(793, 120);
+            this.disk_panel_1.Size = new System.Drawing.Size(794, 120);
             this.disk_panel_1.TabIndex = 0;
             // 
             // DISK_MainTLP
@@ -6791,7 +6804,7 @@
             this.DISK_MainTLP.RowCount = 2;
             this.DISK_MainTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.DISK_MainTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.DISK_MainTLP.Size = new System.Drawing.Size(767, 62);
+            this.DISK_MainTLP.Size = new System.Drawing.Size(768, 62);
             this.DISK_MainTLP.TabIndex = 4;
             // 
             // DISK_TTLP_L1
@@ -6813,7 +6826,7 @@
             this.NETWORK.Controls.Add(this.NET_TLP);
             this.NETWORK.Location = new System.Drawing.Point(4, 22);
             this.NETWORK.Name = "NETWORK";
-            this.NETWORK.Size = new System.Drawing.Size(818, 561);
+            this.NETWORK.Size = new System.Drawing.Size(819, 561);
             this.NETWORK.TabIndex = 6;
             this.NETWORK.Text = "NETWORK";
             this.NETWORK.UseVisualStyleBackColor = true;
@@ -6835,7 +6848,7 @@
             this.NET_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.NET_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.NET_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.NET_TLP.Size = new System.Drawing.Size(801, 1342);
+            this.NET_TLP.Size = new System.Drawing.Size(802, 1342);
             this.NET_TLP.TabIndex = 0;
             // 
             // network_panel_1
@@ -6882,7 +6895,7 @@
             this.network_panel_1.Location = new System.Drawing.Point(5, 236);
             this.network_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.network_panel_1.Name = "network_panel_1";
-            this.network_panel_1.Size = new System.Drawing.Size(793, 820);
+            this.network_panel_1.Size = new System.Drawing.Size(794, 820);
             this.network_panel_1.TabIndex = 0;
             // 
             // NET_DHCPLastIpTime_V
@@ -7374,7 +7387,7 @@
             this.network_panel_2.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.network_panel_2.Name = "network_panel_2";
             this.network_panel_2.Padding = new System.Windows.Forms.Padding(13, 5, 13, 12);
-            this.network_panel_2.Size = new System.Drawing.Size(793, 230);
+            this.network_panel_2.Size = new System.Drawing.Size(794, 230);
             this.network_panel_2.TabIndex = 0;
             // 
             // network_gateway_flp
@@ -7496,7 +7509,7 @@
             this.NET_LT_TLP.Name = "NET_LT_TLP";
             this.NET_LT_TLP.RowCount = 1;
             this.NET_LT_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.NET_LT_TLP.Size = new System.Drawing.Size(767, 33);
+            this.NET_LT_TLP.Size = new System.Drawing.Size(768, 33);
             this.NET_LT_TLP.TabIndex = 0;
             // 
             // NET_LT_Device
@@ -7546,7 +7559,7 @@
             this.network_panel_3.Location = new System.Drawing.Point(5, 1058);
             this.network_panel_3.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.network_panel_3.Name = "network_panel_3";
-            this.network_panel_3.Size = new System.Drawing.Size(793, 280);
+            this.network_panel_3.Size = new System.Drawing.Size(794, 280);
             this.network_panel_3.TabIndex = 1;
             // 
             // NET_P_ISP_V
@@ -7717,7 +7730,7 @@
             this.USB.Controls.Add(this.USB_TLP);
             this.USB.Location = new System.Drawing.Point(4, 22);
             this.USB.Name = "USB";
-            this.USB.Size = new System.Drawing.Size(818, 561);
+            this.USB.Size = new System.Drawing.Size(819, 561);
             this.USB.TabIndex = 13;
             this.USB.Text = "USB";
             this.USB.UseVisualStyleBackColor = true;
@@ -7736,7 +7749,7 @@
             this.USB_TLP.RowCount = 2;
             this.USB_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.USB_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.USB_TLP.Size = new System.Drawing.Size(801, 697);
+            this.USB_TLP.Size = new System.Drawing.Size(802, 697);
             this.USB_TLP.TabIndex = 0;
             // 
             // usb_panel_2
@@ -7764,7 +7777,7 @@
             this.usb_panel_2.Location = new System.Drawing.Point(5, 283);
             this.usb_panel_2.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.usb_panel_2.Name = "usb_panel_2";
-            this.usb_panel_2.Size = new System.Drawing.Size(793, 410);
+            this.usb_panel_2.Size = new System.Drawing.Size(794, 410);
             this.usb_panel_2.TabIndex = 1;
             // 
             // USB_DeviceGUID
@@ -8015,7 +8028,7 @@
             this.usb_panel_1.Location = new System.Drawing.Point(5, 4);
             this.usb_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.usb_panel_1.Name = "usb_panel_1";
-            this.usb_panel_1.Size = new System.Drawing.Size(793, 277);
+            this.usb_panel_1.Size = new System.Drawing.Size(794, 277);
             this.usb_panel_1.TabIndex = 0;
             // 
             // USB_ConMan
@@ -8171,7 +8184,7 @@
             this.SOUND.Controls.Add(this.SOUND_TLP);
             this.SOUND.Location = new System.Drawing.Point(4, 22);
             this.SOUND.Name = "SOUND";
-            this.SOUND.Size = new System.Drawing.Size(818, 561);
+            this.SOUND.Size = new System.Drawing.Size(819, 561);
             this.SOUND.TabIndex = 14;
             this.SOUND.Text = "SOUND";
             this.SOUND.UseVisualStyleBackColor = true;
@@ -8188,7 +8201,7 @@
             this.SOUND_TLP.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.SOUND_TLP.RowCount = 1;
             this.SOUND_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SOUND_TLP.Size = new System.Drawing.Size(818, 378);
+            this.SOUND_TLP.Size = new System.Drawing.Size(819, 378);
             this.SOUND_TLP.TabIndex = 1;
             // 
             // sound_panel_1
@@ -8214,7 +8227,7 @@
             this.sound_panel_1.Location = new System.Drawing.Point(5, 4);
             this.sound_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.sound_panel_1.Name = "sound_panel_1";
-            this.sound_panel_1.Size = new System.Drawing.Size(810, 370);
+            this.sound_panel_1.Size = new System.Drawing.Size(811, 370);
             this.sound_panel_1.TabIndex = 0;
             // 
             // SOUND_DriverDate
@@ -8425,7 +8438,7 @@
             this.BATTERY.Controls.Add(this.BATTERY_TLP);
             this.BATTERY.Location = new System.Drawing.Point(4, 22);
             this.BATTERY.Name = "BATTERY";
-            this.BATTERY.Size = new System.Drawing.Size(818, 561);
+            this.BATTERY.Size = new System.Drawing.Size(819, 561);
             this.BATTERY.TabIndex = 7;
             this.BATTERY.Text = "BATTERY";
             this.BATTERY.UseVisualStyleBackColor = true;
@@ -8444,7 +8457,7 @@
             this.BATTERY_TLP.RowCount = 2;
             this.BATTERY_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.BATTERY_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.BATTERY_TLP.Size = new System.Drawing.Size(801, 622);
+            this.BATTERY_TLP.Size = new System.Drawing.Size(802, 622);
             this.BATTERY_TLP.TabIndex = 0;
             // 
             // battery_panel_1
@@ -8470,7 +8483,7 @@
             this.battery_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.battery_panel_1.Name = "battery_panel_1";
             this.battery_panel_1.Padding = new System.Windows.Forms.Padding(10);
-            this.battery_panel_1.Size = new System.Drawing.Size(793, 277);
+            this.battery_panel_1.Size = new System.Drawing.Size(794, 277);
             this.battery_panel_1.TabIndex = 0;
             // 
             // BATTERY_ProgressLabel
@@ -8480,7 +8493,7 @@
             this.BATTERY_ProgressLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.BATTERY_ProgressLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.BATTERY_ProgressLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.BATTERY_ProgressLabel.Location = new System.Drawing.Point(690, 247);
+            this.BATTERY_ProgressLabel.Location = new System.Drawing.Point(691, 247);
             this.BATTERY_ProgressLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.BATTERY_ProgressLabel.Name = "BATTERY_ProgressLabel";
             this.BATTERY_ProgressLabel.Size = new System.Drawing.Size(78, 20);
@@ -8671,7 +8684,7 @@
             this.battery_panel_2.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.battery_panel_2.Name = "battery_panel_2";
             this.battery_panel_2.Padding = new System.Windows.Forms.Padding(10);
-            this.battery_panel_2.Size = new System.Drawing.Size(793, 335);
+            this.battery_panel_2.Size = new System.Drawing.Size(794, 335);
             this.battery_panel_2.TabIndex = 1;
             // 
             // BATTERY_DeChargeCurrent
@@ -8841,7 +8854,7 @@
             this.DRIVERS.Controls.Add(this.OSD_TLP);
             this.DRIVERS.Location = new System.Drawing.Point(4, 22);
             this.DRIVERS.Name = "DRIVERS";
-            this.DRIVERS.Size = new System.Drawing.Size(818, 561);
+            this.DRIVERS.Size = new System.Drawing.Size(819, 561);
             this.DRIVERS.TabIndex = 8;
             this.DRIVERS.Text = "DRIVERS";
             this.DRIVERS.UseVisualStyleBackColor = true;
@@ -8857,7 +8870,7 @@
             this.OSD_TLP.Padding = new System.Windows.Forms.Padding(3);
             this.OSD_TLP.RowCount = 1;
             this.OSD_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.OSD_TLP.Size = new System.Drawing.Size(818, 561);
+            this.OSD_TLP.Size = new System.Drawing.Size(819, 561);
             this.OSD_TLP.TabIndex = 0;
             // 
             // osd_panel_1
@@ -8877,7 +8890,7 @@
             this.osd_panel_1.Location = new System.Drawing.Point(5, 4);
             this.osd_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 0, 1);
             this.osd_panel_1.Name = "osd_panel_1";
-            this.osd_panel_1.Size = new System.Drawing.Size(810, 553);
+            this.osd_panel_1.Size = new System.Drawing.Size(811, 553);
             this.osd_panel_1.TabIndex = 0;
             // 
             // OSD_TYSS
@@ -8886,7 +8899,7 @@
             this.OSD_TYSS.BackColor = System.Drawing.Color.Transparent;
             this.OSD_TYSS.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.OSD_TYSS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OSD_TYSS.Location = new System.Drawing.Point(497, 21);
+            this.OSD_TYSS.Location = new System.Drawing.Point(498, 21);
             this.OSD_TYSS.Name = "OSD_TYSS";
             this.OSD_TYSS.Size = new System.Drawing.Size(300, 25);
             this.OSD_TYSS.TabIndex = 4;
@@ -8932,7 +8945,7 @@
             this.OSD_DataMainTable.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(87)))), ((int)(((byte)(160)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
@@ -8955,7 +8968,7 @@
             this.OSD_DataMainTable.RowHeadersVisible = false;
             this.OSD_DataMainTable.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.OSD_DataMainTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.OSD_DataMainTable.Size = new System.Drawing.Size(786, 454);
+            this.OSD_DataMainTable.Size = new System.Drawing.Size(787, 454);
             this.OSD_DataMainTable.TabIndex = 6;
             this.OSD_DataMainTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OSD_DataMainTable_CellDoubleClick);
             this.OSD_DataMainTable.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OSD_DataMainTable_ColumnHeaderMouseClick);
@@ -8982,7 +8995,7 @@
             this.OSD_TYSS_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.OSD_TYSS_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.OSD_TYSS_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OSD_TYSS_V.Location = new System.Drawing.Point(547, 44);
+            this.OSD_TYSS_V.Location = new System.Drawing.Point(548, 44);
             this.OSD_TYSS_V.Name = "OSD_TYSS_V";
             this.OSD_TYSS_V.Size = new System.Drawing.Size(250, 18);
             this.OSD_TYSS_V.TabIndex = 5;
@@ -8994,7 +9007,7 @@
             this.SERVICES.Controls.Add(this.SERVICE_TLP);
             this.SERVICES.Location = new System.Drawing.Point(4, 22);
             this.SERVICES.Name = "SERVICES";
-            this.SERVICES.Size = new System.Drawing.Size(818, 561);
+            this.SERVICES.Size = new System.Drawing.Size(819, 561);
             this.SERVICES.TabIndex = 12;
             this.SERVICES.Text = "SERVICES";
             this.SERVICES.UseVisualStyleBackColor = true;
@@ -9010,7 +9023,7 @@
             this.SERVICE_TLP.Padding = new System.Windows.Forms.Padding(3);
             this.SERVICE_TLP.RowCount = 1;
             this.SERVICE_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SERVICE_TLP.Size = new System.Drawing.Size(818, 561);
+            this.SERVICE_TLP.Size = new System.Drawing.Size(819, 561);
             this.SERVICE_TLP.TabIndex = 0;
             // 
             // service_panel_1
@@ -9030,7 +9043,7 @@
             this.service_panel_1.Location = new System.Drawing.Point(5, 4);
             this.service_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 0, 1);
             this.service_panel_1.Name = "service_panel_1";
-            this.service_panel_1.Size = new System.Drawing.Size(810, 553);
+            this.service_panel_1.Size = new System.Drawing.Size(811, 553);
             this.service_panel_1.TabIndex = 0;
             // 
             // SERVICE_TYS
@@ -9039,7 +9052,7 @@
             this.SERVICE_TYS.BackColor = System.Drawing.Color.Transparent;
             this.SERVICE_TYS.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.SERVICE_TYS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SERVICE_TYS.Location = new System.Drawing.Point(497, 21);
+            this.SERVICE_TYS.Location = new System.Drawing.Point(498, 21);
             this.SERVICE_TYS.Name = "SERVICE_TYS";
             this.SERVICE_TYS.Size = new System.Drawing.Size(300, 25);
             this.SERVICE_TYS.TabIndex = 4;
@@ -9085,7 +9098,7 @@
             this.SERVICE_DataMainTable.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(87)))), ((int)(((byte)(160)))));
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
@@ -9108,7 +9121,7 @@
             this.SERVICE_DataMainTable.RowHeadersVisible = false;
             this.SERVICE_DataMainTable.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.SERVICE_DataMainTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SERVICE_DataMainTable.Size = new System.Drawing.Size(786, 454);
+            this.SERVICE_DataMainTable.Size = new System.Drawing.Size(787, 454);
             this.SERVICE_DataMainTable.TabIndex = 6;
             this.SERVICE_DataMainTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SERVICE_DataMainTable_CellDoubleClick);
             this.SERVICE_DataMainTable.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SERVICE_DataMainTable_ColumnHeaderMouseClick);
@@ -9135,7 +9148,7 @@
             this.SERVICE_TYS_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.SERVICE_TYS_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.SERVICE_TYS_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SERVICE_TYS_V.Location = new System.Drawing.Point(547, 44);
+            this.SERVICE_TYS_V.Location = new System.Drawing.Point(548, 44);
             this.SERVICE_TYS_V.Name = "SERVICE_TYS_V";
             this.SERVICE_TYS_V.Size = new System.Drawing.Size(250, 18);
             this.SERVICE_TYS_V.TabIndex = 5;
@@ -9147,7 +9160,7 @@
             this.INSTAPPS.Controls.Add(this.INSTAPPS_TLP);
             this.INSTAPPS.Location = new System.Drawing.Point(4, 22);
             this.INSTAPPS.Name = "INSTAPPS";
-            this.INSTAPPS.Size = new System.Drawing.Size(818, 561);
+            this.INSTAPPS.Size = new System.Drawing.Size(819, 561);
             this.INSTAPPS.TabIndex = 16;
             this.INSTAPPS.Text = "INSTAPPS";
             this.INSTAPPS.UseVisualStyleBackColor = true;
@@ -9163,7 +9176,7 @@
             this.INSTAPPS_TLP.Padding = new System.Windows.Forms.Padding(3);
             this.INSTAPPS_TLP.RowCount = 1;
             this.INSTAPPS_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.INSTAPPS_TLP.Size = new System.Drawing.Size(818, 561);
+            this.INSTAPPS_TLP.Size = new System.Drawing.Size(819, 561);
             this.INSTAPPS_TLP.TabIndex = 0;
             // 
             // instapps_panel_1
@@ -9183,7 +9196,7 @@
             this.instapps_panel_1.Location = new System.Drawing.Point(5, 4);
             this.instapps_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 0, 1);
             this.instapps_panel_1.Name = "instapps_panel_1";
-            this.instapps_panel_1.Size = new System.Drawing.Size(810, 553);
+            this.instapps_panel_1.Size = new System.Drawing.Size(811, 553);
             this.instapps_panel_1.TabIndex = 0;
             // 
             // INSTAPPS_TYUS
@@ -9192,7 +9205,7 @@
             this.INSTAPPS_TYUS.BackColor = System.Drawing.Color.Transparent;
             this.INSTAPPS_TYUS.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.INSTAPPS_TYUS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.INSTAPPS_TYUS.Location = new System.Drawing.Point(497, 21);
+            this.INSTAPPS_TYUS.Location = new System.Drawing.Point(498, 21);
             this.INSTAPPS_TYUS.Name = "INSTAPPS_TYUS";
             this.INSTAPPS_TYUS.Size = new System.Drawing.Size(300, 25);
             this.INSTAPPS_TYUS.TabIndex = 4;
@@ -9238,7 +9251,7 @@
             this.INSTAPPS_DataMainTable.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(87)))), ((int)(((byte)(160)))));
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
@@ -9261,7 +9274,7 @@
             this.INSTAPPS_DataMainTable.RowHeadersVisible = false;
             this.INSTAPPS_DataMainTable.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.INSTAPPS_DataMainTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.INSTAPPS_DataMainTable.Size = new System.Drawing.Size(786, 454);
+            this.INSTAPPS_DataMainTable.Size = new System.Drawing.Size(787, 454);
             this.INSTAPPS_DataMainTable.TabIndex = 6;
             this.INSTAPPS_DataMainTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.INSTAPPS_DataMainTable_CellDoubleClick);
             this.INSTAPPS_DataMainTable.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.INSTAPPS_DataMainTable_CellPainting);
@@ -9289,7 +9302,7 @@
             this.INSTAPPS_TYUS_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.INSTAPPS_TYUS_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
             this.INSTAPPS_TYUS_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.INSTAPPS_TYUS_V.Location = new System.Drawing.Point(547, 44);
+            this.INSTAPPS_TYUS_V.Location = new System.Drawing.Point(548, 44);
             this.INSTAPPS_TYUS_V.Name = "INSTAPPS_TYUS_V";
             this.INSTAPPS_TYUS_V.Size = new System.Drawing.Size(250, 18);
             this.INSTAPPS_TYUS_V.TabIndex = 5;
@@ -9301,7 +9314,7 @@
             this.EXPORT.Controls.Add(this.EXPORT_TLP);
             this.EXPORT.Location = new System.Drawing.Point(4, 22);
             this.EXPORT.Name = "EXPORT";
-            this.EXPORT.Size = new System.Drawing.Size(818, 561);
+            this.EXPORT.Size = new System.Drawing.Size(819, 561);
             this.EXPORT.TabIndex = 15;
             this.EXPORT.Text = "EXPORT";
             this.EXPORT.UseVisualStyleBackColor = true;
@@ -9320,7 +9333,7 @@
             this.EXPORT_TLP.RowCount = 2;
             this.EXPORT_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.EXPORT_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.EXPORT_TLP.Size = new System.Drawing.Size(818, 491);
+            this.EXPORT_TLP.Size = new System.Drawing.Size(819, 491);
             this.EXPORT_TLP.TabIndex = 0;
             // 
             // print_panel_1
@@ -9339,7 +9352,7 @@
             this.print_panel_1.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.print_panel_1.Name = "print_panel_1";
             this.print_panel_1.Padding = new System.Windows.Forms.Padding(12);
-            this.print_panel_1.Size = new System.Drawing.Size(810, 230);
+            this.print_panel_1.Size = new System.Drawing.Size(811, 230);
             this.print_panel_1.TabIndex = 0;
             // 
             // Export_ModeTitle
@@ -9348,7 +9361,7 @@
             this.Export_ModeTitle.BackColor = System.Drawing.Color.Transparent;
             this.Export_ModeTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
             this.Export_ModeTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Export_ModeTitle.Location = new System.Drawing.Point(363, 12);
+            this.Export_ModeTitle.Location = new System.Drawing.Point(364, 12);
             this.Export_ModeTitle.Margin = new System.Windows.Forms.Padding(3, 0, 3, 7);
             this.Export_ModeTitle.Name = "Export_ModeTitle";
             this.Export_ModeTitle.Size = new System.Drawing.Size(435, 20);
@@ -9393,7 +9406,7 @@
             this.print_panel_2.Margin = new System.Windows.Forms.Padding(2, 1, 3, 1);
             this.print_panel_2.Name = "print_panel_2";
             this.print_panel_2.Padding = new System.Windows.Forms.Padding(10, 12, 10, 12);
-            this.print_panel_2.Size = new System.Drawing.Size(810, 251);
+            this.print_panel_2.Size = new System.Drawing.Size(811, 251);
             this.print_panel_2.TabIndex = 1;
             // 
             // Header_InPanel
@@ -9454,6 +9467,33 @@
             this.HeaderPanel.Size = new System.Drawing.Size(817, 42);
             this.HeaderPanel.TabIndex = 1;
             // 
+            // OS_WinMachineID
+            // 
+            this.OS_WinMachineID.AutoSize = true;
+            this.OS_WinMachineID.BackColor = System.Drawing.Color.Transparent;
+            this.OS_WinMachineID.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
+            this.OS_WinMachineID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.OS_WinMachineID.Location = new System.Drawing.Point(10, 104);
+            this.OS_WinMachineID.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
+            this.OS_WinMachineID.Name = "OS_WinMachineID";
+            this.OS_WinMachineID.Size = new System.Drawing.Size(181, 20);
+            this.OS_WinMachineID.TabIndex = 4;
+            this.OS_WinMachineID.Text = "Windows Makine Kimliği:";
+            // 
+            // OS_WinMachineID_V
+            // 
+            this.OS_WinMachineID_V.AutoSize = true;
+            this.OS_WinMachineID_V.BackColor = System.Drawing.Color.Transparent;
+            this.OS_WinMachineID_V.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
+            this.OS_WinMachineID_V.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(95)))), ((int)(((byte)(146)))));
+            this.OS_WinMachineID_V.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.OS_WinMachineID_V.Location = new System.Drawing.Point(382, 104);
+            this.OS_WinMachineID_V.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
+            this.OS_WinMachineID_V.Name = "OS_WinMachineID_V";
+            this.OS_WinMachineID_V.Size = new System.Drawing.Size(37, 20);
+            this.OS_WinMachineID_V.TabIndex = 5;
+            this.OS_WinMachineID_V.Text = "N/A";
+            // 
             // OS_ScrollTop
             // 
             this.OS_ScrollTop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -9468,11 +9508,11 @@
             this.OS_ScrollTop.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.OS_ScrollTop.ForeColor = System.Drawing.Color.White;
             this.OS_ScrollTop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OS_ScrollTop.Location = new System.Drawing.Point(764, 253);
+            this.OS_ScrollTop.Location = new System.Drawing.Point(764, 293);
             this.OS_ScrollTop.Name = "OS_ScrollTop";
             this.OS_ScrollTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.OS_ScrollTop.Size = new System.Drawing.Size(38, 38);
-            this.OS_ScrollTop.TabIndex = 11;
+            this.OS_ScrollTop.TabIndex = 13;
             this.OS_ScrollTop.TextColor = System.Drawing.Color.White;
             this.OS_ScrollTop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.OS_ScrollTop.UseVisualStyleBackColor = false;
@@ -9490,11 +9530,11 @@
             this.OS_RecoveryModeBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.OS_RecoveryModeBtn.ForeColor = System.Drawing.Color.White;
             this.OS_RecoveryModeBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OS_RecoveryModeBtn.Location = new System.Drawing.Point(14, 242);
+            this.OS_RecoveryModeBtn.Location = new System.Drawing.Point(14, 287);
             this.OS_RecoveryModeBtn.Name = "OS_RecoveryModeBtn";
             this.OS_RecoveryModeBtn.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.OS_RecoveryModeBtn.Size = new System.Drawing.Size(190, 36);
-            this.OS_RecoveryModeBtn.TabIndex = 10;
+            this.OS_RecoveryModeBtn.TabIndex = 12;
             this.OS_RecoveryModeBtn.Text = "Recovery Mode Open";
             this.OS_RecoveryModeBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.OS_RecoveryModeBtn.TextColor = System.Drawing.Color.White;
@@ -9516,7 +9556,7 @@
             this.MB_ScrollTop.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.MB_ScrollTop.ForeColor = System.Drawing.Color.White;
             this.MB_ScrollTop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MB_ScrollTop.Location = new System.Drawing.Point(763, 365);
+            this.MB_ScrollTop.Location = new System.Drawing.Point(764, 365);
             this.MB_ScrollTop.Name = "MB_ScrollTop";
             this.MB_ScrollTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.MB_ScrollTop.Size = new System.Drawing.Size(38, 38);
@@ -9616,7 +9656,7 @@
             this.CPU_ScrollTop.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.CPU_ScrollTop.ForeColor = System.Drawing.Color.White;
             this.CPU_ScrollTop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CPU_ScrollTop.Location = new System.Drawing.Point(763, 228);
+            this.CPU_ScrollTop.Location = new System.Drawing.Point(764, 228);
             this.CPU_ScrollTop.Name = "CPU_ScrollTop";
             this.CPU_ScrollTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.CPU_ScrollTop.Size = new System.Drawing.Size(38, 38);
@@ -9633,7 +9673,7 @@
             this.RAM_ProgressBGPanel.BorderSize = 0;
             this.RAM_ProgressBGPanel.Controls.Add(this.RAM_ProgressFEPanel);
             this.RAM_ProgressBGPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RAM_ProgressBGPanel.Location = new System.Drawing.Point(774, 10);
+            this.RAM_ProgressBGPanel.Location = new System.Drawing.Point(775, 10);
             this.RAM_ProgressBGPanel.Name = "RAM_ProgressBGPanel";
             this.RAM_ProgressBGPanel.Size = new System.Drawing.Size(9, 301);
             this.RAM_ProgressBGPanel.TabIndex = 15;
@@ -9664,7 +9704,7 @@
             this.RAM_ScrollTop.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.RAM_ScrollTop.ForeColor = System.Drawing.Color.White;
             this.RAM_ScrollTop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RAM_ScrollTop.Location = new System.Drawing.Point(763, 498);
+            this.RAM_ScrollTop.Location = new System.Drawing.Point(764, 498);
             this.RAM_ScrollTop.Name = "RAM_ScrollTop";
             this.RAM_ScrollTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.RAM_ScrollTop.Size = new System.Drawing.Size(38, 38);
@@ -9741,7 +9781,7 @@
             this.GPU_ScrollTop.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.GPU_ScrollTop.ForeColor = System.Drawing.Color.White;
             this.GPU_ScrollTop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.GPU_ScrollTop.Location = new System.Drawing.Point(763, 673);
+            this.GPU_ScrollTop.Location = new System.Drawing.Point(764, 673);
             this.GPU_ScrollTop.Name = "GPU_ScrollTop";
             this.GPU_ScrollTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.GPU_ScrollTop.Size = new System.Drawing.Size(38, 38);
@@ -9791,7 +9831,7 @@
             this.DISK_ScrollTop.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.DISK_ScrollTop.ForeColor = System.Drawing.Color.White;
             this.DISK_ScrollTop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.DISK_ScrollTop.Location = new System.Drawing.Point(746, 633);
+            this.DISK_ScrollTop.Location = new System.Drawing.Point(747, 633);
             this.DISK_ScrollTop.Name = "DISK_ScrollTop";
             this.DISK_ScrollTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.DISK_ScrollTop.Size = new System.Drawing.Size(38, 38);
@@ -9835,7 +9875,7 @@
             this.DISK_PBar_BG.BorderSize = 0;
             this.DISK_PBar_BG.Controls.Add(this.DISK_PBar_FE);
             this.DISK_PBar_BG.Dock = System.Windows.Forms.DockStyle.Right;
-            this.DISK_PBar_BG.Location = new System.Drawing.Point(774, 10);
+            this.DISK_PBar_BG.Location = new System.Drawing.Point(775, 10);
             this.DISK_PBar_BG.Name = "DISK_PBar_BG";
             this.DISK_PBar_BG.Size = new System.Drawing.Size(9, 480);
             this.DISK_PBar_BG.TabIndex = 23;
@@ -9866,7 +9906,7 @@
             this.DISK_TTLP_Panel_1.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             this.DISK_TTLP_Panel_1.Name = "DISK_TTLP_Panel_1";
             this.DISK_TTLP_Panel_1.Padding = new System.Windows.Forms.Padding(5);
-            this.DISK_TTLP_Panel_1.Size = new System.Drawing.Size(381, 27);
+            this.DISK_TTLP_Panel_1.Size = new System.Drawing.Size(382, 27);
             this.DISK_TTLP_Panel_1.TabIndex = 0;
             // 
             // DISK_TTLP_P1_L2
@@ -9924,7 +9964,7 @@
             this.DISK_TTLP_Panel_4.Controls.Add(this.DISK_TTLP_P4_L1);
             this.DISK_TTLP_Panel_4.Controls.Add(this.DISK_TLP_PB_4);
             this.DISK_TTLP_Panel_4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DISK_TTLP_Panel_4.Location = new System.Drawing.Point(384, 32);
+            this.DISK_TTLP_Panel_4.Location = new System.Drawing.Point(385, 32);
             this.DISK_TTLP_Panel_4.Margin = new System.Windows.Forms.Padding(1, 1, 1, 3);
             this.DISK_TTLP_Panel_4.Name = "DISK_TTLP_Panel_4";
             this.DISK_TTLP_Panel_4.Padding = new System.Windows.Forms.Padding(5);
@@ -9986,7 +10026,7 @@
             this.DISK_TTLP_Panel_2.Controls.Add(this.DISK_TTLP_P2_L1);
             this.DISK_TTLP_Panel_2.Controls.Add(this.DISK_TLP_PB_2);
             this.DISK_TTLP_Panel_2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DISK_TTLP_Panel_2.Location = new System.Drawing.Point(384, 3);
+            this.DISK_TTLP_Panel_2.Location = new System.Drawing.Point(385, 3);
             this.DISK_TTLP_Panel_2.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             this.DISK_TTLP_Panel_2.Name = "DISK_TTLP_Panel_2";
             this.DISK_TTLP_Panel_2.Padding = new System.Windows.Forms.Padding(5);
@@ -10052,7 +10092,7 @@
             this.DISK_TTLP_Panel_3.Margin = new System.Windows.Forms.Padding(1, 1, 1, 3);
             this.DISK_TTLP_Panel_3.Name = "DISK_TTLP_Panel_3";
             this.DISK_TTLP_Panel_3.Padding = new System.Windows.Forms.Padding(5);
-            this.DISK_TTLP_Panel_3.Size = new System.Drawing.Size(381, 27);
+            this.DISK_TTLP_Panel_3.Size = new System.Drawing.Size(382, 27);
             this.DISK_TTLP_Panel_3.TabIndex = 2;
             // 
             // DISK_TTLP_P3_L2
@@ -10136,7 +10176,7 @@
             this.NET_LT_P2.Controls.Add(this.NET_LT_UL2);
             this.NET_LT_P2.Controls.Add(this.NET_LT_UL1);
             this.NET_LT_P2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NET_LT_P2.Location = new System.Drawing.Point(384, 3);
+            this.NET_LT_P2.Location = new System.Drawing.Point(385, 3);
             this.NET_LT_P2.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
             this.NET_LT_P2.Name = "NET_LT_P2";
             this.NET_LT_P2.Padding = new System.Windows.Forms.Padding(5);
@@ -10188,7 +10228,7 @@
             this.NET_LT_P1.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
             this.NET_LT_P1.Name = "NET_LT_P1";
             this.NET_LT_P1.Padding = new System.Windows.Forms.Padding(5);
-            this.NET_LT_P1.Size = new System.Drawing.Size(381, 27);
+            this.NET_LT_P1.Size = new System.Drawing.Size(382, 27);
             this.NET_LT_P1.TabIndex = 0;
             // 
             // NET_LT_DL2
@@ -10237,7 +10277,7 @@
             this.NET_ScrollTop.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Bold);
             this.NET_ScrollTop.ForeColor = System.Drawing.Color.White;
             this.NET_ScrollTop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.NET_ScrollTop.Location = new System.Drawing.Point(763, 233);
+            this.NET_ScrollTop.Location = new System.Drawing.Point(764, 233);
             this.NET_ScrollTop.Name = "NET_ScrollTop";
             this.NET_ScrollTop.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.NET_ScrollTop.Size = new System.Drawing.Size(38, 38);
@@ -10335,7 +10375,7 @@
             this.BATTERY_PBG_Panel.BorderSize = 0;
             this.BATTERY_PBG_Panel.Controls.Add(this.BATTERY_PFE_Panel);
             this.BATTERY_PBG_Panel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BATTERY_PBG_Panel.Location = new System.Drawing.Point(774, 10);
+            this.BATTERY_PBG_Panel.Location = new System.Drawing.Point(775, 10);
             this.BATTERY_PBG_Panel.Name = "BATTERY_PBG_Panel";
             this.BATTERY_PBG_Panel.Size = new System.Drawing.Size(9, 257);
             this.BATTERY_PBG_Panel.TabIndex = 13;
@@ -10540,7 +10580,7 @@
             this.EXPORT_ModeSelector_List.HoverBackColor = System.Drawing.SystemColors.Window;
             this.EXPORT_ModeSelector_List.HoverButtonColor = System.Drawing.SystemColors.ControlDark;
             this.EXPORT_ModeSelector_List.HoverForeColor = System.Drawing.SystemColors.WindowText;
-            this.EXPORT_ModeSelector_List.Location = new System.Drawing.Point(498, 42);
+            this.EXPORT_ModeSelector_List.Location = new System.Drawing.Point(499, 42);
             this.EXPORT_ModeSelector_List.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
             this.EXPORT_ModeSelector_List.Name = "EXPORT_ModeSelector_List";
             this.EXPORT_ModeSelector_List.SelectedBackColor = System.Drawing.SystemColors.Highlight;
@@ -10572,7 +10612,7 @@
             this.EXPORT_CB_FLP.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.EXPORT_CB_FLP.Name = "EXPORT_CB_FLP";
             this.EXPORT_CB_FLP.Padding = new System.Windows.Forms.Padding(5);
-            this.EXPORT_CB_FLP.Size = new System.Drawing.Size(434, 130);
+            this.EXPORT_CB_FLP.Size = new System.Drawing.Size(435, 130);
             this.EXPORT_CB_FLP.TabIndex = 4;
             // 
             // EXPORT_CB_OS
@@ -11003,7 +11043,7 @@
             this.EXPORT_DonateLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
             this.EXPORT_DonateLabel.Name = "EXPORT_DonateLabel";
             this.EXPORT_DonateLabel.Padding = new System.Windows.Forms.Padding(12);
-            this.EXPORT_DonateLabel.Size = new System.Drawing.Size(790, 161);
+            this.EXPORT_DonateLabel.Size = new System.Drawing.Size(791, 161);
             this.EXPORT_DonateLabel.TabIndex = 0;
             this.EXPORT_DonateLabel.Text = "N/A Support Text";
             this.EXPORT_DonateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -11850,6 +11890,9 @@
         internal System.Windows.Forms.Label NET_P_IP_Adress_V;
         private System.Windows.Forms.TableLayoutPanel DISK_MainTLP;
         private System.Windows.Forms.ToolStripMenuItem hsAuditorTool;
+        private System.Windows.Forms.ToolStripMenuItem chineseTaiwanToolStripMenuItem;
+        internal System.Windows.Forms.Label OS_WinMachineID;
+        internal System.Windows.Forms.Label OS_WinMachineID_V;
     }
 }
 

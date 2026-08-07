@@ -18,7 +18,7 @@ namespace Glow.glow_tools{
             ImageDGV.Columns.Add("WallpaperPref", "Pref");
             ImageDGV.Columns.Add("WallpaperVal", "Value");
             ImageDGV.Columns[0].Width = (int)(175 * this.DeviceDpi / 96f);
-            ImageDGV.RowTemplate.Height = (int)(26 * this.DeviceDpi / 96f);
+            ImageDGV.RowTemplate.Height = (int)(32 * this.DeviceDpi / 96f);
             foreach (DataGridViewColumn columnPadding in ImageDGV.Columns){
                 int scaledPadding = (int)(3 * this.DeviceDpi / 96f);
                 columnPadding.DefaultCellStyle.Padding = new Padding(scaledPadding, 0, 0, 0);

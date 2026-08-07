@@ -34,7 +34,7 @@ namespace Glow.glow_tools{
             //
             typeof(DataGridView).InvokeMember("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty, null, DGV_MainTable, new object[] { true });
             //
-            DGV_MainTable.RowTemplate.Height = (int)(24 * this.DeviceDpi / 96f);
+            DGV_MainTable.RowTemplate.Height = (int)(32 * this.DeviceDpi / 96f);
             DGV_MainTable.Columns.Add("HardwareName", "HName");
             DGV_MainTable.Columns.Add("HardwareResult", "HResult");
             DGV_MainTable.Columns[0].Width = (int)(325 * this.DeviceDpi / 96f);

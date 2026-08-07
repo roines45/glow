@@ -16,7 +16,7 @@ namespace Glow.glow_tools{
             SWP_DGV.Columns.Add("col_ssid", "Network Name");
             SWP_DGV.Columns.Add("col_pass", "Network Password");
             SWP_DGV.Columns[0].Width = (int)(260 * this.DeviceDpi / 96f);
-            SWP_DGV.RowTemplate.Height = (int)(28 * this.DeviceDpi / 96f);
+            SWP_DGV.RowTemplate.Height = (int)(32 * this.DeviceDpi / 96f);
             foreach (DataGridViewColumn columnPadding in SWP_DGV.Columns){
                 int scaledPadding = (int)(3 * this.DeviceDpi / 96f);
                 columnPadding.DefaultCellStyle.Padding = new Padding(scaledPadding, 0, 0, 0);

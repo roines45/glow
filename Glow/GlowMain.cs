@@ -46,6 +46,7 @@ namespace Glow{
             // ==================
             arabicToolStripMenuItem.Tag = "ar";
             chineseToolStripMenuItem.Tag = "zh";
+            chineseTaiwanToolStripMenuItem.Tag = "zh-tw";
             englishToolStripMenuItem.Tag = "en";
             dutchToolStripMenuItem.Tag = "nl";
             frenchToolStripMenuItem.Tag = "fr";
@@ -63,6 +64,7 @@ namespace Glow{
             // ==================
             arabicToolStripMenuItem.Click += LanguageToolStripMenuItem_Click;
             chineseToolStripMenuItem.Click += LanguageToolStripMenuItem_Click;
+            chineseTaiwanToolStripMenuItem.Click += LanguageToolStripMenuItem_Click;
             englishToolStripMenuItem.Click += LanguageToolStripMenuItem_Click;
             dutchToolStripMenuItem.Click += LanguageToolStripMenuItem_Click;
             frenchToolStripMenuItem.Click += LanguageToolStripMenuItem_Click;
@@ -199,7 +201,7 @@ namespace Glow{
                 allCopyableLabels.AddRange(BATTERYLabels);
                 //
                 if (stealth_status != 1){
-                    var STEALTHLabels = new Label[] { OS_SavedUser_V, OS_DeviceID_V, OS_Serial_V, OS_WinKey_V, OS_WinLicenseURL_V, OS_WinLicenseVerifiURL_V, OS_Wallpaper_V, MB_DeviceSerialNumber_V, MB_MotherBoardSerial_V, MB_SystemSKU_V, MB_TPMManID_V, CPU_SerialName_V, RAM_Serial_V, RAM_PartNumber_V, GPU_MonitorSerialNumberID_V, DISK_Serial_V, DISK_VolumeSerial_V, NET_MacAdress_V, NET_Guid_V, NET_IPv4Adress_V, NET_IPv6Adress_V, NET_P_IP_Adress_V, NET_P_ISP_V, NET_DNS_v4_1_V, NET_DNS_v4_2_V, NET_DNS_v6_1_V, NET_DNS_v6_2_V, USB_DeviceGUID_V, BATTERY_Serial_V };
+                    var STEALTHLabels = new Label[] { OS_SavedUser_V, OS_DeviceID_V, OS_Serial_V, OS_WinMachineID_V, OS_WinKey_V, OS_WinLicenseURL_V, OS_WinLicenseVerifiURL_V, OS_Wallpaper_V, MB_DeviceSerialNumber_V, MB_MotherBoardSerial_V, MB_SystemSKU_V, MB_TPMManID_V, CPU_SerialName_V, RAM_Serial_V, RAM_PartNumber_V, GPU_MonitorSerialNumberID_V, DISK_Serial_V, DISK_VolumeSerial_V, NET_MacAdress_V, NET_Guid_V, NET_IPv4Adress_V, NET_IPv6Adress_V, NET_P_IP_Adress_V, NET_P_ISP_V, NET_DNS_v4_1_V, NET_DNS_v4_2_V, NET_DNS_v6_1_V, NET_DNS_v6_2_V, USB_DeviceGUID_V, BATTERY_Serial_V };
                     allCopyableLabels.AddRange(STEALTHLabels);
                 }
                 //
@@ -335,6 +337,7 @@ namespace Glow{
             var languageFiles = new Dictionary<string, (object langResource, ToolStripMenuItem menuItem, bool fileExists)>{
                 { "ar", (ts_lang_ar, arabicToolStripMenuItem, File.Exists(ts_lang_ar)) },
                 { "zh", (ts_lang_zh, chineseToolStripMenuItem, File.Exists(ts_lang_zh)) },
+                { "zh-tw", (ts_lang_zh_tw, chineseTaiwanToolStripMenuItem, File.Exists(ts_lang_zh_tw)) },
                 { "en", (ts_lang_en, englishToolStripMenuItem, File.Exists(ts_lang_en)) },
                 { "nl", (ts_lang_nl, dutchToolStripMenuItem, File.Exists(ts_lang_nl)) },
                 { "fr", (ts_lang_fr, frenchToolStripMenuItem, File.Exists(ts_lang_fr)) },
@@ -484,7 +487,7 @@ namespace Glow{
         // ======================================================================================================
         private void Glow_Load(object sender, EventArgs e){ 
             Text = TS_VersionEngine.TS_SoftwareVersion(0);
-            // LAUNCH PROCESS 
+            // LAUNCH PROCESS
             // ====================================
             RunSoftwareEngine();
             // SOFTWARE UPDATE CHECK
@@ -610,6 +613,21 @@ namespace Glow{
                         OS_Serial_V.SetTextSafe(sm_text);
                     }
                 }catch (Exception ex){
+                    if (debug_status) { TSErrorLog.LogException(ex, "Os()"); }
+                }
+                try{
+                    // OS MACHINE ID
+                    string os_machine_id = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography", "MachineGuid", "").ToString().Trim();
+                    if (!string.IsNullOrEmpty(os_machine_id)){
+                        if (stealth_status != 1){
+                            OS_WinMachineID_V.SetTextSafe(os_machine_id);
+                        }else{
+                            OS_WinMachineID_V.SetTextSafe(sm_text);
+                        }
+                    }else{
+                        OS_WinMachineID_V.SetTextSafe(software_lang.TSReadLangs("Os_Content", "os_c_unknown"));
+                    }
+                }catch(Exception ex){
                     if (debug_status) { TSErrorLog.LogException(ex, "Os()"); }
                 }
                 try{
@@ -6682,15 +6700,16 @@ namespace Glow{
         }
         // LANGUAGES SETTINGS
         // ======================================================================================================
+        private ToolStripMenuItem selected_lang = null;
         private void Select_lang_active(object target_lang){
-            ToolStripMenuItem selected_lang = null;
+            if (target_lang == null)
+                return;
+            ToolStripMenuItem clicked_lang = (ToolStripMenuItem)target_lang;
+            if (selected_lang == clicked_lang)
+                return;
             Select_lang_deactive();
-            if (target_lang != null){
-                if (selected_lang != (ToolStripMenuItem)target_lang){
-                    selected_lang = (ToolStripMenuItem)target_lang;
-                    selected_lang.Checked = true;
-                }
-            }
+            selected_lang = clicked_lang;
+            selected_lang.Checked = true;
         }
         private void Select_lang_deactive(){
             foreach (ToolStripMenuItem disabled_lang in languageToolStripMenuItem.DropDownItems){
@@ -6761,6 +6780,7 @@ namespace Glow{
                 languageToolStripMenuItem.Text = software_lang.TSReadLangs("HeaderMenu", "header_menu_language");
                 arabicToolStripMenuItem.Text = software_lang.TSReadLangs("HeaderLangs", "lang_ar");
                 chineseToolStripMenuItem.Text = software_lang.TSReadLangs("HeaderLangs", "lang_zh");
+                chineseTaiwanToolStripMenuItem.Text = software_lang.TSReadLangs("HeaderLangs", "lang_zh_tw");
                 englishToolStripMenuItem.Text = software_lang.TSReadLangs("HeaderLangs", "lang_en");
                 dutchToolStripMenuItem.Text = software_lang.TSReadLangs("HeaderLangs", "lang_nl");
                 frenchToolStripMenuItem.Text = software_lang.TSReadLangs("HeaderLangs", "lang_fr");
@@ -6852,6 +6872,7 @@ namespace Glow{
                 OS_SystemArchitectural.Text = software_lang.TSReadLangs("OperatingSystem", "os_system_architecture");
                 OS_DeviceID.Text = software_lang.TSReadLangs("OperatingSystem", "os_device_id");
                 OS_Serial.Text = software_lang.TSReadLangs("OperatingSystem", "os_product_id");
+                OS_WinMachineID.Text = software_lang.TSReadLangs("OperatingSystem", "os_win_machine_id");
                 OS_ExperienceVersion.Text = software_lang.TSReadLangs("OperatingSystem", "os_experience_version");
                 OS_Country.Text = software_lang.TSReadLangs("OperatingSystem", "os_adjustable_language");
                 OS_TimeZone.Text = software_lang.TSReadLangs("OperatingSystem", "os_timezone");
@@ -7539,6 +7560,8 @@ namespace Glow{
                 OS_DeviceID_V.ForeColor = TS_ThemeEngine.ColorMode(theme, "TSBT_AccentColor");
                 OS_Serial.ForeColor = TS_ThemeEngine.ColorMode(theme, "TSBT_LabelColor1");
                 OS_Serial_V.ForeColor = TS_ThemeEngine.ColorMode(theme, "TSBT_AccentColor");
+                OS_WinMachineID.ForeColor = TS_ThemeEngine.ColorMode(theme, "TSBT_LabelColor1");
+                OS_WinMachineID_V.ForeColor = TS_ThemeEngine.ColorMode(theme, "TSBT_AccentColor");
                 OS_ExperienceVersion.ForeColor = TS_ThemeEngine.ColorMode(theme, "TSBT_LabelColor1");
                 OS_ExperienceVersion_V.ForeColor = TS_ThemeEngine.ColorMode(theme, "TSBT_AccentColor");
                 OS_Country.ForeColor = TS_ThemeEngine.ColorMode(theme, "TSBT_LabelColor1");
@@ -8505,15 +8528,16 @@ namespace Glow{
         }
         // STARTUP SETINGS
         // ======================================================================================================
+        private ToolStripMenuItem selected_startup_mode = null;
         private void Select_startup_mode_active(object target_startup_mode){
-            ToolStripMenuItem selected_startup_mode = null;
+            if (target_startup_mode == null)
+                return;
+            ToolStripMenuItem clicked_startup_mode = (ToolStripMenuItem)target_startup_mode;
+            if (selected_startup_mode == clicked_startup_mode)
+                return;
             Select_startup_mode_deactive();
-            if (target_startup_mode != null){
-                if (selected_startup_mode != (ToolStripMenuItem)target_startup_mode){
-                    selected_startup_mode = (ToolStripMenuItem)target_startup_mode;
-                    selected_startup_mode.Checked = true;
-                }
-            }
+            selected_startup_mode = clicked_startup_mode;
+            selected_startup_mode.Checked = true;
         }
         private void Select_startup_mode_deactive(){
             foreach (ToolStripMenuItem disabled_startup in startupToolStripMenuItem.DropDownItems){
@@ -8544,15 +8568,17 @@ namespace Glow{
         }
         // STEALTH MODE
         // ======================================================================================================
+        private ToolStripMenuItem selected_stealth_mode = null;
         private void Select_stealth_mode_active(object target_stealth_mode){
-            ToolStripMenuItem selected_stealth_mode = null;
+            if (target_stealth_mode == null)
+                return;
+            ToolStripMenuItem clicked_stealth_mode = (ToolStripMenuItem)target_stealth_mode;
+
+            if (selected_stealth_mode == clicked_stealth_mode)
+                return;
             Select_stealth_mode_deactive();
-            if (target_stealth_mode != null){
-                if (selected_stealth_mode != (ToolStripMenuItem)target_stealth_mode){
-                    selected_stealth_mode = (ToolStripMenuItem)target_stealth_mode;
-                    selected_stealth_mode.Checked = true;
-                }
-            }
+            selected_stealth_mode = clicked_stealth_mode;
+            selected_stealth_mode.Checked = true;
         }
         private void Select_stealth_mode_deactive(){
             foreach (ToolStripMenuItem disabled_stealth in stealthModeToolStripMenuItem.DropDownItems){
@@ -8723,15 +8749,16 @@ namespace Glow{
                 TS_MessageBoxEngine.TS_MessageBox(this, 3, string.Format(software_lang.TSReadLangs("HeaderDebugMode", "header_debug_mode_delete_failed"), "\n\n", ex.Message));
             }
         }
+        private ToolStripMenuItem selected_debug_mode = null;
         private void Select_debug_mode_active(object target_debug_mode){
-            ToolStripMenuItem selected_debug_mode = null;
+            if (target_debug_mode == null)
+                return;
+            ToolStripMenuItem clicked_debug_mode = (ToolStripMenuItem)target_debug_mode;
+            if (selected_debug_mode == clicked_debug_mode)
+                return;
             Select_debug_mode_deactive();
-            if (target_debug_mode != null){
-                if (selected_debug_mode != (ToolStripMenuItem)target_debug_mode){
-                    selected_debug_mode = (ToolStripMenuItem)target_debug_mode;
-                    selected_debug_mode.Checked = true;
-                }
-            }
+            selected_debug_mode = clicked_debug_mode;
+            selected_debug_mode.Checked = true;
         }
         private void Select_debug_mode_deactive(){
             foreach (ToolStripMenuItem disabled_debug in debugModeToolStripMenuItem.DropDownItems){
@@ -9331,6 +9358,7 @@ namespace Glow{
                 KV(OS_SystemArchitectural.Text, OS_SystemArchitectural_V.Text),
                 KV(OS_DeviceID.Text, OS_DeviceID_V.Text),
                 KV(OS_Serial.Text, OS_Serial_V.Text),
+                KV(OS_WinMachineID.Text, OS_WinMachineID_V.Text),
                 KV(OS_ExperienceVersion.Text, OS_ExperienceVersion_V.Text),
                 KV(OS_Country.Text, OS_Country_V.Text),
                 KV(OS_TimeZone.Text, OS_TimeZone_V.Text),

@@ -16,7 +16,7 @@ namespace Glow{
             //
             PanelHeader.Parent = ImageAbout;
             CloseAboutBtn.Parent = PanelHeader;
-            AboutTable.RowTemplate.Height = (int)(24 * this.DeviceDpi / 96f);
+            AboutTable.RowTemplate.Height = (int)(28 * this.DeviceDpi / 96f);
             AboutTable.Columns.Add("LangName", "Language");
             AboutTable.Columns.Add("LangTranslator", "Translator");
             AboutTable.Columns[0].Width = (int)(110 * this.DeviceDpi / 96f);
