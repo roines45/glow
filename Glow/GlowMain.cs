@@ -6445,7 +6445,7 @@ namespace Glow{
                                     try { sizeKb = Convert.ToInt64(sizeValue); } catch { }
                                 }
                                 if (!sizeKb.HasValue || sizeKb.Value == 0){
-                                    long? folderSizeBytes = CalculateFolderSizeInBytes(installLocation);
+                                    long? folderSizeBytes = IsSystemDirectory(installLocation) ? (long?)null : CalculateFolderSizeInBytes(installLocation);
                                     if (folderSizeBytes.HasValue){
                                         sizeKb = folderSizeBytes.Value / 1024;
                                     }
@@ -6509,20 +6509,64 @@ namespace Glow{
             }catch{ }
             return null;
         }
+        private static bool IsSystemDirectory(string folderPath){
+            try{
+                if (string.IsNullOrWhiteSpace(folderPath) || !Directory.Exists(folderPath)) return false;
+                string full = Path.GetFullPath(folderPath).TrimEnd(Path.DirectorySeparatorChar).TrimEnd(Path.AltDirectorySeparatorChar);
+                string winDir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+                string[] prefixes = new string[]{
+                    winDir,
+                    Environment.SystemDirectory,
+                    Path.Combine(winDir, "SysWOW64"),
+                    Path.Combine(winDir, "System"),
+                    Path.Combine(winDir, "Fonts"),
+                    Path.Combine(winDir, "WinSxS"),
+                    Path.Combine(winDir, "servicing"),
+                    Path.Combine(winDir, "assembly"),
+                    Path.Combine(winDir, "Globalization"),
+                    Path.Combine(winDir, "Speech"),
+                    Path.Combine(winDir, "Logs"),
+                    Path.Combine(winDir, "Temp"),
+                    Path.Combine(winDir, "Tasks"),
+                    Path.Combine(winDir, "Prefetch"),
+                    Path.Combine(winDir, "Boot")
+                };
+                foreach (var p in prefixes){
+                    if (string.IsNullOrEmpty(p)) continue;
+                    string fp = Path.GetFullPath(p).TrimEnd(Path.DirectorySeparatorChar).TrimEnd(Path.AltDirectorySeparatorChar);
+                    if (full.Equals(fp, StringComparison.OrdinalIgnoreCase)) return true;
+                    if (full.StartsWith(fp + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)) return true;
+                }
+                return false;
+            }catch{
+                return false;
+            }
+        }
         private long? CalculateFolderSizeInBytes(string folderPath){
             try{
                 if (string.IsNullOrWhiteSpace(folderPath) || !Directory.Exists(folderPath))
                     return null;
-                var dirInfo = new DirectoryInfo(folderPath);
                 long totalBytes = 0;
-                foreach (var file in dirInfo.EnumerateFiles("*", SearchOption.AllDirectories)){
-                    totalBytes += file.Length;
-                }
+                CalculateFolderSizeRecursive(folderPath, ref totalBytes);
                 return totalBytes;
             }catch (Exception ex){
                 if (debug_status) { TSErrorLog.LogException(ex, "CalculateFolderSizeInBytes() - " + folderPath); }
                 return null;
             }
+        }
+        private void CalculateFolderSizeRecursive(string folderPath, ref long totalBytes){
+            try{
+                foreach (var file in Directory.EnumerateFiles(folderPath)){
+                    try{
+                        totalBytes += new FileInfo(file).Length;
+                    }catch{ }
+                }
+                foreach (var subDir in Directory.EnumerateDirectories(folderPath)){
+                    try{
+                        CalculateFolderSizeRecursive(subDir, ref totalBytes);
+                    }catch{ }
+                }
+            }catch{ }
         }
         private string GetInstallDateFromLocation(string installLocation, string preCalculatedExe){
             try{

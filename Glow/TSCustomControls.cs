@@ -1,7 +1,7 @@
 ﻿// ======================================================================================================
 // Türkaysoft - C# Custom Graphics UI Library
-// Library Version: v26.9
-// Compilation Date: 07.08.2026
+// Library Version: v26.10
+// Compilation Date: 19.08.2026
 // © Eray Türkay
 // ======================================================================================================
 
@@ -45,7 +45,7 @@ namespace Glow
         public int BorderRadius
         {
             get => borderRadius;
-            set { borderRadius = Math.Max(0, value); Invalidate(); }
+            set { borderRadius = Math.Max(0, value); UpdateRegion(); Invalidate(); }
         }
         [Category("TS Appearance")]
         public Color BorderColor
@@ -78,6 +78,9 @@ namespace Glow
         {
             GraphicsPath path = new GraphicsPath();
             float curveSize = radius * 2f;
+            if (curveSize > rect.Width) curveSize = rect.Width;
+            if (curveSize > rect.Height) curveSize = rect.Height;
+            if (curveSize <= 0) curveSize = 0.1f;
             path.StartFigure();
             path.AddArc(rect.X, rect.Y, curveSize, curveSize, 180, 90);
             path.AddArc(rect.Right - curveSize, rect.Y, curveSize, curveSize, 270, 90);
@@ -85,6 +88,35 @@ namespace Glow
             path.AddArc(rect.X, rect.Bottom - curveSize, curveSize, curveSize, 90, 90);
             path.CloseFigure();
             return path;
+        }
+        private void UpdateRegion()
+        {
+            float scale = DeviceDpi / 96f;
+            int maxRadius = (int)(Height / scale);
+            int safeRadius = Math.Min(borderRadius, maxRadius);
+            int scaledBorderRadius = (int)(safeRadius * ScaleFactor);
+            Rectangle rectSurface = ClientRectangle;
+            if (scaledBorderRadius > 2)
+            {
+                using (GraphicsPath pathSurface = GetFigurePath(rectSurface, scaledBorderRadius))
+                {
+                    this.Region = new Region(pathSurface);
+                }
+            }
+            else
+            {
+                this.Region = new Region(rectSurface);
+            }
+        }
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            UpdateRegion();
+        }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            UpdateRegion();
         }
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -109,7 +141,6 @@ namespace Glow
                 using (Pen penSurface = new Pen(Parent.BackColor, smoothSize))
                 using (Pen penBorder = new Pen(borderColor, scaledBorderSize))
                 {
-                    this.Region = new Region(pathSurface);
                     g.DrawPath(penSurface, pathSurface);
                     if (scaledBorderSize >= 1)
                     {
@@ -119,7 +150,6 @@ namespace Glow
             }
             else
             {
-                this.Region = new Region(rectSurface);
                 if (scaledBorderSize >= 1)
                 {
                     using (Pen penBorder = new Pen(borderColor, scaledBorderSize))
@@ -190,7 +220,7 @@ namespace Glow
             int boxSize = (int)(16 * dpi);
             int padding = (int)(6 * dpi);
             int margin = 2;
-            TextFormatFlags flags = TextFormatFlags.SingleLine | TextFormatFlags.NoPadding;
+            TextFormatFlags flags = TextFormatFlags.SingleLine | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix;
             Size textSize = TextRenderer.MeasureText(Text, Font, new Size(int.MaxValue, int.MaxValue), flags);
             int width = textSize.Width + boxSize + padding + (margin * 2);
             int height = Math.Max(textSize.Height, boxSize) + 4;
@@ -247,7 +277,7 @@ namespace Glow
                     });
                 }
             }
-            TextFormatFlags textFlags = TextFormatFlags.SingleLine | TextFormatFlags.NoPadding | TextFormatFlags.VerticalCenter;
+            TextFormatFlags textFlags = TextFormatFlags.SingleLine | TextFormatFlags.NoPadding | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPrefix;
             textFlags |= checkOnRight ? TextFormatFlags.Right : TextFormatFlags.Left;
             TextRenderer.DrawText(g, Text, Font, textRect, Enabled ? ForeColor : SystemColors.GrayText, textFlags);
         }
@@ -350,7 +380,7 @@ namespace Glow
             Color button = !Enabled ? _disabledButtonColor : useHover ? _hoverButtonColor : _buttonColor;
             using (SolidBrush b = new SolidBrush(back))
                 e.Graphics.FillRectangle(b, rect);
-            TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis | TextFormatFlags.NoPadding;
+            TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix;
             flags |= rtl ? TextFormatFlags.Right : TextFormatFlags.Left;
             TextRenderer.DrawText(e.Graphics, Text, Font, textRect, fore, flags);
             using (SolidBrush b = new SolidBrush(button))
@@ -377,7 +407,7 @@ namespace Glow
             Color fore = selected ? SelectedForeColor : ForeColor;
             using (SolidBrush b = new SolidBrush(back))
                 e.Graphics.FillRectangle(b, e.Bounds);
-            TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding;
+            TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix;
             flags |= (RightToLeft == RightToLeft.Yes) ? TextFormatFlags.Right : TextFormatFlags.Left;
             Rectangle itemBounds = new Rectangle(e.Bounds.X + 4, e.Bounds.Y, e.Bounds.Width - 8, e.Bounds.Height);
             TextRenderer.DrawText(e.Graphics, Items[e.Index].ToString(), Font, itemBounds, fore, flags);
@@ -455,7 +485,7 @@ namespace Glow
             Color effectiveButton = this.Enabled ? _buttonColor : _disabledButtonColor;
             using (SolidBrush b = new SolidBrush(effectiveBack))
                 e.Graphics.FillRectangle(b, rect);
-            TextFormatFlags flags = TextFormatFlags.VerticalCenter | (rtl ? TextFormatFlags.Right : TextFormatFlags.Left);
+            TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.NoPrefix | (rtl ? TextFormatFlags.Right : TextFormatFlags.Left);
             TextRenderer.DrawText(e.Graphics, this.Text, this.Font, textRect, effectiveFore, flags);
             using (SolidBrush b = new SolidBrush(effectiveButton))
                 e.Graphics.FillRectangle(b, buttonRect);
@@ -545,14 +575,12 @@ namespace Glow
                 using (GraphicsPath pathSurface = GetRoundedRectangle(new RectangleF(rectSurface.X, rectSurface.Y, rectSurface.Width, rectSurface.Height), radius))
                 using (Pen penSurface = new Pen(Parent.BackColor, 2f))
                 {
-                    this.Region = new Region(pathSurface);
                     penSurface.Alignment = PenAlignment.Center;
                     g.DrawPath(penSurface, pathSurface);
                 }
             }
             else
             {
-                this.Region = new Region(rectSurface);
                 using (SolidBrush brush = new SolidBrush(BackColor))
                     g.FillRectangle(brush, rectSurface);
             }
@@ -705,7 +733,6 @@ namespace Glow
             }
             else
             {
-                this.Region = new Region(rectSurface);
                 using (SolidBrush brush = new SolidBrush(BackColor))
                     g.FillRectangle(brush, rectSurface);
                 TextFormatFlags flags = GetTextFormatFlags();
@@ -714,7 +741,7 @@ namespace Glow
         }
         private TextFormatFlags GetTextFormatFlags()
         {
-            TextFormatFlags baseFlags = TextFormatFlags.WordBreak;
+            TextFormatFlags baseFlags = TextFormatFlags.WordBreak | TextFormatFlags.NoPrefix;
             switch (TextAlign)
             {
                 case ContentAlignment.TopLeft:
@@ -906,7 +933,8 @@ namespace Glow
         }
         private void UpdateControlRegion()
         {
-            if (pathSurface != null && borderRadius > 2)
+            float scale = this.DeviceDpi / 96f;
+            if (pathSurface != null && (borderRadius * scale) > 2)
             {
                 this.Region = new Region(pathSurface);
             }
@@ -1022,7 +1050,7 @@ namespace Glow
             int rbSize = (int)(18 * dpi);
             int padding = (int)(8 * dpi);
             int margin = 2;
-            TextFormatFlags flags = TextFormatFlags.SingleLine | TextFormatFlags.NoPadding;
+            TextFormatFlags flags = TextFormatFlags.SingleLine | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix;
             Size textSize = TextRenderer.MeasureText(Text, Font, new Size(int.MaxValue, int.MaxValue), flags);
             int width = textSize.Width + rbSize + padding + (margin * 2);
             int height = Math.Max(textSize.Height, rbSize) + 6;
@@ -1051,7 +1079,7 @@ namespace Glow
                 if (Checked)
                     g.FillEllipse(checkBrush, checkRect);
             }
-            TextFormatFlags textFlags = TextFormatFlags.SingleLine | TextFormatFlags.NoPadding | TextFormatFlags.VerticalCenter;
+            TextFormatFlags textFlags = TextFormatFlags.SingleLine | TextFormatFlags.NoPadding | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPrefix;
             textFlags |= rightAligned ? TextFormatFlags.Right : TextFormatFlags.Left;
             TextRenderer.DrawText(g, Text, Font, textRect, Enabled ? ForeColor : SystemColors.GrayText, textFlags);
         }
@@ -1093,13 +1121,31 @@ namespace Glow
         public int Minimum
         {
             get => _minimum;
-            set { _minimum = value; Invalidate(); }
+            set
+            {
+                _minimum = value;
+                if (_value < _minimum)
+                {
+                    _value = _minimum;
+                    ValueChanged?.Invoke(this, EventArgs.Empty);
+                }
+                Invalidate();
+            }
         }
         [Category("TS Appearance")]
         public int Maximum
         {
             get => _maximum;
-            set { _maximum = value; Invalidate(); }
+            set
+            {
+                _maximum = value;
+                if (_value > _maximum)
+                {
+                    _value = _maximum;
+                    ValueChanged?.Invoke(this, EventArgs.Empty);
+                }
+                Invalidate();
+            }
         }
         [Category("TS Appearance")]
         public int Value
@@ -1107,7 +1153,9 @@ namespace Glow
             get => _value;
             set
             {
-                _value = Math.Max(Minimum, Math.Min(Maximum, value));
+                int newValue = Math.Max(Minimum, Math.Min(Maximum, value));
+                if (_value == newValue) return;
+                _value = newValue;
                 Invalidate();
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -1188,14 +1236,12 @@ namespace Glow
                 using (GraphicsPath pathSurface = GetRoundedRectPath(new RectangleF(rectSurface.X, rectSurface.Y, rectSurface.Width, rectSurface.Height), radius))
                 using (Pen penSurface = new Pen(Parent.BackColor, 2f))
                 {
-                    this.Region = new Region(pathSurface);
                     penSurface.Alignment = PenAlignment.Center;
                     g.DrawPath(penSurface, pathSurface);
                 }
             }
             else
             {
-                this.Region = new Region(rectSurface);
                 using (SolidBrush brush = new SolidBrush(BackColor))
                     g.FillRectangle(brush, rectSurface);
             }

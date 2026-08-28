@@ -81,8 +81,9 @@ namespace Glow{
         // ======================================================================================================
         private static void DeleteOldUpdater(){
             try{
-                if (File.Exists(updater_old_exe_name)){
-                    File.Delete(updater_old_exe_name);
+                string updaterOldPath = Path.Combine(Application.StartupPath, updater_old_exe_name);
+                if (string.Equals(Path.GetDirectoryName(updaterOldPath), Application.StartupPath, StringComparison.OrdinalIgnoreCase) && File.Exists(updaterOldPath)){
+                    File.Delete(updaterOldPath);
                 }
             }catch{ }
         }
